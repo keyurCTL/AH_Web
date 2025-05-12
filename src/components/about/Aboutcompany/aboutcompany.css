@@ -1,0 +1,42 @@
+.about-us-section {
+     padding: 50px 0;
+}
+
+.about-us-section .about-content-box {
+     padding: 30px 0 0 0;
+}
+
+.about-us-section .about-content-box .abt-img {
+     padding: 30px;
+}
+
+.about-us-section .about-content-box .abt-img img {
+     width: 100%;
+}
+
+.about-us-section .about-content-box .about-content p strong {
+     color: #DA602C;
+}
+
+.about-us-section .about-content-box .about-content p {
+     color: var(--black);
+     font-size: 1rem;
+}
+
+.about-us-section .about-content-box .about-content h3 {
+     font-weight: 500;
+     padding: 5px 0;
+}
+
+.about-us-section .about-content-box .about-content ul {
+     padding-top: 10px;
+     list-style-image: url("/assets/images/nav-img-active.png");
+}
+
+.about-us-section .about-content-box .about-content ul li {
+     padding: 4px 0;
+}
+
+.about-us-section .about-content-box .about-content ul li strong {
+     color: var(--black);
+}

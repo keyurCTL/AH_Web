@@ -1,0 +1,58 @@
+/* Hotel Section */
+
+.hotel-section {
+     padding: 0 0 50px 0;
+}
+
+.hotel-section .title.title-with-tabs {
+     flex-direction: column;
+     align-items: flex-start;
+}
+
+.hotel-section .title.title-with-tabs .bottom-title {
+     padding: 20px 0;
+     display: flex;
+     align-items: center;
+     width: 100%;
+     justify-content: space-between;
+}
+
+.hotel-section .hotel-card {
+     display: flex;
+     align-items: center;
+     flex-direction: column;
+}
+
+.hotel-section .hotel-card .hotel-img img {
+     width: 100%;
+     height: 100%;
+}
+
+.hotel-section .hotel-card .hotel-card-content {
+     padding-top: 20px;
+     text-decoration: none;
+}
+
+.hotel-section .hotel-card .hotel-card-content h3 {
+     font-weight: 700;
+     text-align: center;
+     font-size: 1.25rem;
+     color: var(--black);
+}
+
+.hotel-section .hotel-card .hotel-card-content p {
+     font-size: 0.875rem;
+     color: var(--gray);
+     text-align: center;
+}
+
+@media (max-width: 576px) {
+
+     .hotel-section .title .title-text .title-underline {
+          left: 0;
+     }
+
+     .hotel-section .title .title-text .title-underline img {
+          width: 66%;
+     }
+}

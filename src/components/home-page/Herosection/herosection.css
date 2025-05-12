@@ -1,0 +1,243 @@
+/* Hero Section */
+@import url('https://fonts.googleapis.com/css2?family=Just+Another+Hand&display=swap');
+
+.hero-section {
+     background: var(--selection-color);
+     height: 65vh;
+     width: 100vw;
+}
+
+.hero-section .hero-section-content {
+     padding: 0 100px;
+     position: relative;
+}
+
+.hero-section .hero-section-content .hero-right-img {
+     height: 65vh;
+     display: flex;
+     justify-content: end;
+     align-items: end;
+     background: url("/assets/images/hero-map-bg.png");
+     background-position: right;
+     background-repeat: no-repeat;
+     background-size: contain;
+}
+
+.hero-section .hero-section-content .hero-right-img img {
+     width: 100%;
+}
+
+.hero-section .hero-section-content .hero-section-left {
+     height: 100%;
+     display: flex;
+     flex-direction: column;
+     padding-top: 60px;
+     /* justify-content: center; */
+}
+
+.hero-section .hero-section-content .left-bg {
+     position: absolute;
+     left: 100px;
+     bottom: 0;
+     background: url("/assets/images/hero-left-bg.png");
+     height: 150px;
+     width: 440px;
+     background-repeat: no-repeat;
+     background-position: bottom;
+}
+
+.hero-section .hero-section-content .hero-section-left .hero-title {
+     color: #371086;
+     font-family: "Just Another Hand", cursive;
+     font-size: 83px;
+     line-height: 0.85;
+}
+
+.hero-section .hero-section-content .hero-section-left .sub-hero-title {
+     font-size: 2.25rem;
+     font-weight: 700;
+     color: var(--black);
+     text-transform: capitalize;
+}
+
+.hero-section .hero-section-content .hero-section-left .explore-box {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     border-radius: 8px;
+     max-width: 800px;
+     margin-top: 20px;
+}
+
+.hero-section .hero-section-content .hero-section-left .dropdown-group {
+     display: flex;
+     /* flex-grow: 1; */
+     flex-wrap: wrap;
+     /* gap: 15px; */
+}
+
+.hero-section .hero-section-content .hero-section-left .dropdown {
+     display: flex;
+     align-items: center;
+     position: relative;
+     border: 1px solid var(--border-color);
+     border-radius: 0;
+     padding: 0 0 0 10px;
+}
+
+.hero-section .hero-section-content .hero-section-left .icon {
+     width: 20px;
+     height: 20px;
+     margin-right: 2px;
+}
+
+.hero-section .hero-section-content .hero-section-left .dropdown-select {
+     border: none;
+     outline: none;
+     font-size: 0.875rem;
+     color: var(--gray);
+     background: transparent;
+     appearance: none;
+     cursor: pointer;
+     /* padding-right: 20px; */
+     position: relative;
+}
+
+.hero-section .hero-section-content .hero-section-left .dropdown-select option {
+     color: #333;
+}
+
+.hero-section .hero-section-content .hero-section-left .explore-btn {
+     background-color: var(--secondary-color);
+     color: var(--white);
+     padding: 10px 50px;
+     border: none;
+     border-radius: 0;
+     font-size: 14px;
+     font-weight: 600;
+     cursor: pointer;
+}
+
+/* .hero-section .hero-section-content .hero-section-left .dropdown,
+.hero-section .hero-section-content .hero-section-left .explore-btn {
+     width: 200px;
+} */
+
+.hero-section .hero-section-content .hero-section-left .react-select__control {
+     background: transparent;
+     border: none;
+}
+
+.hero-section .hero-section-content .hero-section-left .react-select__indicator-separator {
+     display: none;
+}
+
+.hero-section .hero-section-content .hero-section-left .react-select__value-container {
+     padding: 2px 4px;
+}
+
+.hero-section .hero-section-content .hero-section-left .react-select__indicator {
+     padding: 4px;
+}
+
+
+@media(min-width:1800px) {
+
+     .hero-section .hero-section-content {
+          padding: 4px 150px;
+     }
+
+     .hero-section .hero-section-content .hero-right-img img {
+          max-width: 100%;
+     }
+
+     .hero-section .hero-section-content .hero-section-left .sub-hero-title {
+          font-size: 2.75rem;
+     }
+
+     .hero-section .hero-section-content .left-bg {
+          left: 150px;
+     }
+
+     .hero-section .hero-section-content .hero-section-left .dropdown,
+     .hero-section .hero-section-content .hero-section-left .explore-btn {
+          width: 200px;
+     }
+}
+
+@media(max-width:1200px) {
+     .hero-section .hero-section-content .hero-section-left .hero-title {
+          font-size: 73px;
+     }
+
+     .hero-section .hero-section-content .hero-section-left .sub-hero-title {
+          font-size: 1.75rem;
+     }
+}
+
+@media(max-width: 992px) {
+     .hero-section {
+          height: 100%;
+     }
+
+     .hero-section .hero-section-content .hero-section-left {
+          padding-bottom: 200px;
+     }
+
+     .hero-section .hero-section-content .hero-section-left .dropdown,
+     .hero-section .hero-section-content .hero-section-left .explore-btn {
+          width: 166px;
+     }
+
+     .hero-section .hero-section-content .hero-section-left .dropdown-select,
+     .hero-section .hero-section-content .hero-section-left .explore-btn {
+          font-size: 0.75rem;
+     }
+
+     .hero-section .hero-section-content .hero-right-img {
+          display: none;
+     }
+
+     .hero-section .hero-section-content {
+          padding: 0 20px;
+     }
+
+     .hero-section .hero-section-content .hero-section-left .hero-title {
+          font-size: 63px;
+     }
+
+     .hero-section .hero-section-content .hero-section-left .sub-hero-title {
+          font-size: 1.5rem;
+     }
+
+     
+     .hero-section .hero-section-content .hero-section-left .react-select__indicator {
+          display: none;
+     }
+}
+
+@media (max-width: 576px) {
+     .hero-section .hero-section-content .left-bg {
+          display: none;
+     }
+
+     .hero-section .hero-section-content .hero-section-left .hero-title {
+          font-size: 54px;
+     }
+
+     .hero-section .hero-section-content .hero-section-left .sub-hero-title {
+          font-size: 1.25rem;
+     }
+
+     .hero-section .hero-section-content .hero-section-left .dropdown::after {
+          display: none;
+     }
+
+     .hero-section .hero-section-content .hero-section-left {
+          padding: 30px 0 50px 0;
+     }
+
+     .hero-section .hero-section-content .hero-section-left .dropdown-group {
+          justify-content: center;
+     }
+}

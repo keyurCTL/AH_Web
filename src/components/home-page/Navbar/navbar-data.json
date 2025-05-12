@@ -1,0 +1,505 @@
+{
+  "navdata": [
+    {
+      "title": "Gujarat Tourism",
+      "description": "Gujarat, the &quot;Land of Legends,&quot; is a vibrant blend of heritage, nature, and culture, offering unforgettable experiences.",
+      "image": "/assets/images/gujrat-tourism.png",
+      "tabs": [
+        {
+          "title": "Temples",
+          "tab-data": [
+            {
+              "title": "Dwarka",
+              "image": "/assets/images/gujrat-tourism/temples/dwarka.png"
+            },
+            {
+              "title": "Somnath",
+              "image": "/assets/images/gujrat-tourism/temples/somnath.png"
+            },
+            {
+              "title": "Ambaji",
+              "image": "/assets/images/gujrat-tourism/temples/ambaji.png"
+            },
+            {
+              "title": "Akshardham",
+              "image": "/assets/images/gujrat-tourism/temples/akshardham.png"
+            },
+            {
+              "title": "Sun Temple",
+              "image": "/assets/images/gujrat-tourism/temples/sun-temple.png"
+            },
+            {
+              "title": "Nageshwar Jyotirlinga",
+              "image": "/assets/images/gujrat-tourism/temples/nageshwar.png"
+            },
+            {
+              "title": "Jain Temples",
+              "image": "/assets/images/gujrat-tourism/temples/jain-temples.png"
+            },
+            {
+              "title": "Pavagadh",
+              "image": "/assets/images/gujrat-tourism/temples/pavagarh.png"
+            }
+          ]
+        },
+        {
+          "title": "Heritage",
+          "tab-data": [
+            {
+              "title": "Rani ki Vav (Patan)",
+              "image": "/assets/images/gujrat-tourism/heritage/ranki-vaav.png"
+            },
+            {
+              "title": "Sabarmati Ashram",
+              "image": "/assets/images/gujrat-tourism/heritage/sabarmati-aashram.png"
+            },
+            {
+              "title": "Adalaj Stepwell",
+              "image": "/assets/images/gujrat-tourism/heritage/adalaj-stepwell.png"
+            },
+            {
+              "title": "Dholavira",
+              "image": "/assets/images/gujrat-tourism/heritage/dholavira.png"
+            },
+            {
+              "title": "Laxmi Vilas Palace",
+              "image": "/assets/images/gujrat-tourism/heritage/laxmi-vilas.png"
+            },
+            {
+              "title": "Sidi Saiyyed Mosque",
+              "image": "/assets/images/gujrat-tourism/heritage/sidisaiyad.png"
+            },
+            {
+              "title": "Mandvi Palace",
+              "image": "/assets/images/gujrat-tourism/heritage/mandavi-palace.png"
+            },
+            {
+              "title": "Bhujiyo Fort",
+              "image": "/assets/images/gujrat-tourism/heritage/bhujiyo fort.png"
+            }
+          ]
+        },
+        {
+          "title": "Wildlife",
+          "tab-data": [
+            {
+              "title": "Gir National Park",
+              "image": "/assets/images/gujrat-tourism/wildlife/gir-park.png"
+            },
+            {
+              "title": "Blackbuck National Park",
+              "image": "/assets/images/gujrat-tourism/wildlife/blackbuck-park.png"
+            },
+            {
+              "title": "Nal Sarovar Bird Sanctuary",
+              "image": "/assets/images/gujrat-tourism/wildlife/nal-sarovar.png"
+            },
+            {
+              "title": "Marine National Park",
+              "image": "/assets/images/gujrat-tourism/wildlife/marine-park.png"
+            }
+          ]
+        },
+        {
+          "title": "Beaches",
+          "tab-data": [
+            {
+              "title": "Mandvi Beach",
+              "image": "/assets/images/gujrat-tourism/beaches/mandavi-beach.png"
+            },
+            {
+              "title": "Diu Beach",
+              "image": "/assets/images/gujrat-tourism/beaches/diu-beacgh.png"
+            },
+            {
+              "title": "Porbandar Beach",
+              "image": "/assets/images/gujrat-tourism/beaches/porbandar-beach.png"
+            },
+            {
+              "title": "Dwarka Beach",
+              "image": "/assets/images/gujrat-tourism/beaches/dwarka-beach.png"
+            },
+            {
+              "title": "Somnath Beach",
+              "image": "/assets/images/gujrat-tourism/beaches/somnath-beach.png"
+            },
+            {
+              "title": "Chorwad Beach",
+              "image": "/assets/images/gujrat-tourism/beaches/chorvad-beach.png"
+            },
+            {
+              "title": "Tithal Beach",
+              "image": "/assets/images/gujrat-tourism/beaches/tithal-beach.png"
+            },
+            {
+              "title": "Jampore Beach",
+              "image": "/assets/images/gujrat-tourism/beaches/jampore-beach.png"
+            }
+          ]
+        },
+        {
+          "title": "Desert",
+          "tab-data": [
+            {
+              "title": "White Sand Desert",
+              "image": "/assets/images/gujrat-tourism/white-ran.jpg"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "India Tours",
+      "description": "Discover India's diversity, from the Himalayas to Kerala's backwaters, iconic landmarks like the Taj Mahal, and its rich culture, festivals, and cuisine.",
+      "image": "/assets/images/india-tour.png",
+      "tabs": [
+        {
+          "title": "North India",
+          "tab-data": [
+            {
+              "title": "Kashmir",
+              "image": "/assets/images/india-tours/north-india/kashmir.jpg"
+            },
+            {
+              "title": "Himachal Pradesh",
+              "image": "/assets/images/india-tours/north-india/himachal.jpg"
+            },
+            {
+              "title": "Leh-Ladakh",
+              "image": "/assets/images/india-tours/north-india/leh.jpg"
+            },
+            {
+              "title": "Uttarakhand",
+              "image": "/assets/images/india-tours/north-india/uttrakhand.jpg"
+            },
+            {
+              "title": "Delhi",
+              "image": "/assets/images/india-tours/north-india/delhi.jpg"
+            },
+            {
+              "title": "Uttarpradesh",
+              "image": "/assets/images/india-tours/north-india/up.jpg"
+            },
+            {
+              "title": "Punjab & Haryana",
+              "image": "/assets/images/india-tours/north-india/panjab.jpg"
+            }
+          ]
+        },
+        {
+          "title": "South India",
+          "tab-data": [
+            {
+              "title": "Andaman & Nicobar Island",
+              "image": "/assets/images/india-tours/south/andaman.jpg"
+            },
+            {
+              "title": "Karnataka",
+              "image": "/assets/images/india-tours/south/karnataka.jpg"
+            },
+            {
+              "title": "Kerala",
+              "image": "/assets/images/india-tours/south/kerala.jpg"
+            },
+            {
+              "title": "Tamilnadu",
+              "image": "/assets/images/india-tours/south/tamilnadu.jpg"
+            },
+            {
+              "title": "Andhra Pradesh",
+              "image": "/assets/images/india-tours/south/andra.jpg"
+            },
+            {
+              "title": "Telangana",
+              "image": "/assets/images/india-tours/south/telangana.jpg"
+            }
+          ]
+        },
+        {
+          "title": "East & North East ",
+          "tab-data": [
+            {
+              "title": "Sikkim",
+              "image": "/assets/images/india-tours/east/sikkim.jpg"
+            },
+            {
+              "title": "Arunachal Pradesh",
+              "image": "/assets/images/india-tours/east/arunachal.jpg"
+            },
+            {
+              "title": "Assam",
+              "image": "/assets/images/india-tours/east/aasam.jpg"
+            },
+            {
+              "title": "Meghalaya",
+              "image": "/assets/images/india-tours/east/meghalay.jpg"
+            },
+            {
+              "title": "West Bengal",
+              "image": "/assets/images/india-tours/east/westbengal.jpg"
+            },
+            {
+              "title": "Odisha",
+              "image": "/assets/images/india-tours/east/oddisha.jpg"
+            }
+          ]
+        },
+        {
+          "title": "West & Central India",
+          "tab-data": [
+            {
+              "title": "Goa",
+              "image": "/assets/images/india-tours/west/goa.jpg"
+            },
+            {
+              "title": "Madhya Pradesh",
+              "image": "/assets/images/india-tours/west/madhyapradesh.jpg"
+            },
+            {
+              "title": "Rajasthan",
+              "image": "/assets/images/india-tours/west/rajasthan.jpg"
+            },
+            {
+              "title": "Maharashtra",
+              "image": "/assets/images/india-tours/west/maharashtra.jpg"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "International Tours",
+      "description": "International tours offer a chance to explore diverse cultures from Europe’s rich history to Asia’s vibrant streets, each destination promises unforgettable memories.",
+      "image": "/assets/images/international-tour.png",
+      "tabs": [
+        {
+          "title": "Africa",
+          "tab-data": [
+            {
+              "title": "Egypt",
+              "image": "/assets/images/international/africa/egypt.jpg"
+            },
+            {
+              "title": "Mauritius",
+              "image": "/assets/images/international/africa/mauritius.jpg"
+            },
+            {
+              "title": "South Africa",
+              "image": "/assets/images/international/africa/soth-africa.jpg"
+            },
+            {
+              "title": "Zimbabwe",
+              "image": "/assets/images/international/africa/zimbabwe.jpg"
+            },
+            {
+              "title": "Kenya",
+              "image": "/assets/images/international/africa/kenya.jpg"
+            },
+            {
+              "title": "Seychelles",
+              "image": "/assets/images/international/africa/seychelles.jpg"
+            },
+            {
+              "title": "Tanzania",
+              "image": "/assets/images/international/africa/tenzania.jpg"
+            }
+          ]
+        },
+        {
+          "title": "America",
+          "tab-data": [
+            {
+              "title": "Argentina",
+              "image": "/assets/images/international/america/argentina.jpg"
+            },
+            {
+              "title": "USA",
+              "image": "/assets/images/international/america/usa.jpg"
+            },
+            {
+              "title": "Brazil",
+              "image": "/assets/images/international/america/brazil.jpg"
+            },
+            {
+              "title": "Canada",
+              "image": "/assets/images/international/america/canada.jpg"
+            }
+          ]
+        },
+        {
+          "title": "Asia",
+          "tab-data": [
+            {
+              "title": "Bhutan",
+              "image": "/assets/images/international/asia/bhutan.jpg"
+            },
+            {
+              "title": "Maldives",
+              "image": "/assets/images/international/asia/maldives.jpg"
+            },
+            {
+              "title": "Malaysia",
+              "image": "/assets/images/international/asia/malaysia.jpg"
+            },
+            {
+              "title": "Thailand",
+              "image": "/assets/images/international/asia/thailand.jpg"
+            },
+            {
+              "title": "Nepal",
+              "image": "/assets/images/international/asia/nepal.jpg"
+            },
+            {
+              "title": "Singapore",
+              "image": "/assets/images/international/asia/singapore.jpg"
+            },
+            {
+              "title": "Indonesia",
+              "image": "/assets/images/international/asia/indonasia.jpg"
+            },
+            {
+              "title": "Srilanka",
+              "image": "/assets/images/international/asia/shrilanka.jpg"
+            }
+          ]
+        },
+        {
+          "title": "Australia & NZ",
+          "tab-data": [
+            {
+              "title": "Australia",
+              "image": "/assets/images/international/austrailia.jpg"
+            },
+            {
+              "title": "New Zealand",
+              "image": "/assets/images/international/nz.jpg"
+            }
+          ]
+        },
+        {
+          "title": "Europe",
+          "tab-data": [
+            {
+              "title": "Western Europe",
+              "image": "/assets/images/international/europe/westarn.jpg"
+            },
+            {
+              "title": "Northern Europe",
+              "image": "/assets/images/international/europe/northern.jpg"
+            },
+            {
+              "title": "Central & Eastern Europe",
+              "image": "/assets/images/international/europe/central-eastern.jpg"
+            },
+            {
+              "title": "Mediterranean Europe",
+              "image": "/assets/images/international/europe/mediterranean.jpg"
+            }
+          ]
+        },
+        {
+          "title": "Middle East",
+          "tab-data": [
+            {
+              "title": "UAE",
+              "image": "/assets/images/international/middle-east/dubai.jpg"
+            },
+            {
+              "title": "Oman",
+              "image": "/assets/images/international/middle-east/oman.jpg"
+            },
+            {
+              "title": "Jordan",
+              "image": "/assets/images/international/middle-east/jordan.jpg"
+            },
+            {
+              "title": "Qatar",
+              "image": "/assets/images/international/middle-east/qatar.jpg"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Honeymoon Tours",
+      "description": "Celebrate your love with our honeymoon packages. Enjoy luxury, privacy, and timeless memories while we handle the details",
+      "image": "/assets/images/honeymoon-tour.png",
+      "tabs": [
+        {
+          "title": "India",
+          "tab-data": [
+            {
+              "title": "Kerala",
+              "image": "/assets/images/india-tours/south/kerala.jpg"
+            },
+            {
+              "title": "Himachal",
+              "image": "/assets/images/india-tours/north-india/himachal.jpg"
+            },
+            {
+              "title": "Kashmir",
+              "image": "/assets/images/india-tours/north-india/kashmir.jpg"
+            },
+            {
+              "title": "Rajasthan",
+              "image": "/assets/images/india-tours/west/rajasthan.jpg"
+            },
+            {
+              "title": "Andaman",
+              "image": "/assets/images/india-tours/south/andaman.jpg"
+            },
+            {
+              "title": "Sikkim",
+              "image": "/assets/images/india-tours/east/sikkim.jpg"
+            },
+            {
+              "title": "Goa",
+              "image": "/assets/images/india-tours/west/goa.jpg"
+            },
+            {
+              "title": "Shimla",
+              "image": "/assets/images/india-tours/shimala.jpg"
+            }
+          ]
+        },
+        {
+          "title": "International",
+          "tab-data": [
+            {
+              "title": "Bali",
+              "image": "/assets/images/international/asia/indonasia.jpg"
+            },
+            {
+              "title": "Srilanka",
+              "image": "/assets/images/international/asia/shrilanka.jpg"
+            },
+            {
+              "title": "Singapore",
+              "image": "/assets/images/international/asia/singapore.jpg"
+            },
+            {
+              "title": "Malaysia",
+              "image": "/assets/images/international/asia/malaysia.jpg"
+            },
+            {
+              "title": "Maldives",
+              "image": "/assets/images/international/asia/maldives.jpg"
+            },
+            {
+              "title": "Dubai",
+              "image": "/assets/images/international/middle-east/dubai.jpg"
+            },
+            {
+              "title": "Switzerland",
+              "image": "/assets/images/international/switzerland.jpg"
+            },
+            {
+              "title": "Mauritius",
+              "image": "/assets/images/international/africa/mauritius.jpg"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

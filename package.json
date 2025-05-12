@@ -9,17 +9,28 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.10.0",
+    "bootstrap": "^5.3.3",
+    "intl-tel-input": "^18.1.1",
+    "next": "15.1.6",
     "react": "^19.0.0",
+    "react-bootstrap": "^2.10.9",
+    "react-datepicker": "^8.2.1",
     "react-dom": "^19.0.0",
-    "next": "15.1.6"
+    "react-hook-form": "^7.54.2",
+    "react-select": "^5.10.0",
+    "swiper": "^11.2.2",
+    "zod": "^3.24.1"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3",
+    "@types/bootstrap": "^5.2.10",
+    "@types/intl-tel-input": "^18.1.4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.1.6",
-    "@eslint/eslintrc": "^3"
+    "typescript": "^5"
   }
 }

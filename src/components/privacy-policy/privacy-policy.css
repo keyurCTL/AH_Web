@@ -1,0 +1,18 @@
+.privacy-policy-section {
+     padding: 50px 0;
+}
+
+.privacy-policy-section .policy-content {
+     padding: 0 20px;
+}
+
+.privacy-policy-section .policy-title {
+     font-size: 1.325rem;
+     font-weight: 500;
+     margin-bottom: 10px;
+     color: var(--primary-color);
+}
+
+.privacy-policy-section hr {
+     color: var(--primary-color);
+}

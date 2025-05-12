@@ -1,0 +1,65 @@
+.our-team-section {
+     padding: 50px 0;
+}
+
+.our-team-section .founder-img img {
+     width: 100%;
+}
+
+.our-team-section .founder-content {
+     padding: 20px 0;
+}
+
+.our-team-section .founder-content .title {
+     font-weight: bold;
+     color: var(--primary-color);
+     font-size: 1.25rem;
+     margin-bottom: 10px;
+}
+
+.our-team-section .founder-content p {
+     color: var(--black);
+}
+
+.our-team-section .meet-team-section {
+     padding-top: 50px;
+}
+
+.our-team-section .meet-team-section .meet-team-content {
+     margin: 20px 0;
+}
+
+.team-details {
+     background: var(--selection-color);
+     padding: 50px 0;
+     margin-bottom: 50px;
+}
+
+.team-details .team-member .team-member-image {
+     padding: 10px 0;
+}
+
+.team-details .team-member .team-member-image img {
+     width: 100%;
+}
+
+.team-details .team-member .member-name {
+     font-weight: bold;
+     font-size: 1.125rem;
+     color: var(--black);
+     margin: 5px 0 10px 0;
+}
+
+@media(max-width: 768px) {
+     .inner-header-main .bg-img {
+          display: none;
+     }
+}
+
+@media(max-width: 576px) {
+
+     .inner-header-main,
+     .inner-header-main .container {
+          min-height: 220px;
+     }
+}

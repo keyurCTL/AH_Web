@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Just+Another+Hand&display=swap');
+
+.inner-header-main {
+     width: 100%;
+     height: 100%;
+     min-height: 300px;
+     background: var(--selection-color);
+     position: relative;
+}
+
+.inner-header-main .container {
+     height: 100%;
+     min-height: 300px;
+}
+
+.inner-header-main .inner-page-title {
+     padding-top: 100px;
+}
+
+.inner-header-main .inner-page-title h1 {
+     /* font-weight: bold; */
+     color: #371086;
+     padding-bottom: 5px;
+     font-family: "Just Another Hand", cursive;
+     font-size: 4rem;
+     line-height: 0.55;
+}
+
+.inner-header-main .inner-page-title h2 {
+     color: var(--black);
+     font-weight: bold;
+}
+
+.inner-header-main .inner-page-title a {
+     display: inline-flex;
+     align-items: center;
+     gap: 10px;
+     text-decoration: none;
+     color: var(--black);
+     font-size: 1rem;
+     font-weight: 500;
+}
+
+.inner-header-main .inner-page-title .inner-breadcrumb {
+     display: flex;
+     gap: 7px;
+     align-items: center;
+}
+
+.inner-header-main .inner-page-title .inner-breadcrumb a {
+     font-weight: 600;
+     color: var(--primary-color);
+}
+
+.inner-header-main .inner-page-title .inner-breadcrumb .self-page {
+     color: var(--secondary-color);
+}
+
+.inner-header-main .bg-img img {
+     position: absolute;
+     bottom: 0;
+     right: 50px;
+}
+
+.inner-header-main .inner-header-with-stats {
+     display: flex;
+     justify-content: space-between;
+     flex-wrap: wrap;
+}
+
+.inner-header-main .inner-header-stats {
+     padding-top: 80px;
+     display: flex;
+     justify-content: space-around;
+     align-items: flex-start;
+     max-width: 360px;
+     width: 100%;
+}
+
+.inner-header-main .inner-header-stats .stats {
+     padding: 20px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+}
+
+.inner-header-main .inner-header-stats .stats hr {
+     width: 100%;
+     margin: 10px 0;
+}
+
+.inner-header-main .inner-header-stats .stats .icon {
+     display: flex;
+     justify-content: center;
+     margin-bottom: 10px;
+}
+
+.inner-header-main .inner-header-stats .stats .icon img {
+     width: 30px;
+     height: 30px;
+}
+
+.inner-header-main .inner-header-stats .stats .title {
+     text-transform: uppercase;
+     color: var(--black);
+}
+
+.inner-header-main .inner-header-stats .stats .stats-foot {
+     color: var(--primary-color);
+     text-align: center;
+     font-size: 1.125rem;
+}
+
+.inner-header-main .inner-header-stats .stats .stats-foot span {
+     color: var(--gray);
+     font-size: 0.875rem;
+}
+
+@media(max-width:1200px) {
+     .inner-header-main.offer-inner .offer-banner {
+          width: 80%;
+     }
+}
+
+@media(max-width: 768px) {
+     .inner-header-main .inner-header-stats {
+          padding-top: 30px;
+     }
+
+     .inner-header-main .inner-page-title {
+          padding-left: 20px;
+          padding-top: 50px;
+     }
+
+     .inner-header-main .inner-header-stats {
+          padding-top: 30px;
+     }
+}
+
+@media (max-width: 576px) {
+     .inner-header-main .bg-img img {
+          width: 70%;
+     }
+
+     .inner-header-main .inner-header-stats .stats {
+          padding: 20px 0;
+     }
+
+     .inner-header-main .inner-header-stats .stats .title {
+          font-size: 0.875rem;
+     }
+
+     .inner-header-main .inner-header-stats .stats .stats-foot span {
+          font-size: 0.75rem;
+     }
+
+     .inner-header-main .inner-header-stats .stats {
+          padding: 20px 0;
+     }
+
+     .inner-header-main .inner-header-stats .stats .title {
+          font-size: 0.875rem;
+     }
+
+     .inner-header-main .inner-header-stats .stats .stats-foot span {
+          font-size: 0.75rem;
+     }
+}

@@ -1,0 +1,267 @@
+/* happy - travelers - section */
+
+.happy-travelers-section {
+     padding: 50px 0;
+}
+
+.happy-travelers-section .title .title-text h2 {
+     line-height: unset;
+}
+
+.happy-travelers-section .ht-tabs {
+     padding: 50px 0 30px 0;
+}
+
+.happy-travelers-section .ht-tabs .nav-pills {
+     border: none;
+     gap: 20px;
+}
+
+.happy-travelers-section .ht-tabs .nav-pills .nav-link {
+     border: none;
+     font-size: 1rem;
+     color: var(--black);
+     font-weight: 400;
+     transition: all 0.3s ease;
+     background: transparent;
+     border: 1px solid var(--secondary-color);
+     border-radius: 55px;
+     text-align: left;
+     width: fit-content;
+}
+
+.happy-travelers-section .ht-tabs .nav-pills .nav-link.active {
+     background: var(--secondary-color);
+}
+
+.happy-travelers-section .ht-tabs .htr-view-more {
+     padding-top: 20px;
+}
+
+.happy-travelers-section .ht-tabs .htr-view-more a {
+     text-decoration: none;
+     color: var(--white);
+     font-weight: 600;
+     display: inline-flex;
+     padding: 5px 10px;
+     justify-content: center;
+     align-items: center;
+     gap: 5px;
+     border-radius: 19px;
+     background:  #37D4D9;
+     transition: all 0.3s ease-in-out;
+     font-size: 1rem;
+}
+
+.happy-travelers-section .ht-tabs .htr-view-more a:hover{
+     background: var(--primary-color);
+}
+
+.happy-travelers-section .ht-tab-content {
+     position: relative;
+     padding: 50px 0 0 0;
+     display: flex;
+     justify-content: center;
+}
+
+.happy-travelers-section .ht-tab-content .htr-bg-qoute {
+     position: absolute;
+     left: 0;
+     top: 0;
+}
+
+.happy-travelers-section .ht-tab-content .htr-bg-qoute-2 {
+     position: absolute;
+     right: -5%;
+     bottom: 20%;
+}
+
+.happy-travelers-section .ht-tab-content .htr-bg {
+     background: url("/assets/images/htr-bg.png");
+     height: 657px;
+     width: 100%;
+     background-size: cover;
+     max-height: 657px;
+     max-width: 566px;
+}
+
+.happy-travelers-section .ht-tab-content .htr-bg .htr-content-box {
+     display: flex;
+     align-items: center;
+     flex-direction: column;
+     justify-content: space-evenly;
+     height: 85%;
+     padding: 70px 50px;
+}
+
+.happy-travelers-section .ht-tab-content .htr-bg .htr-content-box .htr-title {
+     font-size: 1.5rem;
+     text-align: center;
+     color: #DA602C;
+     font-weight: bold;
+}
+
+.happy-travelers-section .ht-tab-content .htr-bg .htr-content-box .htr-pills {
+     display: flex;
+     gap: 5px;
+     flex-wrap: wrap;
+}
+
+.happy-travelers-section .ht-tab-content .htr-bg .htr-content-box .htr-pills .htr-pill {
+     border-radius: 100px;
+     background: #FFE0C0;
+     padding: 5px;
+     font-size: 0.875rem;
+}
+
+.happy-travelers-section .ht-tab-content .htr-bg .htr-content-box .htr-content {
+     font-size: 0.875rem;
+     color: var(--black);
+     text-align: center;
+}
+
+.happy-travelers-section .ht-tab-content .htr-bg .htr-content-box .htr-person-box {
+     display: flex;
+     justify-content: space-around;
+     width: 100%;
+     align-items: center;
+}
+
+.happy-travelers-section .ht-tab-content .htr-bg .htr-content-box .htr-person-box .htr-person {
+     display: flex;
+     align-items: center;
+     gap: 10px;
+}
+
+.happy-travelers-section .ht-tab-content .htr-bg .htr-content-box .htr-person-box .htr-person h4 {
+     font-weight: bold;
+     font-size: 1.125rem;
+     color: var(--black);
+}
+
+.happy-travelers-section .ht-tab-content .htr-bg .htr-content-box .htr-person-box .htr-ratings {
+     display: flex;
+     flex-direction: column;
+     gap: 5px;
+}
+
+.happy-travelers-section .ht-tab-content .htr-bg .htr-content-box .htr-person-box .htr-ratings span {
+     font-size: 0.875rem;
+     color: var(--black);
+     text-align: center;
+}
+
+.happy-travelers-section .ht-tab-content .htr-bg .htr-content-box .htr-person-box .htr-ratings .stars {
+     color: var(--secondary-color);
+     font-size: 1.125rem;
+}
+
+.happy-travelers-section .ht-tab-content .htr-bg .htr-content-box .htr-review-imgs {
+     display: flex;
+     gap: 10px;
+     align-items: center;
+}
+
+@media(max-width:1440px) {
+     .happy-travelers-section .ht-tabs .nav-pills .nav-link {
+          font-size: 0.875rem;
+     }
+}
+
+@media(max-width:1200px) {
+     .happy-travelers-section .ht-tab-content .htr-bg-qoute,
+     .happy-travelers-section .ht-tab-content .htr-bg-qoute-2 {
+          display: none;
+     }
+
+     .happy-travelers-section .ht-tabs .nav-pills {
+          flex-direction: row !important;
+     }
+}
+
+@media(max-width: 768px) {
+     .happy-travelers-section .ht-tab-content .htr-bg {
+          height: 580px;
+          width: 499px;
+          max-height: 657px;
+          max-width: 566px;
+     }
+
+     .happy-travelers-section .ht-tab-content .htr-bg .htr-content-box {
+          height: 92%;
+     }
+
+     .happy-travelers-section .ht-tab-content {
+          padding-top: 0;
+     }
+}
+
+@media (max-width: 576px) {
+     .happy-travelers-section .ht-tab-content .htr-bg {
+          height: 452px;
+          width: 390px;
+     }
+
+     .happy-travelers-section .ht-tab-content .htr-bg .htr-content-box {
+          padding: 34px;
+     }
+
+     .happy-travelers-section .ht-tab-content .htr-bg .htr-content-box .htr-title,
+     .happy-travelers-section .ht-tab-content .htr-bg .htr-content-box .htr-person-box .htr-ratings .stars {
+          font-size: 1rem;
+     }
+
+     .happy-travelers-section .ht-tab-content .htr-bg .htr-content-box .htr-pills .htr-pill {
+          font-size: 0.75rem;
+          padding: 3px;
+     }
+
+     .happy-travelers-section .ht-tab-content .htr-bg .htr-content-box .htr-content,
+     .happy-travelers-section .ht-tab-content .htr-bg .htr-content-box .htr-person-box .htr-ratings span,
+     .happy-travelers-section .ht-tabs .nav-pills .nav-link {
+          font-size: 0.75rem;
+     }
+
+     .happy-travelers-section .ht-tab-content .htr-bg .htr-content-box .htr-person-box .htr-person h4 {
+          font-size: 0.875rem;
+     }
+
+     .happy-travelers-section .ht-tab-content .htr-bg .htr-content-box .htr-person-box img {
+          width: 35px;
+          height: 35px;
+     }
+
+     .happy-travelers-section .ht-tab-content .htr-bg .htr-content-box .htr-person-box .htr-ratings {
+          gap: 2px;
+     }
+
+     .happy-travelers-section .ht-tab-content .htr-bg .htr-content-box .htr-review-imgs {
+          display: none;
+     }
+
+     .happy-travelers-section .ht-tab-content .htr-bg .htr-content-box {
+          height: 82%;
+     }
+
+     .happy-travelers-section .ht-tabs .nav-pills {
+          gap: 10px;
+     }
+
+     .happy-travelers-section .title-underline img {
+          width: 200px;
+     }
+}
+
+@media(max-width: 400px) {
+     .happy-travelers-section .ht-tab-content .htr-bg {
+          background: var(--selection-color);
+          border-radius: 30px;
+          height: unset;
+          width: unset;
+     }
+
+     .happy-travelers-section .ht-tab-content .htr-bg .htr-content-box {
+          gap: 10px;
+          padding: 34px 25px;
+     }
+}
