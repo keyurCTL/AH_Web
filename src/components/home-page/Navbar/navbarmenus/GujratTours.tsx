@@ -3,10 +3,30 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import * as navData from "../navbar-data.json";
+import { Package } from "@/types/package/package";
+import { firstLetterCapital } from "@/lib/utils";
 
-const GujratTours = () => {
+type CategoriesedArrayType = Record<string, Package[]>
+
+type GujratToursProps = {
+  packages: Package[]
+}
+
+const GujratTours = ({ packages }: GujratToursProps) => {
   const menuData = navData?.navdata;
   const dropdownRef = useRef<HTMLLIElement>(null);
+
+  const groupedBySubCategory = packages.reduce((acc: any, pkg) => {
+    const key = pkg.sub_category;
+    if (!acc[key]) {
+      acc[key] = [];
+    }
+    if (acc[key] && !Object.keys(acc[key])?.some(aI => acc[key][aI]?.base_package)) {
+      acc[key].push(pkg);
+    }
+
+    return acc;
+  }, {}) as CategoriesedArrayType;
 
   useEffect(() => {
     const handleDropdownClick = (e: Event) => e.stopPropagation();
@@ -34,7 +54,6 @@ const GujratTours = () => {
     };
   }, []);
 
-
   return (
     <>
       <li className="nav-item dropdown mega-dropdown" ref={dropdownRef}>
@@ -46,21 +65,29 @@ const GujratTours = () => {
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          {menuData[0].title} <span className="triangle"></span>
+          Gujarat Tourism <span className="triangle"></span>
         </a>
         <div className="dropdown-menu mega-menu" aria-labelledby="gujaratTourism">
           <div className="row">
             <div className="col-md-2 mega-menu-tabs">
               <div className="title text-center">EXPLORE</div>
               <ul className="nav flex-column nav-pills" id="gujaratTabs" role="tablist">
-                {menuData[0].tabs.map((tab, tabIndex) => (
+                {/* {menuData[0].tabs.map((tab, tabIndex) => (
                   <li key={tabIndex} className="nav-item">
                     <a className={`nav-link ${tabIndex === 0 ? "active" : ""}`} data-bs-toggle="pill" href={`#${tab.title.toLowerCase().replace(/\s+/g, "-")}`} role="tab">
                       <div className="nav-img"></div>
                       <span>{tab.title}</span>
                     </a>
                   </li>
-                ))}
+                ))} */}
+                {Object.keys(groupedBySubCategory)?.filter(item => groupedBySubCategory[item])?.length ? Object.keys(groupedBySubCategory)?.map((packageTab, tabIndex) => (
+                  <li key={tabIndex} className="nav-item">
+                    <a className={`nav-link ${tabIndex === 0 ? "active" : ""}`} data-bs-toggle="pill" href={`#${packageTab.toLowerCase()}`} role="tab">
+                      <div className="nav-img"></div>
+                      <span>{firstLetterCapital(packageTab.replace(/-+/g, " "))}</span>
+                    </a>
+                  </li>
+                )) : null}
               </ul>
             </div>
             <div className="col-md-8 center-content">
@@ -69,7 +96,30 @@ const GujratTours = () => {
                 <div><a href="#">View More &#10095;</a></div>
               </div>
               <div className="tab-content" id="gujaratTabContent">
-                {menuData[0].tabs.map((tab, tabIndex) => ((
+                {Object.keys(groupedBySubCategory)?.map((packageTab, tabIndex) => (
+                  <div
+                    key={tabIndex}
+                    className={`tab-pane fade ${tabIndex === 0 ? "show active" : ""}`}
+                    id={packageTab?.toLowerCase()}
+                    role="tabpanel"
+                  >
+                    <div className="destination-content">
+                      <div className="row">
+                        {groupedBySubCategory[packageTab]?.map((packagePlace: Package, placeIndex) => (
+                          <div key={placeIndex} className="col-lg-3">
+                            <a className="destination-card" href="#">
+                              <div className="dest-img">
+                                <Image src={packagePlace.navbar?.img?.file_public_url} alt={packagePlace.base_package?.toLowerCase()} width={173} height={105} className="rounded-4" unoptimized loading="lazy" />
+                              </div>
+                              <div>{firstLetterCapital(packagePlace?.base_package)}</div>
+                            </a>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+                {/* {menuData[0].tabs.map((tab, tabIndex) => ((
                   <div
                     key={tabIndex}
                     className={`tab-pane fade ${tabIndex === 0 ? "show active" : ""}`}
@@ -92,7 +142,7 @@ const GujratTours = () => {
                     </div>
                   </div>
                 ))
-                )}
+                )} */}
               </div>
             </div>
             <div className="col-md-2">

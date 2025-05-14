@@ -6,7 +6,7 @@ import * as z from 'zod';
 import Image from 'next/image';
 import './contactsection.css';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { PHONE_REGEX } from '@/utils/constants';
+import { PHONE_REGEX } from '@/lib/constants';
 
 // Form Validation Schema
 const contactSchema = z.object({
@@ -75,7 +75,6 @@ const ContactSection: React.FC = () => {
                               </div>
                          </div>
 
-                         {/* Contact Form */}
                          <div className="col-lg-6">
                               <div className="contact-us">
                                    <div className="contact-us-head">

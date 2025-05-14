@@ -21,6 +21,15 @@ const HolidayAsistance = () => {
      const [selectedDate, setSelectedDate] = useState<Date | null>(null);
      const [selectedMonth, setSelectedMonth] = useState<string>('');
 
+     const MONTH_OPTIONS = Array.from({ length: 12 }, (_, i) => {
+          const date = new Date(Date.UTC(2025, i));
+          const monthName = date.toLocaleString('en-US', { month: 'short' }); // force locale
+          return {
+               value: `2025-${(i + 1).toString().padStart(2, '0')}`,
+               label: monthName,
+          };
+     });
+
      const {
           control,
           register,
@@ -149,9 +158,9 @@ const HolidayAsistance = () => {
                                                             }}
                                                        >
                                                             <option value="">Flexible</option>
-                                                            {[...Array(12)].map((_, i) => (
-                                                                 <option key={i} value={`2025-${(i + 1).toString().padStart(2, '0')}`}>
-                                                                      {new Date(2025, i).toLocaleString('default', { month: 'short' })}
+                                                            {MONTH_OPTIONS.map(({ value, label }) => (
+                                                                 <option key={value} value={value}>
+                                                                      {label}
                                                                  </option>
                                                             ))}
                                                        </select>
