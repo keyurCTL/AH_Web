@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React from 'react'
+import React, { useEffect } from 'react'
 import './alloffers.css';
 
 const offersData = [
@@ -50,6 +50,7 @@ const offersData = [
 ];
 
 const AllOffers = () => {
+
      return (
           <>
                <section className="offers-section">

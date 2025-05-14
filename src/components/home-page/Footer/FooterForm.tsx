@@ -56,7 +56,7 @@ const FooterForm = () => {
                               <input
                                    type="tel"
                                    id="phone"
-                                   placeholder="+91*"
+                                   placeholder="Contact*"
                                    {...register("phone")}
                               />
                               {errors.phone && <p className="error">{errors.phone.message}</p>}
