@@ -1,5 +1,5 @@
 {
-  "name": "alakh-holidays-nextjs",
+  "name": "alakh-holidays",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,11 +10,11 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
-    "bootstrap": "^5.3.3",
+    "bootstrap": "^5.3.6",
     "intl-tel-input": "^18.1.1",
     "next": "15.1.6",
     "react": "^19.0.0",
-    "react-bootstrap": "^2.10.9",
+    "react-bootstrap": "^2.10.10",
     "react-datepicker": "^8.2.1",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.54.2",

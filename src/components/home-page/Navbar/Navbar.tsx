@@ -10,9 +10,19 @@ import HoneymoonTours from "./navbarmenus/HoneymoonTours";
 import MobileMenu from "./navbarmenus/MobileMenu";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { fetchData } from "@/services/api";
+import { Package } from "@/types/package/package";
+
+type NavbarInfoType = {
+  package_starting_from: number,
+  packages: Package[]
+}
 
 const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
+  const [isLoading, setIsLoading] = useState(false)
+  const [navbarinfo, setNavbarInfo] = useState<NavbarInfoType | null>(null)
+console.log("navbarinfo", navbarinfo);
 
   // Sticky Navbar Logic
   useEffect(() => {
@@ -26,6 +36,23 @@ const Navbar = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        setIsLoading(true);
+        const res: any = await fetchData({ endpoint: "package/public" })
+        if (res.statusCode == 200) {          
+          setNavbarInfo(res?.data)
+        }
+
+      } catch (error) {
+        return error;
+      } finally {
+        setIsLoading(false);
+      }
+    })()
+  }, [])
 
   return (
     <>
@@ -76,7 +103,7 @@ const Navbar = () => {
             </button>
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav ms-auto">
-                <GujratTours />
+                {navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("gujarat-tourism"))?.length ? <GujratTours packages={navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("gujarat-tourism"))?.length ? navbarinfo?.packages?.filter(item => item.category.includes("gujarat-tourism")) : []} /> : null}
                 <IndiaTours />
                 <InternationalTours />
                 <HoneymoonTours />

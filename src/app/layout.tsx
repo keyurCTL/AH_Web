@@ -1,9 +1,11 @@
-import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "./globals.css";
 import { Poppins } from "next/font/google";
 import Navbar from "@/components/home-page/Navbar/Navbar";
-import BootstrapClient from "@/components/common/BootstrapClient";
+// import BootstrapClient from "@/components/common/BootstrapClient";
 import Footer from "@/components/home-page/Footer/Footer";
+import BootstrapClient from '@/components/common/BootstrapClient';
+import { fetchData } from '@/services/api';
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -17,6 +19,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
       <body className={`${poppins.variable}`}>

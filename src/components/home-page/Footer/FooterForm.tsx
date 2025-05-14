@@ -1,6 +1,6 @@
 "use client";
 
-import { PHONE_REGEX } from "@/utils/constants";
+import { PHONE_REGEX } from "@/lib/constants";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
