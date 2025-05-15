@@ -5,6 +5,7 @@ import Image from "next/image";
 import * as navData from "../navbar-data.json";
 import { Package } from "@/types/package/package";
 import { firstLetterCapital } from "@/lib/utils";
+import Link from "next/link";
 
 type CategoriesedArrayType = Record<string, Package[]>
 
@@ -93,7 +94,6 @@ const GujratTours = ({ packages }: GujratToursProps) => {
             <div className="col-md-8 center-content">
               <div className="title-act">
                 <div className="title">DESTINATION</div>
-                <div><a href="#">View More &#10095;</a></div>
               </div>
               <div className="tab-content" id="gujaratTabContent">
                 {Object.keys(groupedBySubCategory)?.map((packageTab, tabIndex) => (
@@ -151,6 +151,9 @@ const GujratTours = ({ packages }: GujratToursProps) => {
                   <Image src={menuData[0].image} alt={menuData[0].title} width={180} height={113} unoptimized />
                 </div>
                 <p>{menuData[0].description}</p>
+                <div className="view-more-btn">
+                  <Link href="#"><span>View More</span></Link>
+                </div>
               </div>
             </div>
           </div>
