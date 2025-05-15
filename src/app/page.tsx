@@ -25,10 +25,10 @@ export default function Home() {
       <ReligiousDestination />
       <HotelSection />
       <ServiceSection />
-      <HappyTravelersSection />
-      <HolidayAsistance />
+      {/* <HappyTravelersSection /> */}
+      {/* <HolidayAsistance />
       <OurFamilySection />
-      <CommitmentSection />
+      <CommitmentSection /> */}
     </>
   );
 }

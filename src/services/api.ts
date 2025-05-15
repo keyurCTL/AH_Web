@@ -1,6 +1,8 @@
 // utils/api.js
 
 const BASE_API_URL = process.env.NEXT_APP_API_URL;
+console.log("BASE_API_URL", BASE_API_URL);
+
 
 export type ResponseType = {
   success: boolean,

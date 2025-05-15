@@ -16,8 +16,10 @@ const poppins = Poppins({
 
 export default function RootLayout({
   children,
+  happyTravelersSection,
 }: Readonly<{
   children: React.ReactNode;
+  happyTravelersSection: React.ReactNode
 }>) {
 
   return (
@@ -25,6 +27,7 @@ export default function RootLayout({
       <body className={`${poppins.variable}`}>
         <Navbar />
         {children}
+        {happyTravelersSection}
         <Footer />
         <BootstrapClient />
       </body>
