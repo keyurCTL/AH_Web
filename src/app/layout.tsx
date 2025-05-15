@@ -5,7 +5,6 @@ import Navbar from "@/components/home-page/Navbar/Navbar";
 // import BootstrapClient from "@/components/common/BootstrapClient";
 import Footer from "@/components/home-page/Footer/Footer";
 import BootstrapClient from '@/components/common/BootstrapClient';
-import { fetchData } from '@/services/api';
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -16,10 +15,8 @@ const poppins = Poppins({
 
 export default function RootLayout({
   children,
-  happyTravelersSection,
 }: Readonly<{
   children: React.ReactNode;
-  happyTravelersSection: React.ReactNode
 }>) {
 
   return (
@@ -27,7 +24,6 @@ export default function RootLayout({
       <body className={`${poppins.variable}`}>
         <Navbar />
         {children}
-        {happyTravelersSection}
         <Footer />
         <BootstrapClient />
       </body>

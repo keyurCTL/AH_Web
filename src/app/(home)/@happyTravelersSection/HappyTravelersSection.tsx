@@ -10,10 +10,12 @@ type HappyTravelersSectionProps = {
      reviews: Review[]
 }
 
-const HappyTravelersSection = ({ reviews }: HappyTravelersSectionProps) => {
+const HappyTravelersSection = ({ reviews }: HappyTravelersSectionProps) => {     
      const [activeReview, setActiveReview] = useState<Review | null>(reviews?.length ? reviews[0] : null);
-     const reviewRating = Number(activeReview?.rating) || 0
-     const activeReviewTitleLength = activeReview?.title?.length || 0
+     
+     const reviewRating = activeReview != null ? Number(activeReview?.rating) : 0
+     const activeReviewTitleLength = activeReview != null ? activeReview?.title?.length : 0
+
      return (
           <section className="happy-travelers-section">
                <div className="container">
