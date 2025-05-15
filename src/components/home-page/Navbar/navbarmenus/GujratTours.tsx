@@ -94,7 +94,6 @@ const GujratTours = ({ packages }: GujratToursProps) => {
             <div className="col-md-8 center-content">
               <div className="title-act">
                 <div className="title">DESTINATION</div>
-                {/* <div><a href="#">View More &#10095;</a></div> */}
               </div>
               <div className="tab-content" id="gujaratTabContent">
                 {Object.keys(groupedBySubCategory)?.map((packageTab, tabIndex) => (

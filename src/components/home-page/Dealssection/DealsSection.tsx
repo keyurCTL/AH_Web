@@ -30,7 +30,7 @@ const dealsData: DealsDataType = {
           { title: "Himachal", duration: "5 Nights & 6 Days", image: "/assets/images/gujrat-tourism/white-ran.jpg", hotel: 3, save: 4000, price: 38500, finalPrice: 32500 },
           { title: "Kerala", duration: "9 Nights & 10 Days", image: "/assets/images/gujrat-tourism/white-ran.jpg", hotel: 4, save: 5000, price: 26999, finalPrice: 21999 },
           { title: "Goa", duration: "3 Nights & 4 Days", image: "/assets/images/gujrat-tourism/white-ran.jpg", hotel: 3, save: 3500, price: 20499, finalPrice: 16999 },
-          { title: "Kashmir", duration: "5 Nights & 6 Days", image: "/assets/images/gujrat-tourism/white-ran.jpg", hotel: 3, save: 4000, price: 26499, finalPrice: 22999 },
+          { title: "Kashmir", duration: "5 Nights & 6 Days", image: "/assets/images/gujrat-tourism/white-ran.jpg", hotel: 3, save: 4000, price: 26999, finalPrice: 22999 },
      ],
      international: [
           { title: "Dubai with Abudhabi", duration: "5 Nights & 6 Days", image: "/assets/images/gujrat-tourism/white-ran.jpg", hotel: 4, save: 5000, price: 79999, finalPrice: 74999 },

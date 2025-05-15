@@ -22,7 +22,7 @@ const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [isLoading, setIsLoading] = useState(false)
   const [navbarinfo, setNavbarInfo] = useState<NavbarInfoType | null>(null)
-console.log("navbarinfo", navbarinfo);
+  console.log("navbarinfo", navbarinfo);
 
   // Sticky Navbar Logic
   useEffect(() => {
@@ -42,7 +42,7 @@ console.log("navbarinfo", navbarinfo);
       try {
         setIsLoading(true);
         const res: any = await fetchData({ endpoint: "package/public" })
-        if (res.statusCode == 200) {          
+        if (res.statusCode == 200) {
           setNavbarInfo(res?.data)
         }
 
@@ -104,12 +104,14 @@ console.log("navbarinfo", navbarinfo);
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav ms-auto">
                 {navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("gujarat-tourism"))?.length ? <GujratTours packages={navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("gujarat-tourism"))?.length ? navbarinfo?.packages?.filter(item => item.category.includes("gujarat-tourism")) : []} /> : null}
-                <IndiaTours />
-                <InternationalTours />
-                <HoneymoonTours />
-                <li className="nav-item">
-                  <Link className="nav-link" href="#">Religious Tours</Link>
-                </li>
+                {navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("india-tours"))?.length ? <IndiaTours packages={navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("india-tours"))?.length ? navbarinfo?.packages?.filter(item => item.category.includes("india-tours")) : []} /> : null}
+                {navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("international-tour"))?.length ? <InternationalTours packages={navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("international-tour"))?.length ? navbarinfo?.packages?.filter(item => item.category.includes("international-tour")) : []} /> : null}
+                {navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("honeymoon-tours"))?.length ? <HoneymoonTours packages={navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("honeymoon-tours"))?.length ? navbarinfo?.packages?.filter(item => item.category.includes("honeymoon-tours")) : []} /> : null}
+                {navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("religious-tours"))?.length ?
+                  <li className="nav-item">
+                    <Link className="nav-link" href="#">Religious Tours</Link>
+                  </li>
+                  : null}
               </ul>
             </div>
           </div>
