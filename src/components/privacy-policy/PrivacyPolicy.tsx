@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
-import "./privacy-policy.css"
+// import "./privacy-policy.css"
 
 const PrivacyPolicySection = () => {
      return (

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
-import "./destinationsection.css";
+// import "./destinationsection.css";
 
 interface Destination {
      name: string;

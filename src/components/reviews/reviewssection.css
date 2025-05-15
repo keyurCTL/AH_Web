@@ -45,6 +45,11 @@
      width: 100%;
 }
 
+.reviews-section .review-card .review-header .rating .star {
+     width: 22px;
+     height: 22px;
+}
+
 .reviews-section .review-card .review-body {
      margin: 10px 0;
 }

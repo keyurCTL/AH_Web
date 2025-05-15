@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import "./hotelsection.css";
+// import "./hotelsection.css";
 
 interface Hotel {
      name: string;

@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
-import "./aboutcompany.css"
+// import "./aboutcompany.css"
 
 const AboutCompany = () => {
      return (

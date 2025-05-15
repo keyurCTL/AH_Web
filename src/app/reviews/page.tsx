@@ -15,6 +15,9 @@ export default async function Reviews() {
           endpoint: `review/public`
      })
 
+     // console.log("res?.data?.reviews", res?.data?.reviews);
+     await new Promise((resolve) => setTimeout(resolve, 1000));
+
      return (
           <>
                <InnerHeaderWithStats

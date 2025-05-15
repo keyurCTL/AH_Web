@@ -1,5 +1,5 @@
 import Image from "next/image"
-import "./religioussection.css"
+// import "./religioussection.css"
 
 const ReligiousDestination = () => {
   return (

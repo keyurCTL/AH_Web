@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import logo from '../../../../public/assets/images/logo/ah-logo.png';
-import './navbar.css';
+// import './navbar.css';
 import GujratTours from "./navbarmenus/GujratTours";
 import IndiaTours from "./navbarmenus/IndiaTours";
 import InternationalTours from "./navbarmenus/InternationalTours";

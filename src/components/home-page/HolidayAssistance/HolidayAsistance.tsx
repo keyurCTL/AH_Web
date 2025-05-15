@@ -1,6 +1,6 @@
 "use client";
 
-import "./holidayasistance.css";
+// import "./holidayasistance.css";
 import Image from 'next/image';
 import React, { useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';

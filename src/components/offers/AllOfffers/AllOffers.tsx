@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React from 'react'
-import './alloffers.css';
+// import './alloffers.css';
 
 const offersData = [
      {

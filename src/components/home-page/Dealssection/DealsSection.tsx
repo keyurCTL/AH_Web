@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import "./dealssection.css";
+// import "./dealssection.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";

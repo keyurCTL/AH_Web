@@ -1,8 +1,9 @@
 'use client';
 
 import React from 'react';
-import './reviewssection.css';
+// import './reviewssection.css';
 import { Review } from '@/types/review/review';
+import { transformDate } from '@/lib/utils';
 
 const getInitial = (name: string) => {
   return name.slice(0, 1).toUpperCase();
@@ -22,14 +23,14 @@ const ReviewsSection = ({ reviews }: ReviewsSectionProps) => {
             <div className="review-card" key={review._id}>
               <div className="review-header">
                 <div className="rating">
-                  <div className="d-flex text-start justify-content-center align-items-center gap-1 my-1">
+                  <div className="d-flex text-start justify-content-center align-items-center gap-0.5 my-1">
                     {[...Array(5)].map((_, i) => (
                       <svg
                         key={i}
                         xmlns="http://www.w3.org/2000/svg"
-                        fill={i < 5 ? "#facc15" : "none"}
+                        fill={i < review.rating ? "#F39132" : "none"}
                         viewBox="0 0 24 24"
-                        stroke="#facc15"
+                        stroke="#F39132"
                         className="star"
                       >
                         <path
@@ -40,10 +41,11 @@ const ReviewsSection = ({ reviews }: ReviewsSectionProps) => {
                         />
                       </svg>
                     ))}
+
                   </div>
                   <span>{review.rating}/5</span>
                 </div>
-                <div>{review.date}</div>
+                <div>{transformDate(review.date)}</div>
               </div>
 
               <div className="review-body">

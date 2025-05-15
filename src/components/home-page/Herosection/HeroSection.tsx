@@ -1,6 +1,6 @@
 
 import Image from "next/image";
-import "./herosection.css";
+// import "./herosection.css";
 import ExploreBox from "./ExploreBox";
 
 const HeroSection = () => {

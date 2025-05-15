@@ -1,5 +1,5 @@
 import Image from "next/image"
-import "./footer.css"
+// import "./footer.css"
 import Link from "next/link"
 import FooterForm from "./FooterForm"
 

@@ -2,7 +2,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import "./innerheader.css";
+// import "./innerheader.css";
 
 // types for Breadcrumb
 interface Breadcrumb {
