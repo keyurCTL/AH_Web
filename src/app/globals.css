@@ -7,6 +7,7 @@
   --white: #fff;
   --black: #000;
   --gray: #757575;
+  --placeholder-bg: #d5c8ba;
 }
 
 * {
@@ -158,6 +159,10 @@ a {
 
 .view-more-btn a:hover {
   color: var(--white);
+}
+
+.placeholder-bg{
+  background: var(--placeholder-bg);
 }
 
 @media(max-width:1200px) {

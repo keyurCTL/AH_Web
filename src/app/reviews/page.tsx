@@ -1,5 +1,6 @@
 import InnerHeaderWithStats from "@/components/common/inner-header/InnerHeaderWithStats";
 import ReviewsSection from "@/components/reviews/ReviewsSection";
+import { fetchData } from "@/services/api";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,7 +9,12 @@ export const metadata: Metadata = {
      keywords: "travel reviews, customer testimonials, Alakh Holidays, travel experiences",
 };
 
-export default function Reviews() {
+export default async function Reviews() {
+
+     const res: any = await fetchData({
+          endpoint: `review/public`
+     })
+
      return (
           <>
                <InnerHeaderWithStats
@@ -28,7 +34,7 @@ export default function Reviews() {
                          }
                     ]}
                />
-               <ReviewsSection />
+               <ReviewsSection reviews={res?.data?.reviews || []} />
           </>
      )
 }

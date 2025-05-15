@@ -12,8 +12,8 @@ type HappyTravelersSectionProps = {
 
 const HappyTravelersSection = ({ reviews }: HappyTravelersSectionProps) => {
      const [activeReview, setActiveReview] = useState<Review | null>(reviews?.length ? reviews[0] : null);
-     const reviewRating = Number(activeReview?.rating) || 0
-     const activeReviewTitleLength = activeReview?.title?.length || 0
+     const reviewRating = activeReview != null ? Number(activeReview?.rating) : 0
+
      return (
           <section className="happy-travelers-section">
                <div className="container">
@@ -66,7 +66,7 @@ const HappyTravelersSection = ({ reviews }: HappyTravelersSectionProps) => {
 
                                    <div className="htr-bg">
                                         <div className="htr-content-box">
-                                             <div className={`htr-title w-75 ${ activeReviewTitleLength > 25 ? "text-start" : "text-center"}`}>{activeReview?.title}</div>
+                                             <div className={`htr-title w-75 "text-center"`}>{activeReview?.title}</div>
                                              <div className="htr-pills">
                                                   {activeReview?.tags?.map((tag, index) => (
                                                        <div key={index} className="htr-pill px-2"># {tag?.toUpperCase()}</div>
@@ -79,7 +79,7 @@ const HappyTravelersSection = ({ reviews }: HappyTravelersSectionProps) => {
                                                        <span className='rounded-circle px-3 py-2'>{activeReview?.name?.charAt(0)?.toUpperCase()}</span>
                                                        <h4>{activeReview?.name}</h4>
                                                   </div>
-                                                  <div className="htr-ratings w-50">
+                                                  <div className="htr-ratings w-25">
                                                        <div className="d-flex text-start justify-content-center align-items-center gap-1 my-1">
                                                             {[...Array(5)].map((_, i) => (
                                                                  <svg

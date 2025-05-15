@@ -48,12 +48,12 @@
      align-items: center;
      gap: 5px;
      border-radius: 19px;
-     background:  #37D4D9;
+     background: #37D4D9;
      transition: all 0.3s ease-in-out;
      font-size: 1rem;
 }
 
-.happy-travelers-section .ht-tabs .htr-view-more a:hover{
+.happy-travelers-section .ht-tabs .htr-view-more a:hover {
      background: var(--primary-color);
 }
 
@@ -122,8 +122,8 @@
 
 .happy-travelers-section .ht-tab-content .htr-bg .htr-content-box .htr-person-box {
      display: flex;
-     /* justify-content: space-around; */
-     justify-content: center;
+     justify-content: space-around;
+     /* justify-content: center; */
      width: 100%;
      align-items: center;
 }
@@ -138,12 +138,18 @@
      font-weight: bold;
      font-size: 1.225rem;
      background: #37D4D9;
+     height: 50px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     width: 50px;
 }
 
 .happy-travelers-section .ht-tab-content .htr-bg .htr-content-box .htr-person-box .htr-person h4 {
      font-weight: bold;
      font-size: 1.125rem;
      color: var(--black);
+     margin-bottom: 0;
 }
 
 .happy-travelers-section .ht-tab-content .htr-bg .htr-content-box .htr-person-box .htr-ratings {
@@ -181,6 +187,7 @@
 }
 
 @media(max-width:1200px) {
+
      .happy-travelers-section .ht-tab-content .htr-bg-qoute,
      .happy-travelers-section .ht-tab-content .htr-bg-qoute-2 {
           display: none;

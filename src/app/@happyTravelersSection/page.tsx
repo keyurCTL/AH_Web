@@ -8,6 +8,8 @@ export default async function happyTravelersSection() {
         endpoint: `review/public`
     })
 
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
     return (
         <HappyTravelersSection reviews={res?.data?.reviews || []} />
     )
