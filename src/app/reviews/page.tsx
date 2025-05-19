@@ -15,8 +15,11 @@ export default async function Reviews() {
           endpoint: `review/public`
      })
 
-     // console.log("res?.data?.reviews", res?.data?.reviews);
+     // console.log("res?.data?.reviews", res?.data);
      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+     const totalReviews = res?.data?.total_documents || 0;
+     const avgRatting = res?.data?.avg_rating?.toFixed(1) || 0;
 
      return (
           <>
@@ -28,12 +31,12 @@ export default async function Reviews() {
                          { label: 'Reviews', link: '/reviews', class: "self-page" },
                     ]}
                     stats={[
-                         { icon: '/assets/images/thumbs-up.png', title: 'Reviews', value: '50' },
+                         { icon: '/assets/images/thumbs-up.png', title: 'Reviews', value: `${totalReviews}` },
                          {
                               icon: '/assets/images/Reviews.png',
                               title: 'Rated',
-                              value: '4.4/5',
-                              subtext: '(based on 4676 reviews)',
+                              value: `${avgRatting}/5`,
+                              subtext: `(based on ${totalReviews} reviews)`,
                          }
                     ]}
                />

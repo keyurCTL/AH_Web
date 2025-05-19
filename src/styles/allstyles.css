@@ -1,6 +1,6 @@
 @import "../components/home-page/CommitmentSection/commitmentsection.css";
 @import "../components/home-page/Dealssection/dealssection.css";
-@import "../components/home-page/Destinationsection/destinationsection.css";
+@import "./destinationsection.css";
 @import "../components/home-page/Destinationsection/religioussection.css";
 @import "../components/home-page/Footer/footer.css";
 @import "../components/home-page/HappyTravelersSection/happytravelerssection.css";
