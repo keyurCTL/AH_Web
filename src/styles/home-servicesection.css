@@ -1,11 +1,9 @@
-/* inclusive Services Section */
-
 .inclusiveservices-section {
      width: 100%;
      padding: 50px 0;
      background: var(--selection-color);
 }
-
+ 
 .inclusiveservices-section .ser-plate {
      align-items: center;
      display: flex;
@@ -15,17 +13,17 @@
      justify-content: center;
      position: relative
 }
-
+ 
 .inclusiveservices-section .custom-gap-20 {
      gap: 50px 0;
      padding: 60px 0 0 0;
 }
-
+ 
 .inclusiveservices-section .ser-plate .ser-title i {
      font-size: 3rem;
      padding-bottom: 20px;
 }
-
+ 
 .inclusiveservices-section .ser-plate .digits {
      align-items: center;
      display: flex;
@@ -36,14 +34,14 @@
      top: -25px;
      z-index: 10
 }
-
+ 
 .inclusiveservices-section .ser-plate h3.ser-title {
      margin-bottom: 0;
      padding: 40px 20px;
      transition: all .5;
      z-index: 9
 }
-
+ 
 .inclusiveservices-section .ser-plate .ser-title {
      align-items: start;
      background: var(--white);
@@ -60,19 +58,19 @@
      font-weight: 600;
      color: var(--black);
 }
-
+ 
 .inclusiveservices-section .ser-plate .ser-title span {
      font-size: 0.875rem;
      font-weight: 400;
      padding-top: 15px;
 }
-
+ 
 @media(max-width: 992px) {
      .inclusiveservices-section .ser-plate .ser-title i {
           padding-bottom: 20px;
      }
 }
-
+ 
 @media(max-width: 576px) {
      .inclusiveservices-section .title .title-text .title-underline {
           left: 0;

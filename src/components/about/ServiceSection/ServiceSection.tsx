@@ -1,5 +1,5 @@
 import Image from 'next/image'
-// import "./servicesection.css"
+import "./servicesection.css"
 
 const ServiceSection = () => {
      return (

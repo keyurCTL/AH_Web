@@ -4,9 +4,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
 import * as navData from "../navbar-data.json";
+import { NavbarInfoType } from "../Navbar";
+import { Package } from "@/types/package/package";
+import { firstLetterCapital } from "@/lib/utils";
 
-const MobileMenu = () => {
-     const menuData = navData?.navdata;
+const MobileMenu = ({ packages }: NavbarInfoType) => {
+     const groupedByCategory = packages.reduce((acc: any, pkg) => {
+          const categoryKey = pkg.category;
+          if (!acc[categoryKey]) acc[categoryKey] = [];
+          acc[categoryKey].push(pkg);
+          return acc;
+     }, {});
 
      useEffect(() => {
           const menuToggle = document.getElementById("menuToggle");
@@ -14,8 +22,7 @@ const MobileMenu = () => {
 
           if (menuToggle && mobileNav) {
                menuToggle.addEventListener("click", function () {
-                    mobileNav.style.display =
-                         mobileNav.style.display === "block" ? "none" : "block";
+                    mobileNav.style.display = mobileNav.style.display === "block" ? "none" : "block";
                });
           }
 
@@ -38,91 +45,102 @@ const MobileMenu = () => {
                          <Image src="/assets/images/toggle.png" alt="toggle" height={17} width={21} />
                     </button>
                </div>
+
                <nav id="mobileNav" className="mobile-nav">
-                    {menuData.map((navItem, index) => (
-                         <div key={index} className="accordion" id={`accordionExample${index}`}>
-                              <div className="accordion-item">
-                                   <h2 className="accordion-header" id={`heading${index}`}>
-                                        <button
-                                             className="accordion-button collapsed"
-                                             type="button"
-                                             data-bs-toggle="collapse"
-                                             data-bs-target={`#collapse${index}`}
-                                             aria-expanded="false"
-                                             aria-controls={`collapse${index}`}
+                    {Object.keys(groupedByCategory)?.length ? Object.keys(groupedByCategory)?.filter(category => category != "religious-tours").map((category, index) => {
+                         const groupedBySubCategory = groupedByCategory[category].reduce((acc: any, pkg: any) => {
+                              const subCategoryKey = pkg.sub_category;
+                              if (!acc[subCategoryKey]) acc[subCategoryKey] = [];
+                              const exists = acc[subCategoryKey].some((item: any) => item.base_package === pkg.base_package);
+                              if (!exists) acc[subCategoryKey].push(pkg);
+                              return acc;
+                         }, {});
+
+                         const categoryCollapseId = `collapseCategory${index}`;
+                         const categoryHeadingId = `headingCategory${index}`;
+
+                         return (
+                              <div key={index} className="accordion" id={`accordionCategory${index}`}>
+                                   <div className="accordion-item">
+                                        <h2 className="accordion-header" id={categoryHeadingId}>
+                                             <button
+                                                  className="accordion-button collapsed"
+                                                  type="button"
+                                                  data-bs-toggle="collapse"
+                                                  data-bs-target={`#${categoryCollapseId}`}
+                                                  aria-expanded="false"
+                                                  aria-controls={categoryCollapseId}
+                                             >
+                                                  {firstLetterCapital(category?.replace(/-+/g, " "))}
+                                             </button>
+                                        </h2>
+                                        <div
+                                             id={categoryCollapseId}
+                                             className="accordion-collapse collapse"
+                                             aria-labelledby={categoryHeadingId}
+                                             data-bs-parent={`#accordionCategory${index}`}
                                         >
-                                             {navItem.title}
-                                        </button>
-                                   </h2>
-                                   <div
-                                        id={`collapse${index}`}
-                                        className="accordion-collapse collapse"
-                                        aria-labelledby={`heading${index}`}
-                                        data-bs-parent={`#accordionExample${index}`}
-                                   >
-                                        <div className="accordion-body">
-                                             <div className="accordion" id={`accordion${index}`}>
-                                                  {navItem.tabs.map((tab, tabIndex) => (
-                                                       <div key={tabIndex} className="accordion-item">
-                                                            <h2 className="accordion-header" id={`headingTab${index}${tabIndex}`}>
-                                                                 <button
-                                                                      className="accordion-button sub-accordian collapsed"
-                                                                      type="button"
-                                                                      data-bs-toggle="collapse"
-                                                                      data-bs-target={`#collapseTab${index}${tabIndex}`}
-                                                                      aria-expanded="false"
-                                                                      aria-controls={`collapseTab${index}${tabIndex}`}
-                                                                 >
-                                                                      <div className="nav-img"></div>
-                                                                      {tab.title}
-                                                                 </button>
-                                                            </h2>
-                                                            <div
-                                                                 id={`collapseTab${index}${tabIndex}`}
-                                                                 className="accordion-collapse collapse"
-                                                                 aria-labelledby={`headingTab${index}${tabIndex}`}
-                                                                 data-bs-parent={`#accordion${index}`}
-                                                            >
-                                                                 <div className="accordion-body">
-                                                                      <ul className="list-unstyled">
-                                                                           {tab["tab-data"].map((place, placeIndex) => (
-                                                                                <li key={placeIndex}>
-                                                                                     <Link href="#" className="dropdown-item">
-                                                                                          {place.title}
-                                                                                     </Link>
-                                                                                </li>
-                                                                           ))}
-                                                                      </ul>
+                                             <div className="accordion-body">
+                                                  <div className="accordion" id={`accordionSubCategory${index}`}>
+                                                       {Object.keys(groupedBySubCategory).map((subCategory, subIndex) => {
+                                                            const subCollapseId = `collapseSub${index}${subIndex}`;
+                                                            const subHeadingId = `headingSub${index}${subIndex}`;
+
+                                                            return (
+                                                                 <div key={subIndex} className="accordion-item">
+                                                                      <h2 className="accordion-header" id={subHeadingId}>
+                                                                           <button
+                                                                                className="accordion-button sub-accordian collapsed"
+                                                                                type="button"
+                                                                                data-bs-toggle="collapse"
+                                                                                data-bs-target={`#${subCollapseId}`}
+                                                                                aria-expanded="false"
+                                                                                aria-controls={subCollapseId}
+                                                                           >
+                                                                                <div className="nav-img"></div>
+                                                                                {firstLetterCapital(subCategory?.replace(/-+/g, " "))}
+                                                                           </button>
+                                                                      </h2>
+                                                                      <div
+                                                                           id={subCollapseId}
+                                                                           className="accordion-collapse collapse"
+                                                                           aria-labelledby={subHeadingId}
+                                                                           data-bs-parent={`#accordionSubCategory${index}`}
+                                                                      >
+                                                                           <div className="accordion-body">
+                                                                                <ul className="list-unstyled">
+                                                                                     {groupedBySubCategory[subCategory].map((place: Package, placeIndex: number) => (
+                                                                                          <li key={placeIndex}>
+                                                                                               <Link href="#" className="dropdown-item">
+                                                                                                    {place.base_package}
+                                                                                               </Link>
+                                                                                          </li>
+                                                                                     ))}
+                                                                                </ul>
+                                                                           </div>
+                                                                      </div>
                                                                  </div>
-                                                            </div>
-                                                       </div>
-                                                  ))}
+                                                            );
+                                                       })}
+                                                  </div>
                                              </div>
                                         </div>
                                    </div>
                               </div>
-                         </div>
-                    ))}
-                    <li className="rt"><a href="#">Religious Tours</a>
-                    </li>
-                    <li className="top-contact-content">
-                         <Image src="assets/images/call.png"
-                              alt="call"
-                              width={20}
-                              height={20}
-                              unoptimized />
-                         <a href="tel:+919727000916">+91 97270 00916</a>
-                    </li>
-                    <li className="top-contact-content">
-                         <Image
-                              src="assets/images/offers.png"
-                              alt="offers"
-                              width={20}
-                              height={20}
-                              unoptimized
-                         />
-                         <a href="./offers.html">Offers</a>
-                    </li>
+                         );
+                    }) : null}
+
+                    <ul className="list-unstyled">
+                         {Object.keys(groupedByCategory)?.length && Object.keys(groupedByCategory)?.filter(category => category == "religious-tours")?.length ? <li className="rt"><a href="#">Religious Tours</a></li> : null}
+                         <li className="top-contact-content">
+                              <Image src="/assets/images/call.png" alt="call" width={20} height={20} unoptimized />
+                              <a href="tel:+919727000916">+91 97270 00916</a>
+                         </li>
+                         <li className="top-contact-content">
+                              <Image src="/assets/images/offers.png" alt="offers" width={20} height={20} unoptimized />
+                              <a href="./offers.html">Offers</a>
+                         </li>
+                    </ul>
                </nav>
           </>
      );

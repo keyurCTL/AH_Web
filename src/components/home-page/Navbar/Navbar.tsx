@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 import { fetchData } from "@/services/api";
 import { Package } from "@/types/package/package";
 
-type NavbarInfoType = {
+export type NavbarInfoType = {
   package_starting_from: number,
   packages: Package[]
 }
@@ -22,7 +22,6 @@ const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [isLoading, setIsLoading] = useState(false)
   const [navbarinfo, setNavbarInfo] = useState<NavbarInfoType | null>(null)
-  console.log("navbarinfo", navbarinfo);
 
   // Sticky Navbar Logic
   useEffect(() => {
@@ -59,14 +58,14 @@ const Navbar = () => {
       <div className={`nav-main ${isSticky ? 'sticky' : ''}`}>
         <div className="top-bar">
           <div className="logo">
-            <Link href="/">
+            <a href="/">
               <Image
                 src={logo}
                 alt="Alakh Holidays Logo"
                 width={176}
                 unoptimized
               />
-            </Link>
+            </a>
           </div>
           <div className="top-contact">
             <div className="top-contact-content">
@@ -119,7 +118,7 @@ const Navbar = () => {
       </div>
 
       <div className="mobile-menu">
-        <MobileMenu />
+        <MobileMenu package_starting_from={navbarinfo?.package_starting_from || 0} packages={navbarinfo?.packages || []} />
       </div>
     </>
   );

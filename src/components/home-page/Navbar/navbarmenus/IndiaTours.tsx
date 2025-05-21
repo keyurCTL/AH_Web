@@ -110,12 +110,12 @@ const IndiaTours = ({ packages }: IndiaToursProps) => {
                                                        <div className="row">
                                                             {groupedBySubCategory[packageTab]?.map((packagePlace: Package, placeIndex) => (
                                                                  <div key={placeIndex} className="col-lg-3">
-                                                                      <a className="destination-card" href="#">
+                                                                      <Link className="destination-card" href={`/india-tours/${packagePlace?.base_package?.toLowerCase().replace(/\s+/g, "-")}`}>
                                                                            <div className="dest-img">
                                                                                 <Image src={packagePlace.navbar?.img?.file_public_url} alt={packagePlace.base_package?.toLowerCase()} width={173} height={105} className="rounded-4" unoptimized loading="lazy" />
                                                                            </div>
                                                                            <div>{firstLetterCapital(packagePlace?.base_package)}</div>
-                                                                      </a>
+                                                                      </Link>
                                                                  </div>
                                                             ))}
                                                        </div>
@@ -155,7 +155,7 @@ const IndiaTours = ({ packages }: IndiaToursProps) => {
                                         </div>
                                         <p>{menuData[1].description}</p>
                                         <div className="view-more-btn">
-                                             <Link href="#"><span>View More</span></Link>
+                                             <Link href="/india-tours"><span>View More</span></Link>
                                         </div>
                                    </div>
                               </div>

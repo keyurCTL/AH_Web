@@ -6,8 +6,17 @@ const nextConfig: NextConfig = {
     NEXT_APP_API_URL: process.env.NEXT_PUBLIC_APP_API_URL || "",
   },
   images: {
-        domains: ['res.cloudinary.com']
+    remotePatterns: [{
+      protocol: 'https',
+      hostname: 'res.cloudinary.com',
+      pathname: '/**',
+    }, {
+      protocol: 'http',
+      hostname: 'res.cloudinary.com',
+      pathname: '/**',
     }
+    ],
+  }
 };
 
 export default nextConfig;

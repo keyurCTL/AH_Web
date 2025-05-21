@@ -1,16 +1,30 @@
 export default function HomeLayout({
-    children,
     heroSection,
-    happyTravelersSection
+    dealssection,
+    happyTravelersSection,
+    hotelSection,
+    serviceSection,
+    ourFamilySection,
+    commitmentSection,
 }: Readonly<{
     children: React.ReactNode;
-    heroSection: React.ReactNode
-    happyTravelersSection: React.ReactNode
+    heroSection: React.ReactNode,
+    dealssection: React.ReactNode,
+    happyTravelersSection: React.ReactNode,
+    hotelSection: React.ReactNode,
+    serviceSection: React.ReactNode,
+    ourFamilySection: React.ReactNode,
+    commitmentSection: React.ReactNode,
 }>) {
     return (
         <>
             {heroSection}
+            {dealssection}
+            {serviceSection}
             {happyTravelersSection}
+            {/* {hotelSection} */}
+            {ourFamilySection}
+            {commitmentSection}
         </>
     );
 }

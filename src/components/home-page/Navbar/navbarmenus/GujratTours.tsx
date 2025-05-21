@@ -18,12 +18,19 @@ const GujratTours = ({ packages }: GujratToursProps) => {
   const dropdownRef = useRef<HTMLLIElement>(null);
 
   const groupedBySubCategory = packages.reduce((acc: any, pkg) => {
-    const key = pkg.sub_category;
-    if (!acc[key]) {
-      acc[key] = [];
+    const subCategoryKey = pkg.sub_category;
+
+    if (!acc[subCategoryKey]) {
+      acc[subCategoryKey] = [];
     }
-    if (acc[key] && !Object.keys(acc[key])?.some(aI => acc[key][aI]?.base_package)) {
-      acc[key].push(pkg);
+
+    // Check if the package with the same base_package already exists in this sub_category
+    const alreadyExists = acc[subCategoryKey].some(
+      (existingPkg: Package) => existingPkg.base_package === pkg.base_package
+    );
+
+    if (!alreadyExists) {
+      acc[subCategoryKey].push(pkg);
     }
 
     return acc;
@@ -152,7 +159,7 @@ const GujratTours = ({ packages }: GujratToursProps) => {
                 </div>
                 <p>{menuData[0].description}</p>
                 <div className="view-more-btn">
-                  <Link href="#"><span>View More</span></Link>
+                  <Link href="/gujarat-tourism"><span>View More</span></Link>
                 </div>
               </div>
             </div>

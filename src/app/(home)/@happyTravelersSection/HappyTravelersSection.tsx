@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
-import './happytravelerssection.css';
+// import './happytravelerssection.css';
 import Link from 'next/link';
 import { Review } from '@/types/review/review';
 
