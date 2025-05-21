@@ -9,9 +9,7 @@ const DestinationSectionLoading = () => {
                          <div className="top-destination-box">
                               <div className="title title-with-tabs">
                                    <div className="title-text">
-                                        <h2>
-                                             Top <span>Destination</span>
-                                        </h2>
+                                        <h2>Top <span>Destination</span></h2>
                                         <div className="title-underline">
                                              <Image
                                                   src="/assets/images/title-underline.png"
@@ -65,8 +63,33 @@ const DestinationSectionLoading = () => {
                                                   </div>
                                              </div>
                                         </div>
-
                                    </div>
+                              </div>
+                         </div>
+                    </div>
+               </section>
+               <section className="religious-section">
+                    <div className="container">
+                         <div className="title title-with-tabs">
+                              <div className="title-text">
+                                   <h2>Top <span>Religious Destination</span></h2>
+                                   <div className="title-underline"><Image src="/assets/images/big-title-underline.png"
+                                        alt="title-underline" width={368} height={10} unoptimized /></div>
+                              </div>
+                         </div>
+                         <div className="religious-section-content">
+                              <div className="row">
+                                   {Array.from({ length: 3 })?.map((NavItem, index) => (
+                                        <div key={index} className="col-lg-4 col-md-6 col-6">
+                                             <div className="religious-img-card">
+                                                  <a href="#">
+                                                       <div className="placeholder-glow w-100 h-100">
+                                                            <span className="placeholder placeholder-bg w-100 h-100 p-5"></span>
+                                                       </div>
+                                                  </a>
+                                             </div>
+                                        </div>
+                                   ))}
                               </div>
                          </div>
                     </div>

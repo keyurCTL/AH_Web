@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Package } from "@/types/package/package";
+import { firstLetterCapital } from "@/lib/utils";
 
 type DestinationSectionProps = {
      packages: Package[]
@@ -10,11 +11,11 @@ type DestinationSectionProps = {
 
 const DestinationSection = (props: DestinationSectionProps) => {
      const { packages } = props;
-     console.log("packages", packages);
+     // console.log("packages", packages);
 
      const [activeTab, setActiveTab] = useState("domestic");
-     const [domesticInfo, setDomesticInfo] = useState<Package[] | null>(null);
-     const [internationalInfo, setInternationalInfo] = useState<Package[] | null>(null);
+     const [domesticInfo, setDomesticInfo] = useState<Package[]>([]);
+     const [internationalInfo, setInternationalInfo] = useState<Package[]>([]);
 
      const uniquePackages: Package[] = [];
 
@@ -110,7 +111,7 @@ const DestinationSection = (props: DestinationSectionProps) => {
                                                                       />
                                                                  </div>
                                                                  <div className="dc-card-content">
-                                                                      <h4>{packageItem.base_package}</h4>
+                                                                      <h4>{firstLetterCapital(packageItem.base_package)}</h4>
                                                                       <p>{packageItem.services.map(service => service.name).join(', ')}</p>
                                                                       <div className="dc-price-badge">
                                                                            <span>₹{packageItem.price}/-*</span>
@@ -131,7 +132,7 @@ const DestinationSection = (props: DestinationSectionProps) => {
                                                                       />
                                                                  </div>
                                                                  <div className="dc-card-content">
-                                                                      <h4>{packageItem.base_package}</h4>
+                                                                      <h4>{firstLetterCapital(packageItem.base_package)}</h4>
                                                                       <p>{packageItem.services.map(service => service.name).join(', ')}</p>
                                                                       <div className="dc-price-badge">
                                                                            <span>₹{packageItem.price}/-*</span>
@@ -155,9 +156,10 @@ const DestinationSection = (props: DestinationSectionProps) => {
                                                                                      width={283}
                                                                                      height={287}
                                                                                      unoptimized
+                                                                                     layout="responsive"
                                                                                 />
                                                                                 <div className="scroll-card-content">
-                                                                                     <h2>{packageItem.base_package}</h2>
+                                                                                     <h2>{firstLetterCapital(packageItem.base_package)}</h2>
                                                                                      <span>Starting From ₹{packageItem.price}/-</span>
                                                                                 </div>
                                                                            </a>
@@ -176,9 +178,10 @@ const DestinationSection = (props: DestinationSectionProps) => {
                                                                                      width={283}
                                                                                      height={287}
                                                                                      unoptimized
+                                                                                     layout="responsive"
                                                                                 />
                                                                                 <div className="scroll-card-content">
-                                                                                     <h2>{packageItem.base_package}</h2>
+                                                                                     <h2>{firstLetterCapital(packageItem.base_package)}</h2>
                                                                                      <span>Starting From ₹{packageItem.price}/-</span>
                                                                                 </div>
                                                                            </a>
@@ -189,7 +192,6 @@ const DestinationSection = (props: DestinationSectionProps) => {
                                                   </div>
                                              </div>
                                         </div>
-
                                    </div>
                               </div>
                          </div>

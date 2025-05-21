@@ -109,21 +109,21 @@ const Footer = () => {
                                                        Rajkot, 360007
                                                   </p>
                                              </div>
-                                             <div className="address-box">
+                                             {/* <div className="address-box">
                                                   <div className="location-pill ob">VIJAPUR</div>
                                                   <p>
                                                        4, 1st floor, MA Business Hub, Opp. The Palate
                                                        Restaurant , Anandpura Cross Road, Vijapur -
                                                        382870
                                                   </p>
-                                             </div>
-                                             <div className="address-box">
+                                             </div> */}
+                                             {/* <div className="address-box">
                                                   <div className="location-pill ob">MANSA</div>
                                                   <p>
                                                        A 1 College Shopping Centre Itadra Road, Mansa -
                                                        382845
                                                   </p>
-                                             </div>
+                                             </div> */}
                                         </div>
                                    </div>
                               </div>

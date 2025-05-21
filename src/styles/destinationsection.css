@@ -76,7 +76,8 @@
 }
 
 .top-destination-section .top-destination-box .scrolling-dc-content .scroll-img-card img {
-     min-height: 280px;
+     /* min-height: 280px; */
+     aspect-ratio: 2/2;
 }
 
 .top-destination-section .top-destination-box .scrolling-dc-content .scroll-img-card .scroll-card-content {

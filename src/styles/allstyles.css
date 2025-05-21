@@ -1,11 +1,11 @@
 @import "../components/home-page/CommitmentSection/commitmentsection.css";
 @import "../components/home-page/Dealssection/dealssection.css";
 @import "./destinationsection.css";
-@import "../components/home-page/Destinationsection/religioussection.css";
+@import "./religioussection.css";
 @import "../components/home-page/Footer/footer.css";
 @import "../components/home-page/HappyTravelersSection/happytravelerssection.css";
 @import "../components/home-page/Herosection/herosection.css";
-@import "../components/home-page/HolidayAssistance/holidayasistance.css";
+@import "./holidayasistance.css";
 @import "../components/home-page/Hotelsection/hotelsection.css";
 @import "../components/home-page/Navbar/navbar.css";
 @import "../components/home-page/OurFamilySection/ourfamily.css";

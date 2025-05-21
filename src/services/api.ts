@@ -3,7 +3,6 @@
 const BASE_API_URL = process.env.NEXT_APP_API_URL;
 console.log("BASE_API_URL", BASE_API_URL);
 
-
 export type ResponseType = {
   success: boolean,
   statusCode: number,
@@ -12,11 +11,11 @@ export type ResponseType = {
 }
 
 interface FetchParams {
-  endpoint: String,
+  endpoint: string,
   method?: 'GET' | 'POST' | 'PUT' | 'DELETE',
   body?: any,
-  headers?: {},
-  additionalRequestOptions?: {}
+  headers?: object,
+  additionalRequestOptions?: object
 }
 
 export const fetchData = async ({ endpoint, method = 'GET', body = null, headers = {}, additionalRequestOptions = {} }: FetchParams) => {
