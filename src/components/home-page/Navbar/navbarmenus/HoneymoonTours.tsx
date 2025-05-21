@@ -19,12 +19,19 @@ const HoneymoonTours = ({ packages }: HoneymoonToursProps) => {
      const dropdownRef = useRef<HTMLLIElement>(null);
 
      const groupedBySubCategory = packages.reduce((acc: any, pkg) => {
-          const key = pkg.sub_category;
-          if (!acc[key]) {
-               acc[key] = [];
+          const subCategoryKey = pkg.sub_category;
+
+          if (!acc[subCategoryKey]) {
+               acc[subCategoryKey] = [];
           }
-          if (acc[key] && !Object.keys(acc[key])?.some(aI => acc[key][aI]?.base_package)) {
-               acc[key].push(pkg);
+
+          // Check if the package with the same base_package already exists in this sub_category
+          const alreadyExists = acc[subCategoryKey].some(
+               (existingPkg: Package) => existingPkg.base_package === pkg.base_package
+          );
+
+          if (!alreadyExists) {
+               acc[subCategoryKey].push(pkg);
           }
 
           return acc;

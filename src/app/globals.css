@@ -161,34 +161,129 @@ a {
   color: var(--white);
 }
 
-.placeholder-bg{
+.placeholder-bg {
   background: var(--placeholder-bg);
+}
+
+/* Tours */
+
+.tours-section {
+  padding: 80px 0;
+}
+
+.tours-section .tours-content .title h4 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--black);
+}
+
+.tours-section .tours-content .tour-filters {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.tours-section .tours-content .tour-filters .filter select {
+  background: #f2f2f2;
+  border-radius: 8px;
+  padding: 10px;
+  border: none;
+}
+
+.tours-section .tours-content .tour-filters .filter select {
+  background: #f2f2f2;
+  border-radius: 8px;
+  padding: 10px;
+  border: none;
+}
+
+.tours-section .tours-content .tour-filters .reset-filter button {
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--black);
+  font-weight: 600;
+}
+
+.tours-section .tours-content .tour-cards {
+  padding-top: 30px;
+}
+
+.tours-section .tours-content .tour-cards .tour-card {
+  background: var(--white);
+  border-radius: 32px;
+  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.16);
+  margin-bottom: 40px;
+}
+
+.tours-section .tours-content .tour-cards .tour-card .tour-image {
+  border-top-right-radius: 32px;
+  border-top-left-radius: 32px;
+}
+
+.tours-section .tours-content .tour-cards .tour-card .tour-image img {
+  width: 100%;
+  border-top-right-radius: 32px;
+  border-top-left-radius: 32px;
+  height: 240px;
+}
+
+.tours-section .tours-content .tour-cards .tour-card .tour-card-footer {
+  padding: 20px 20px 30px 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.tours-section .tours-content .tour-cards .tour-card .tour-card-footer .tour-card-details {
+  text-align: center;
+}
+
+.tours-section .tours-content .tour-cards .tour-card .tour-card-footer .tour-card-details .tour-name {
+  color: var(--black);
+  font-weight: bold;
+  font-size: 1.25rem;
+  margin-bottom: 5px;
+}
+
+.tours-section .tours-content .tour-cards .tour-card .tour-card-footer .tour-card-details .total-packages {
+  color: var(--gray);
+  font-size: 0.875rem;
+}
+
+/* LOADING */
+.tours-section .tours-content .tour-cards .tour-card .tour-image .img-loading {
+  border-top-right-radius: 32px;
+  border-top-left-radius: 32px;
+  height: 150px;
 }
 
 @media(max-width:1200px) {
   .title .title-text h2 {
-       font-size: 2rem;
+    font-size: 2rem;
   }
 }
 
 @media(max-width: 992px) {
   .title-with-tabs {
-       flex-wrap: wrap;
-       gap: 15px;
+    flex-wrap: wrap;
+    gap: 15px;
   }
 }
 
 @media (max-width: 576px) {
   .title .deal-tabs .nav-tabs .nav-link {
-       padding: 5px 7px;
-       font-size: 0.875rem;
+    padding: 5px 7px;
+    font-size: 0.875rem;
   }
 
   .title .view-more .slider-controls {
-       display: none;
+    display: none;
   }
 
   .title .title-text h2 {
-       font-size: 1.5rem;
+    font-size: 1.5rem;
   }
 }

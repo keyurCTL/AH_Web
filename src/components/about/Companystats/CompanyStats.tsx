@@ -2,7 +2,7 @@
 
 import React, { useEffect } from 'react';
 import Image from 'next/image';
-// import './companystats.css';
+import './companystats.css';
 
 const CompanyStats = () => {
   

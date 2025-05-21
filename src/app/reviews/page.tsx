@@ -16,7 +16,7 @@ export default async function Reviews() {
      })
 
      // console.log("res?.data?.reviews", res?.data?.reviews);
-     await new Promise((resolve) => setTimeout(resolve, 1000));
+     // await new Promise((resolve) => setTimeout(resolve, 1000));
 
      return (
           <>

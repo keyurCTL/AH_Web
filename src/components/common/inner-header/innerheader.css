@@ -70,11 +70,10 @@
 
 .inner-header-main .inner-header-stats {
      padding-top: 80px;
-     display: flex;
-     justify-content: space-around;
-     align-items: flex-start;
-     max-width: 360px;
-     width: 100%;
+    display: flex;
+    justify-content: space-around;
+    max-width: 420px;
+    width: 100%;
 }
 
 .inner-header-main .inner-header-stats .stats {
@@ -82,7 +81,8 @@
      display: flex;
      flex-direction: column;
      align-items: center;
-     justify-content: center;
+     justify-content: start;
+     /* justify-content: center; */
 }
 
 .inner-header-main .inner-header-stats .stats hr {

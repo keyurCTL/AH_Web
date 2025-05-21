@@ -1,9 +1,25 @@
 import moment from "moment";
+import { CATEGORY_N_SUBCATEGORY_OPTIONS } from "./constants";
 
-export function firstLetterCapital(letter: string) {
+export function firstLetterCapital(letter?: string) {
   if (letter != undefined && letter != null && letter != "") {
     return letter.charAt(0).toUpperCase() + letter.slice(1);
+  } else {
+    return ""
   }
+}
+
+export function capitalizeText(text?: string) {
+  if (text != undefined && text != null && text != "") {
+    const newText = text?.split(" ")?.map(item => firstLetterCapital(item)).join(" ")
+    return newText;
+  } else {
+    return ""
+  }
+}
+
+export function getCategoriesNSubCategories(category?: string) {
+  return CATEGORY_N_SUBCATEGORY_OPTIONS[`${category}`]
 }
 
 // Day, Month, Year converted
