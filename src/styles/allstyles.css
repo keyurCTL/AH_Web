@@ -6,12 +6,12 @@
 @import "./home-servicesection.css";
 @import "./home-ourfamily.css";
 @import "./home-commitmentsection.css";
+@import "./destinationsection.css";
+@import "./religioussection.css";
+@import "./holidayasistance.css";
 
 /*  */
-@import "../components/home-page/Destinationsection/destinationsection.css";
-@import "../components/home-page/Destinationsection/religioussection.css";
 @import "../components/home-page/Footer/footer.css";
-@import "../components/home-page/HolidayAssistance/holidayasistance.css";
 @import "../components/home-page/Navbar/navbar.css";
 @import "../components/common/inner-header/innerheader.css";
 @import "../components/contact/Contactsection/contactsection.css";

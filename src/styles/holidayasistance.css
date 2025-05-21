@@ -118,6 +118,10 @@ select:focus-visible {
      color: var(--black);
 }
 
+.holiday-assistance-section .ha-box .react-datepicker__input-container input::placeholder {
+     color: var(--black);
+}
+
 .holiday-assistance-section .ha-box .select.selected {
      outline: 2px solid var(--secondary-color);
 }

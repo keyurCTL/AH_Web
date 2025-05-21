@@ -2,28 +2,33 @@
 
 // import "./holidayasistance.css";
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Controller, useForm } from "react-hook-form";
+import { fetchData } from '@/services/api';
+import { PHONE_REGEX } from '@/lib/constants';
 
 const schema = z.object({
      to: z.string().min(1, 'Destination is required'),
      from: z.string().min(1, 'Source is required'),
      email: z.string().email('Invalid email address'),
-     phone: z.string().regex(/^\d{10}$/, 'Phone number must be 10 digits'),
-     departureDate: z.string().optional(),
+     mobile: z.string().min(10, 'Phone number must be at least 10 digits').regex(PHONE_REGEX, 'Invalid phone number'),
+     departure_date: z.string().optional(),
 });
 
 const HolidayAsistance = () => {
      const [selectedDate, setSelectedDate] = useState<Date | null>(null);
      const [selectedMonth, setSelectedMonth] = useState<string>('');
+     const [formMessage, setFormMessage] = useState<string>('');
+     const [formStatus, setFormStatus] = useState<'success' | 'error' | ''>('');
+     const [loading, setLoading] = useState<boolean>(false);
 
      const MONTH_OPTIONS = Array.from({ length: 12 }, (_, i) => {
           const date = new Date(Date.UTC(2025, i));
-          const monthName = date.toLocaleString('en-US', { month: 'short' }); // force locale
+          const monthName = date.toLocaleString('en-US', { month: 'short' });
           return {
                value: `2025-${(i + 1).toString().padStart(2, '0')}`,
                label: monthName,
@@ -34,21 +39,62 @@ const HolidayAsistance = () => {
           control,
           register,
           handleSubmit,
+          reset,
           formState: { errors },
      } = useForm({
           resolver: zodResolver(schema),
      });
 
-     const onSubmit = (data: z.infer<typeof schema>) => {
+     const onSubmit = async (data: z.infer<typeof schema>) => {
+          setLoading(true);
+          setFormMessage('');
+          setFormStatus('');
+
           if (selectedDate) {
-               data.departureDate = selectedDate.toISOString().split('T')[0];
+               data.departure_date = selectedDate.toISOString().split('T')[0];
           } else if (selectedMonth) {
-               data.departureDate = selectedMonth;
+               data.departure_date = selectedMonth;
           } else {
-               data.departureDate = 'Anytime';
+               data.departure_date = 'Anytime';
           }
-          console.log('Form Data:', data);
+
+          try {
+               const res: any = await fetchData({
+                    endpoint: 'quick-inquiry',
+                    method: 'POST',
+                    body: data
+               });
+
+               if (res?.statusCode === 200) {
+                    setFormStatus('success');
+                    reset();
+                    setSelectedDate(null);
+                    setSelectedMonth("")
+                    setFormMessage(res.message);
+               } else {
+                    setFormMessage(res.message);
+                    setFormStatus('error');
+               }
+          } catch (err) {
+               setFormStatus('error');
+               setFormMessage('An error occurred. Please try again.');
+               console.log("error", err);
+          } finally {
+               setLoading(false);
+          }
      };
+
+     useEffect(() => {
+          if (formMessage) {
+               const timer = setTimeout(() => {
+                    setFormMessage('');
+                    setFormStatus('');
+               }, 7000); // clears after 7 seconds
+
+               return () => clearTimeout(timer);
+          }
+     }, [formMessage]);
+
 
      return (
           <section className="holiday-assistance-section">
@@ -76,6 +122,11 @@ const HolidayAsistance = () => {
                                         <Image src="/assets/images/ha-location-map.png" alt="location-map" unoptimized height={100} width={100} />
                                         <h4>Chalo Bag Bharo Nikal Pado</h4>
                                    </div>
+                                   {formMessage && (
+                                        <p style={{ color: formStatus === 'success' ? 'green' : 'red' }} className='mb-0 text-center fw-light'>
+                                             {formMessage}
+                                        </p>
+                                   )}
                                    <div className="form-container">
                                         <form onSubmit={handleSubmit(onSubmit)}>
                                              <div className="row">
@@ -114,13 +165,13 @@ const HolidayAsistance = () => {
 
                                              <div className="row">
                                                   <div className="col-12">
-                                                       <label htmlFor="phone">Phone Number</label>
+                                                       <label htmlFor="mobile">Phone Number</label>
                                                        <div className="input-icon">
-                                                            <input {...register('phone')} placeholder="Enter Your Phone Number" />
+                                                            <input {...register('mobile')} placeholder="Enter Your Phone Number" />
                                                             <Image src="/assets/images/call-reciver.png"
                                                                  alt="Destination Icon" className="icon" height={20} width={20} unoptimized />
                                                        </div>
-                                                       {errors.phone && typeof errors.phone.message === 'string' && <p className="error">{errors.phone.message}</p>}
+                                                       {errors.mobile && typeof errors.mobile.message === 'string' && <p className="error">{errors.mobile.message}</p>}
                                                   </div>
                                              </div>
 
@@ -181,7 +232,9 @@ const HolidayAsistance = () => {
                                                   </div>
                                              </div>
 
-                                             <button type="submit" className="submit-btn mt-4">Submit</button>
+                                             <button type="submit" className={`submit-btn mt-4 ${loading ? "opacity-50" : ""}`} disabled={loading}>
+                                                  {loading ? 'Submitting...' : 'Submit'}
+                                             </button>
                                         </form>
                                    </div>
                               </div>
