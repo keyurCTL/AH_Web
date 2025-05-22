@@ -26,7 +26,7 @@ export default async function Offers() {
 
      const offers = res?.data?.offers || []
 
-     await new Promise((resolve) => setTimeout(resolve, 2000));
+     await new Promise((resolve) => setTimeout(resolve, 1000));
 
      return (
           <>

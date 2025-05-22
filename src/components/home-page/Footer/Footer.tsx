@@ -49,7 +49,7 @@ const Footer = () => {
                                                                       <li>
                                                                            <Link href="#">Gujarat Tourism</Link>
                                                                       </li>
-                                                                      <li><Link href="#">India Tour</Link></li>
+                                                                      <li><Link href="/india-tours">India Tour</Link></li>
                                                                       <li>
                                                                            <Link href="#">International Tour</Link>
                                                                       </li>
