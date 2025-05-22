@@ -1,3 +1,13 @@
+export type Service = {
+    _id?: string;
+    name: string;
+    status: boolean;
+    created_by?: string;
+    createdAt?: string;
+    updatedAt?: string;
+    __v?: number;   
+}
+
 export type Package = {
      _id?: string;
      package_name: string;
@@ -43,7 +53,7 @@ export type Package = {
      exclusions: string[];
      hotels: string[];
      price: number;
-     services: string[];
+     services: string[] | Service[];
      seo: {
           meta_title: string;
           meta_description: string;

@@ -187,7 +187,7 @@ const HolidayAsistance = () => {
                                                                  <DatePicker
                                                                       className={selectedDate ? 'select selected' : 'select'}
                                                                       selected={selectedDate}
-                                                                      onChange={(date) => {
+                                                                      onChange={(date: Date) => {
                                                                            setSelectedDate(date);
                                                                            setSelectedMonth('');
                                                                       }}

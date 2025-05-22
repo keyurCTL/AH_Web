@@ -3,10 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
-import * as navData from "../navbar-data.json";
 import { NavbarInfoType } from "../Navbar";
 import { Package } from "@/types/package/package";
-import { firstLetterCapital } from "@/lib/utils";
+import { capitalizeText, firstLetterCapital } from "@/lib/utils";
 
 const MobileMenu = ({ packages }: NavbarInfoType) => {
      const groupedByCategory = packages.reduce((acc: any, pkg) => {
@@ -71,7 +70,7 @@ const MobileMenu = ({ packages }: NavbarInfoType) => {
                                                   aria-expanded="false"
                                                   aria-controls={categoryCollapseId}
                                              >
-                                                  {firstLetterCapital(category?.replace(/-+/g, " "))}
+                                                  {capitalizeText(category?.replace(/-+/g, " "))}
                                              </button>
                                         </h2>
                                         <div
@@ -81,48 +80,63 @@ const MobileMenu = ({ packages }: NavbarInfoType) => {
                                              data-bs-parent={`#accordionCategory${index}`}
                                         >
                                              <div className="accordion-body">
-                                                  <div className="accordion" id={`accordionSubCategory${index}`}>
-                                                       {Object.keys(groupedBySubCategory).map((subCategory, subIndex) => {
-                                                            const subCollapseId = `collapseSub${index}${subIndex}`;
-                                                            const subHeadingId = `headingSub${index}${subIndex}`;
+                                                  <>
+                                                       <div className={`accordion`} id={`accordionSubCategory${index}`}>
+                                                            {Object.keys(groupedBySubCategory).map((subCategory, subIndex) => {
+                                                                 const subCollapseId = `collapseSub${index}${subIndex}`;
+                                                                 const subHeadingId = `headingSub${index}${subIndex}`;
 
-                                                            return (
-                                                                 <div key={subIndex} className="accordion-item">
-                                                                      <h2 className="accordion-header" id={subHeadingId}>
-                                                                           <button
-                                                                                className="accordion-button sub-accordian collapsed"
-                                                                                type="button"
-                                                                                data-bs-toggle="collapse"
-                                                                                data-bs-target={`#${subCollapseId}`}
-                                                                                aria-expanded="false"
-                                                                                aria-controls={subCollapseId}
+                                                                 return (
+                                                                      <div key={subIndex} className="accordion-item">
+                                                                           <h2 className="accordion-header" id={subHeadingId}>
+                                                                                <button
+                                                                                     className="accordion-button sub-accordian collapsed"
+                                                                                     type="button"
+                                                                                     data-bs-toggle="collapse"
+                                                                                     data-bs-target={`#${subCollapseId}`}
+                                                                                     aria-expanded="false"
+                                                                                     aria-controls={subCollapseId}
+                                                                                >
+                                                                                     <div className="nav-img"></div>
+                                                                                     {firstLetterCapital(subCategory?.replace(/-+/g, " "))}
+                                                                                </button>
+                                                                           </h2>
+                                                                           <div
+                                                                                id={subCollapseId}
+                                                                                className="accordion-collapse collapse"
+                                                                                aria-labelledby={subHeadingId}
+                                                                                data-bs-parent={`#accordionSubCategory${index}`}
                                                                            >
-                                                                                <div className="nav-img"></div>
-                                                                                {firstLetterCapital(subCategory?.replace(/-+/g, " "))}
-                                                                           </button>
-                                                                      </h2>
-                                                                      <div
-                                                                           id={subCollapseId}
-                                                                           className="accordion-collapse collapse"
-                                                                           aria-labelledby={subHeadingId}
-                                                                           data-bs-parent={`#accordionSubCategory${index}`}
-                                                                      >
-                                                                           <div className="accordion-body">
-                                                                                <ul className="list-unstyled">
-                                                                                     {groupedBySubCategory[subCategory].map((place: Package, placeIndex: number) => (
-                                                                                          <li key={placeIndex}>
-                                                                                               <Link href="#" className="dropdown-item">
-                                                                                                    {place.base_package}
-                                                                                               </Link>
-                                                                                          </li>
-                                                                                     ))}
-                                                                                </ul>
+                                                                                <div className="accordion-body">
+                                                                                     <ul className="list-unstyled">
+                                                                                          {groupedBySubCategory[subCategory].map((place: Package, placeIndex: number) => (
+                                                                                               <li key={placeIndex}>
+                                                                                                    <Link href={`/${category}/${place?.base_package?.toLowerCase().replace(/\s+/g, "-")}`} className="dropdown-item">
+                                                                                                         {place.base_package}
+                                                                                                    </Link>
+                                                                                               </li>
+                                                                                          ))}
+                                                                                     </ul>
+                                                                                </div>
                                                                            </div>
                                                                       </div>
-                                                                 </div>
-                                                            );
-                                                       })}
-                                                  </div>
+                                                                 );
+                                                            })}
+                                                       </div>
+                                                       <div className="accordion border-0">
+                                                            <div className="accordion-item">
+                                                                 <h2 className="accordion-header">
+                                                                      <Link
+                                                                           className="accordion-button sub-accordian collapsed"
+                                                                           href={`/${category}`}
+                                                                      >
+                                                                           <div className="nav-img"></div>
+                                                                           View More In {`${capitalizeText(category?.replace(/-+/g, " "))}`}
+                                                                      </Link>
+                                                                 </h2>
+                                                            </div>
+                                                       </div>
+                                                  </>
                                              </div>
                                         </div>
                                    </div>

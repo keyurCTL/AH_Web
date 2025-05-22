@@ -8,7 +8,7 @@ export default async function destinationSection() {
           endpoint: `package/public`
      })
 
-     console.log("packages", res?.data?.packages);
+     // console.log("packages", res?.data?.packages);
 
      await new Promise((resolve) => setTimeout(resolve, 1000));
 

@@ -11,7 +11,6 @@ type ReligiousDestinationProps = {
 
 const ReligiousDestination = (props: ReligiousDestinationProps) => {
      const { packages } = props;
-     console.log("packages", packages);
 
      const [religiousInfo, setReligiousInfo] = useState<Package[]>([]);
 
