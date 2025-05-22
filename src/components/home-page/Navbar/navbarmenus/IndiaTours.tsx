@@ -95,12 +95,12 @@ const IndiaTours = ({ packages }: IndiaToursProps) => {
                                              </li>
                                         ))} */}
                                         {Object.keys(groupedBySubCategory)?.filter(item => groupedBySubCategory[item])?.length ? Object.keys(groupedBySubCategory)?.map((packageTab, tabIndex) => {
-                                             const itemByBasePackageAvail = groupedBySubCategory[packageTab]?.find(item => item.base_package == capitalizeText(basePackageName?.toString()?.replace(/-+/g, " ")))?.sub_category == packageTab
-                                             const isPathActive = basePackageName != undefined ? itemByBasePackageAvail : tabIndex === 0
+                                             // const itemByBasePackageAvail = groupedBySubCategory[packageTab]?.find(item => item.base_package == capitalizeText(basePackageName?.toString()?.replace(/-+/g, " ")))?.sub_category == packageTab
+                                             // const isPathActive = basePackageName != undefined ? itemByBasePackageAvail : tabIndex === 0
 
                                              return (
                                                   <li key={tabIndex} className="nav-item">
-                                                       <a className={`nav-link ${isPathActive ? "active" : ""}`} data-bs-toggle="pill" href={`#${packageTab.toLowerCase()}`} role="tab">
+                                                       <a className={`nav-link ${tabIndex === 0 ? "active" : ""}`} data-bs-toggle="pill" href={`#${packageTab.toLowerCase()}`} role="tab">
                                                             <div className="nav-img"></div>
                                                             <span>{packageTab == "east-north-india" ? "East & North East India" : capitalizeText(packageTab?.replace(/-+/g, " "))}</span>
                                                        </a>
@@ -115,13 +115,13 @@ const IndiaTours = ({ packages }: IndiaToursProps) => {
                                    </div>
                                    <div className="tab-content" id="indiaTabContent">
                                         {Object.keys(groupedBySubCategory)?.map((packageTab, tabIndex) => {
-                                             const itemByBasePackageAvail = groupedBySubCategory[packageTab]?.find(item => item.base_package == capitalizeText(basePackageName?.toString()?.replace(/-+/g, " ")))?.sub_category == packageTab
-                                             const isPathActive = basePackageName != undefined ? itemByBasePackageAvail : tabIndex === 0
+                                             // const itemByBasePackageAvail = groupedBySubCategory[packageTab]?.find(item => item.base_package == capitalizeText(basePackageName?.toString()?.replace(/-+/g, " ")))?.sub_category == packageTab
+                                             // const isPathActive = basePackageName != undefined ? itemByBasePackageAvail : tabIndex === 0
 
                                              return (
                                                   <div
                                                        key={tabIndex}
-                                                       className={`tab-pane fade ${isPathActive ? "show active" : ""}`}
+                                                       className={`tab-pane fade ${tabIndex === 0 ? "show active" : ""}`}
                                                        id={packageTab?.toLowerCase()}
                                                        role="tabpanel"
                                                   >

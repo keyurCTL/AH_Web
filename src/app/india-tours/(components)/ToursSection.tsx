@@ -96,7 +96,7 @@ const ToursSection = ({ packages }: ToursSectionProps) => {
                             }) :
                                 <div className='col-lg-12'>
                                     <Alert variant={"warning"} >
-                                        Currently there are no tours available for <b>"{subCategory}"</b>
+                                        Currently there are no tours available for <b>&quot;{subCategory}&quot;</b>
                                     </Alert>
                                 </div>}
                         </div>

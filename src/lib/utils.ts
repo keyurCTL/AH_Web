@@ -38,3 +38,25 @@ export function transformDate(date: string, format: DateFormat = "DD/MM/YYYY") {
   if (!date) return '';
   return moment(date).format(format);
 }
+
+const serviceImageKeywords: { keywords: string[]; image: string }[] = [
+  { keywords: ["pickup", "drop", "pickup/drop"], image: "/assets/images/car.png" },
+  { keywords: ["hotel", "hotels", "stay", "accommodation"], image: "/assets/images/hotel.png" },
+  { keywords: ["meal", "meals", "food"], image: "/assets/images/meal.png" },
+  { keywords: ["sightseeing", "tour", "itinerary", "places"], image: "/assets/images/itinerary.png" },
+  { keywords: ["transport", "travel", "vehicle", "cab"], image: "/assets/images/transport.png" },
+  { keywords: ["guide", "tour manager", "assistant"], image: "/assets/images/guide.png" }
+];
+
+export const getImageForService = (serviceName: string): string => {
+  const normalized = serviceName.toLowerCase();
+
+  for (const { keywords, image } of serviceImageKeywords) {
+    if (keywords.some((keyword) => normalized.includes(keyword))) {
+      return image;
+    }
+  }
+
+  return "/assets/images/default.png";
+};
+
