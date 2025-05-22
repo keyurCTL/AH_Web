@@ -49,7 +49,7 @@ const Footer = () => {
                                                                       <li>
                                                                            <Link href="#">Gujarat Tourism</Link>
                                                                       </li>
-                                                                      <li><Link href="#">India Tour</Link></li>
+                                                                      <li><Link href="/india-tours">India Tour</Link></li>
                                                                       <li>
                                                                            <Link href="#">International Tour</Link>
                                                                       </li>
@@ -117,13 +117,13 @@ const Footer = () => {
                                                        382870
                                                   </p>
                                              </div> */}
-                                             <div className="address-box">
+                                             {/* <div className="address-box">
                                                   <div className="location-pill ob">MANSA</div>
                                                   <p>
                                                        A 1 College Shopping Centre Itadra Road, Mansa -
                                                        382845
                                                   </p>
-                                             </div>
+                                             </div> */}
                                         </div>
                                    </div>
                               </div>

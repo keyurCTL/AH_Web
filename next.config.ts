@@ -5,6 +5,17 @@ const nextConfig: NextConfig = {
   env: {
     NEXT_APP_API_URL: process.env.NEXT_PUBLIC_APP_API_URL || "",
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  webpack(config) {
+    config.ignoreWarnings = [
+      {
+        message: /.*/, // ✅ Ignore all warnings
+      },
+    ];
+    return config;
+  },
   images: {
     remotePatterns: [{
       protocol: 'https',

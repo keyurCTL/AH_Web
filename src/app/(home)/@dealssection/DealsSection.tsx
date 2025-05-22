@@ -9,39 +9,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Offer } from "@/types/offers/offer";
-import { Package } from "@/types/package/package";
 import Link from "next/link";
-
-interface Deal {
-     title: string;
-     duration: string;
-     image: string;
-     hotel: number;
-     save: number;
-     price: number;
-     finalPrice: number;
-}
-
-interface DealsDataType {
-     [key: string]: Deal[],
-     domestic: Deal[];
-     international: Deal[];
-}
-
-const dealsData: DealsDataType = {
-     domestic: [
-          { title: "Himachal", duration: "5 Nights & 6 Days", image: "/assets/images/gujrat-tourism/white-ran.jpg", hotel: 3, save: 4000, price: 38500, finalPrice: 32500 },
-          { title: "Kerala", duration: "9 Nights & 10 Days", image: "/assets/images/gujrat-tourism/white-ran.jpg", hotel: 4, save: 5000, price: 26999, finalPrice: 21999 },
-          { title: "Goa", duration: "3 Nights & 4 Days", image: "/assets/images/gujrat-tourism/white-ran.jpg", hotel: 3, save: 3500, price: 20499, finalPrice: 16999 },
-          { title: "Kashmir", duration: "5 Nights & 6 Days", image: "/assets/images/gujrat-tourism/white-ran.jpg", hotel: 3, save: 4000, price: 26999, finalPrice: 22999 },
-     ],
-     international: [
-          { title: "Dubai with Abudhabi", duration: "5 Nights & 6 Days", image: "/assets/images/gujrat-tourism/white-ran.jpg", hotel: 4, save: 5000, price: 79999, finalPrice: 74999 },
-          { title: "Dubai with Yas Island", duration: "6 Nights & 7 Days", image: "/assets/images/gujrat-tourism/white-ran.jpg", hotel: 4, save: 3000, price: 89999, finalPrice: 86999 },
-          { title: "Dubai with Lapita Resort", duration: "6 Nights & 7 Days", image: "/assets/images/gujrat-tourism/white-ran.jpg", hotel: 4, save: 3000, price: 86999, finalPrice: 83999 },
-          { title: "Bali", duration: "6 Nights & 7 Days", image: "/assets/images/gujrat-tourism/white-ran.jpg", hotel: 4, save: 4000, price: 45500, finalPrice: 41500 },
-     ],
-};
 
 type DealsSectionProps = {
      offers: Offer[]
@@ -110,8 +78,7 @@ const DealsSection = ({ offers }: DealsSectionProps) => {
                               }}
                               modules={[Navigation, Pagination]}
                          >
-                              {offers?.length ? offers?.map((deal, index) => {
-                                   const offerDetails = deal
+                              {offers?.length ? offers?.map((deal) => {
                                    const offerPackages = deal?.packages || []
 
                                    return offerPackages?.map((packageItem, packageItemIndex) => {

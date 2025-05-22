@@ -1,3 +1,5 @@
+import { Metadata } from "next";
+
 export default function HomeLayout({
     heroSection,
     dealssection,
@@ -6,6 +8,8 @@ export default function HomeLayout({
     serviceSection,
     ourFamilySection,
     commitmentSection,
+    destinationSection,
+    holidayAssistance
 }: Readonly<{
     children: React.ReactNode;
     heroSection: React.ReactNode,
@@ -15,14 +19,18 @@ export default function HomeLayout({
     serviceSection: React.ReactNode,
     ourFamilySection: React.ReactNode,
     commitmentSection: React.ReactNode,
+    destinationSection: React.ReactNode
+    holidayAssistance: React.ReactNode
 }>) {
     return (
         <>
             {heroSection}
             {dealssection}
+            {destinationSection}
             {serviceSection}
             {happyTravelersSection}
             {/* {hotelSection} */}
+            {holidayAssistance}
             {ourFamilySection}
             {commitmentSection}
         </>

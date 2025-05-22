@@ -12,6 +12,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { fetchData } from "@/services/api";
 import { Package } from "@/types/package/package";
+import LoadingWrapper from "@/components/common/wrappers/LoadingWrapper";
 
 export type NavbarInfoType = {
   package_starting_from: number,
@@ -20,8 +21,9 @@ export type NavbarInfoType = {
 
 const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const [navbarinfo, setNavbarInfo] = useState<NavbarInfoType | null>(null)
+  // console.log("navbarinfo", navbarinfo);
 
   // Sticky Navbar Logic
   useEffect(() => {
@@ -102,15 +104,40 @@ const Navbar = () => {
             </button>
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav ms-auto">
-                {navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("gujarat-tourism"))?.length ? <GujratTours packages={navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("gujarat-tourism"))?.length ? navbarinfo?.packages?.filter(item => item.category.includes("gujarat-tourism")) : []} /> : null}
-                {navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("india-tours"))?.length ? <IndiaTours packages={navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("india-tours"))?.length ? navbarinfo?.packages?.filter(item => item.category.includes("india-tours")) : []} /> : null}
-                {navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("international-tour"))?.length ? <InternationalTours packages={navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("international-tour"))?.length ? navbarinfo?.packages?.filter(item => item.category.includes("international-tour")) : []} /> : null}
-                {navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("honeymoon-tours"))?.length ? <HoneymoonTours packages={navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("honeymoon-tours"))?.length ? navbarinfo?.packages?.filter(item => item.category.includes("honeymoon-tours")) : []} /> : null}
-                {navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("religious-tours"))?.length ?
-                  <li className="nav-item">
-                    <Link className="nav-link" href="#">Religious Tours</Link>
-                  </li>
-                  : null}
+                <LoadingWrapper isLoading={isLoading} loadingComponent={
+                  <div className="placeholder-glow me-2">
+                    <span className="placeholder placeholder-bg-light w-100 px-5 py-3 rounded-pill"></span>
+                  </div>}>
+                  <GujratTours packages={navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("gujarat-tourism"))?.length ? navbarinfo?.packages?.filter(item => item.category.includes("gujarat-tourism")) : []} />
+                </LoadingWrapper>
+                <LoadingWrapper isLoading={isLoading} loadingComponent={
+                  <div className="placeholder-glow me-2">
+                    <span className="placeholder placeholder-bg-light w-100 px-5 py-3 rounded-pill"></span>
+                  </div>}>
+                  <IndiaTours packages={navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("india-tours"))?.length ? navbarinfo?.packages?.filter(item => item.category.includes("india-tours")) : []} />
+                </LoadingWrapper>
+                <LoadingWrapper isLoading={isLoading} loadingComponent={
+                  <div className="placeholder-glow me-2">
+                    <span className="placeholder placeholder-bg-light w-100 px-5 py-3 rounded-pill"></span>
+                  </div>}>
+                  <InternationalTours packages={navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("international-tour"))?.length ? navbarinfo?.packages?.filter(item => item.category.includes("international-tour")) : []} />
+                </LoadingWrapper>
+                <LoadingWrapper isLoading={isLoading} loadingComponent={
+                  <div className="placeholder-glow me-2">
+                    <span className="placeholder placeholder-bg-light w-100 px-5 py-3 rounded-pill"></span>
+                  </div>}>
+                  <HoneymoonTours packages={navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("honeymoon-tours"))?.length ? navbarinfo?.packages?.filter(item => item.category.includes("honeymoon-tours")) : []} />
+                </LoadingWrapper>
+                <LoadingWrapper isLoading={isLoading} loadingComponent={
+                  <div className="placeholder-glow me-2">
+                    <span className="placeholder placeholder-bg-light w-100 px-5 py-3 rounded-pill"></span>
+                  </div>}>
+                  {navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("religious-tours"))?.length ?
+                    <li className="nav-item">
+                      <Link className="nav-link" href="/religious-tours">Religious Tours</Link>
+                    </li>
+                    : null}
+                </LoadingWrapper>
               </ul>
             </div>
           </div>

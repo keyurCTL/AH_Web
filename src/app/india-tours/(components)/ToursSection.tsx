@@ -19,6 +19,7 @@ const ToursSection = ({ packages }: ToursSectionProps) => {
     const searchParams = useSearchParams();
     const { push, replace } = useRouter();
     const [selectedValue, setSelectedValue] = useState("")
+
     const params = new URLSearchParams(searchParams);
     const subCategory = `${capitalizeText(params.get("explore")?.replace(/-+/g, " "))}` || ""
 
@@ -28,7 +29,6 @@ const ToursSection = ({ packages }: ToursSectionProps) => {
     const handleExploreDDChange = (e: ChangeEvent<HTMLSelectElement>) => {
         const value = e.target.value;
         setSelectedValue(value)
-        const params = new URLSearchParams(searchParams.toString());
         if (value) {
             params.set("explore", value);
         } else {
@@ -39,7 +39,6 @@ const ToursSection = ({ packages }: ToursSectionProps) => {
     };
 
     const handleReset = () => {
-        const params = new URLSearchParams(searchParams.toString());
         params.delete("explore");
         replace(`${pathname}?${params.toString()}`);
     };
@@ -47,7 +46,7 @@ const ToursSection = ({ packages }: ToursSectionProps) => {
     useEffect(() => {
         const exploreValue = params.get('explore') || '';
         setSelectedValue(exploreValue);
-    }, [searchParams]);
+    }, []);
 
 
     return (
@@ -78,7 +77,7 @@ const ToursSection = ({ packages }: ToursSectionProps) => {
                                 const totalPackages = packages[item]?.length || 0
 
                                 return (
-                                    <div key={index} className="col-lg-4">
+                                    <div key={index} className="col-md-6 col-lg-4">
                                         <div className="tour-card">
                                             <div className="tour-image">
                                                 <img src={packageImg} alt={`${item} package image`} />
@@ -97,7 +96,7 @@ const ToursSection = ({ packages }: ToursSectionProps) => {
                             }) :
                                 <div className='col-lg-12'>
                                     <Alert variant={"warning"} >
-                                        Currently there are no tours available for <b>"{subCategory}"</b>
+                                        Currently there are no tours available for <b>&quot;{subCategory}&quot;</b>
                                     </Alert>
                                 </div>}
                         </div>

@@ -18,6 +18,9 @@ export default async function Reviews() {
      // console.log("res?.data?.reviews", res?.data?.reviews);
      // await new Promise((resolve) => setTimeout(resolve, 1000));
 
+     const totalReviews = res?.data?.total_documents || 0;
+     const avgRatting = res?.data?.avg_rating?.toFixed(1) || 0;
+
      return (
           <>
                <InnerHeaderWithStats

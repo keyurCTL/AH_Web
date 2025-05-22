@@ -46,17 +46,17 @@
 
 /* 1st, 4th, 7th, ... */
 .deals-section .deals-content .swiper-slide:nth-child(3n+1) .deal-card .card-image .price {
-  background: rgba(45, 72, 14, 0.55);
+     background: rgba(45, 72, 14, 0.55);
 }
 
 /* 2nd, 5th, 8th, ... */
 .deals-section .deals-content .swiper-slide:nth-child(3n+2) .deal-card .card-image .price {
-  background: rgba(168, 16, 29, 0.55);
+     background: rgba(168, 16, 29, 0.55);
 }
 
 /* 3rd, 6th, 9th, ... */
 .deals-section .deals-content .swiper-slide:nth-child(3n) .deal-card .card-image .price {
-  background: rgba(170, 91, 53, 0.55);
+     background: rgba(170, 91, 53, 0.55);
 }
 
 .deals-section .deals-content .deal-card .card-image .price span {
@@ -193,10 +193,22 @@
      .deals-section .deals-content .deal-card .deal-card-body {
           max-width: 340px;
      }
+
+     .deals-section .deals-content .deal-card .card-image,
+     .deals-section .deals-content .deal-card .card-image img {
+          width: 120px;
+          height: 120px;
+     }
 }
 
 @media(max-width: 400px) {
      .deals-section .deals-content .deal-card .deal-card-body {
           max-width: 290px;
+     }
+}
+
+@media (max-width: 350px) {
+     .deals-section .deals-content .deal-card .deal-card-body {
+          max-width: 265px;
      }
 }

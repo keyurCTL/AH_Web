@@ -189,6 +189,8 @@
 
 .nav-main .mega-dropdown .dropdown-menu .center-content .destination-content .destination-card .dest-img img {
      width: 100%;
+     max-width: 173px;
+     margin-right: 105px;
 }
 
 /* Mobile Menu */

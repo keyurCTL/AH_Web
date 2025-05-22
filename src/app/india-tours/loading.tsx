@@ -68,7 +68,7 @@ const loading = () => {
                             <div className="row">
                                 {Array.from({ length: 5 })?.map((item, index) => {
                                     return (
-                                        <div key={index} className="col-lg-4">
+                                        <div key={index} className="col-md-6 col-lg-4">
                                             <div className="tour-card">
                                                 <div className="tour-image">
                                                     <div className="placeholder-glow">

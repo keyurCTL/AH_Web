@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { memo, useEffect, useRef } from "react";
 import Image from "next/image";
-import * as navData from "../navbar-data.json";
+import navData from "../navbar-data.json";
 import { Package } from "@/types/package/package";
-import { firstLetterCapital } from "@/lib/utils";
+import { capitalizeText } from "@/lib/utils";
 import Link from "next/link";
-
+import { useParams, usePathname, useSearchParams } from "next/navigation";
 type CategoriesedArrayType = Record<string, Package[]>
 
 type IndiaToursProps = {
@@ -17,17 +17,28 @@ const IndiaTours = ({ packages }: IndiaToursProps) => {
      const menuData = navData?.navdata;
      const dropdownRef = useRef<HTMLLIElement>(null);
 
+     const { basePackageName } = useParams();
+
      const groupedBySubCategory = packages.reduce((acc: any, pkg) => {
-          const key = pkg.sub_category;
-          if (!acc[key]) {
-               acc[key] = [];
+          const subCategoryKey = pkg.sub_category;
+
+          if (!acc[subCategoryKey]) {
+               acc[subCategoryKey] = [];
           }
-          if (acc[key] && !Object.keys(acc[key])?.some(aI => acc[key][aI]?.base_package)) {
-               acc[key].push(pkg);
+
+          // Check if the package with the same base_package already exists in this sub_category
+          const alreadyExists = acc[subCategoryKey].some(
+               (existingPkg: Package) => existingPkg.base_package === pkg.base_package
+          );
+
+          if (!alreadyExists) {
+               acc[subCategoryKey].push(pkg);
           }
 
           return acc;
      }, {}) as CategoriesedArrayType;
+
+     console.log("groupedBySubCategory", groupedBySubCategory);
 
      useEffect(() => {
           const handleDropdownClick = (e: Event) => e.stopPropagation();
@@ -57,7 +68,6 @@ const IndiaTours = ({ packages }: IndiaToursProps) => {
 
      // console.log("menudata", menuData[1]);
 
-
      return (
           <>
                <li className="nav-item dropdown mega-dropdown" ref={dropdownRef}>
@@ -84,14 +94,19 @@ const IndiaTours = ({ packages }: IndiaToursProps) => {
                                                   </a>
                                              </li>
                                         ))} */}
-                                        {Object.keys(groupedBySubCategory)?.filter(item => groupedBySubCategory[item])?.length ? Object.keys(groupedBySubCategory)?.map((packageTab, tabIndex) => (
-                                             <li key={tabIndex} className="nav-item">
-                                                  <a className={`nav-link ${tabIndex === 0 ? "active" : ""}`} data-bs-toggle="pill" href={`#${packageTab.toLowerCase()}`} role="tab">
-                                                       <div className="nav-img"></div>
-                                                       <span>{firstLetterCapital(packageTab.replace(/-+/g, " "))}</span>
-                                                  </a>
-                                             </li>
-                                        )) : null}
+                                        {Object.keys(groupedBySubCategory)?.filter(item => groupedBySubCategory[item])?.length ? Object.keys(groupedBySubCategory)?.map((packageTab, tabIndex) => {
+                                             // const itemByBasePackageAvail = groupedBySubCategory[packageTab]?.find(item => item.base_package == capitalizeText(basePackageName?.toString()?.replace(/-+/g, " ")))?.sub_category == packageTab
+                                             // const isPathActive = basePackageName != undefined ? itemByBasePackageAvail : tabIndex === 0
+
+                                             return (
+                                                  <li key={tabIndex} className="nav-item">
+                                                       <a className={`nav-link ${tabIndex === 0 ? "active" : ""}`} data-bs-toggle="pill" href={`#${packageTab.toLowerCase()}`} role="tab">
+                                                            <div className="nav-img"></div>
+                                                            <span>{packageTab == "east-north-india" ? "East & North East India" : capitalizeText(packageTab?.replace(/-+/g, " "))}</span>
+                                                       </a>
+                                                  </li>
+                                             )
+                                        }) : null}
                                    </ul>
                               </div>
                               <div className="col-md-8 center-content">
@@ -99,29 +114,34 @@ const IndiaTours = ({ packages }: IndiaToursProps) => {
                                         <div className="title">DESTINATION</div>
                                    </div>
                                    <div className="tab-content" id="indiaTabContent">
-                                        {Object.keys(groupedBySubCategory)?.map((packageTab, tabIndex) => (
-                                             <div
-                                                  key={tabIndex}
-                                                  className={`tab-pane fade ${tabIndex === 0 ? "show active" : ""}`}
-                                                  id={packageTab?.toLowerCase()}
-                                                  role="tabpanel"
-                                             >
-                                                  <div className="destination-content">
-                                                       <div className="row">
-                                                            {groupedBySubCategory[packageTab]?.map((packagePlace: Package, placeIndex) => (
-                                                                 <div key={placeIndex} className="col-lg-3">
-                                                                      <Link className="destination-card" href={`/india-tours/${packagePlace?.base_package?.toLowerCase().replace(/\s+/g, "-")}`}>
-                                                                           <div className="dest-img">
-                                                                                <Image src={packagePlace.navbar?.img?.file_public_url} alt={packagePlace.base_package?.toLowerCase()} width={173} height={105} className="rounded-4" unoptimized loading="lazy" />
-                                                                           </div>
-                                                                           <div>{firstLetterCapital(packagePlace?.base_package)}</div>
-                                                                      </Link>
-                                                                 </div>
-                                                            ))}
+                                        {Object.keys(groupedBySubCategory)?.map((packageTab, tabIndex) => {
+                                             // const itemByBasePackageAvail = groupedBySubCategory[packageTab]?.find(item => item.base_package == capitalizeText(basePackageName?.toString()?.replace(/-+/g, " ")))?.sub_category == packageTab
+                                             // const isPathActive = basePackageName != undefined ? itemByBasePackageAvail : tabIndex === 0
+
+                                             return (
+                                                  <div
+                                                       key={tabIndex}
+                                                       className={`tab-pane fade ${tabIndex === 0 ? "show active" : ""}`}
+                                                       id={packageTab?.toLowerCase()}
+                                                       role="tabpanel"
+                                                  >
+                                                       <div className="destination-content">
+                                                            <div className="row">
+                                                                 {groupedBySubCategory[packageTab]?.map((packagePlace: Package, placeIndex) => (
+                                                                      <div key={placeIndex} className="col-lg-3">
+                                                                           <Link className="destination-card" href={`/india-tours/${packagePlace?.base_package?.toLowerCase().replace(/\s+/g, "-")}`}>
+                                                                                <div className="dest-img">
+                                                                                     <Image src={packagePlace.navbar?.img?.file_public_url} alt={packagePlace.base_package?.toLowerCase()} width={173} height={105} className="rounded-4" unoptimized loading="lazy" />
+                                                                                </div>
+                                                                                <div>{capitalizeText(packagePlace?.base_package)}</div>
+                                                                           </Link>
+                                                                      </div>
+                                                                 ))}
+                                                            </div>
                                                        </div>
                                                   </div>
-                                             </div>
-                                        ))}
+                                             )
+                                        })}
                                         {/* {menuData[1].tabs.map((tab, tabIndex) => (
                                              <div
                                                   key={tabIndex}
@@ -166,4 +186,4 @@ const IndiaTours = ({ packages }: IndiaToursProps) => {
      )
 }
 
-export default IndiaTours
+export default memo(IndiaTours)
