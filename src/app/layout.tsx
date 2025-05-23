@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./globals.css";
 import "@/styles/allstyles.css";
-import { Poppins, Just_Another_Hand  } from "next/font/google";
+import { Poppins, Just_Another_Hand } from "next/font/google";
 import Navbar from "@/components/home-page/Navbar/Navbar";
 // import BootstrapClient from "@/components/common/BootstrapClient";
 import Footer from "@/components/home-page/Footer/Footer";
@@ -30,7 +30,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <Head> 
+      <Head>
         <title>Home | Alakh Holidays</title>
         <meta name="description" content="Learn more about Alakh Holidays, our mission, values, and the dedicated team behind your travel experiences." />
         <meta name="keywords" content="Alakh Holidays, travel agency, best tour planner, best travelling agency" />

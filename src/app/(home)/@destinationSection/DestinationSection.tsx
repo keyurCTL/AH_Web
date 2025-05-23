@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Package } from "@/types/package/package";
 import { firstLetterCapital } from "@/lib/utils";
+import Link from "next/link";
 
 type DestinationSectionProps = {
   packages: Package[];
@@ -84,7 +85,7 @@ const DestinationSection = ({ packages }: DestinationSectionProps) => {
               <div className="col-md-6">
                 <div className="destination-content">
                   {displayedPackages?.slice(0, 4).map((packageItem, index) => (
-                    <a key={index} href="#" className="dc-card">
+                    <Link key={index} href={`${packageItem?.category}/${(packageItem?.base_package).toLowerCase()?.replace(/\s+/g, "-")}`} className="dc-card">
                       <div className="dc-card-img">
                         <Image
                           src={packageItem?.navbar?.img?.file_public_url}
@@ -101,7 +102,7 @@ const DestinationSection = ({ packages }: DestinationSectionProps) => {
                           <span>₹{packageItem.price}/-*</span>
                         </div>
                       </div>
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -112,7 +113,7 @@ const DestinationSection = ({ packages }: DestinationSectionProps) => {
                     {displayedPackages.map((packageItem, index) => (
                       <div key={index} className="col-6">
                         <div className="scroll-img-card">
-                          <a href="#">
+                          <Link href={`${packageItem?.category}/${(packageItem?.base_package).toLowerCase()?.replace(/\s+/g, "-")}`}>
                             <Image
                               src={packageItem.navbar?.img?.file_public_url}
                               alt={packageItem.navbar?.name}
@@ -125,7 +126,7 @@ const DestinationSection = ({ packages }: DestinationSectionProps) => {
                               <h2>{firstLetterCapital(packageItem.base_package)}</h2>
                               <span>Starting From ₹{packageItem.price}/-</span>
                             </div>
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     ))}
