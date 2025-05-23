@@ -1,5 +1,6 @@
 import moment from "moment";
 import { CATEGORY_N_SUBCATEGORY_OPTIONS } from "./constants";
+import { FileExtension } from "@/types/common";
 
 export function firstLetterCapital(letter?: string) {
   if (letter != undefined && letter != null && letter != "") {
@@ -59,4 +60,33 @@ export const getImageForService = (serviceName: string): string => {
 
   return "/assets/images/default.png";
 };
+
+// FILES
+
+export async function saveFile(response: Blob, filename = 'file', extension: FileExtension) {
+  if (!(response instanceof Blob)) {
+    console.error("Provided response is not a valid Blob");
+    return;
+  }
+
+  try {
+    // Create a URL for the Blob
+    const url = URL.createObjectURL(response);
+
+    // Create a temporary anchor element for the download action
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${filename}.${extension}`;
+
+    // Append the anchor to the body, trigger a click to start the download
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    // Revoke the Blob URL after the download to free up memory
+    URL.revokeObjectURL(url);
+  } catch (error) {
+    console.log("Something went wrong!");
+  }
+}
 

@@ -1,7 +1,4 @@
-// utils/api.js
-
 const BASE_API_URL = process.env.NEXT_APP_API_URL;
-console.log("BASE_API_URL", BASE_API_URL);
 
 export type ResponseType = {
   success: boolean,
@@ -15,13 +12,20 @@ interface FetchParams {
   method?: 'GET' | 'POST' | 'PUT' | 'DELETE',
   body?: any,
   headers?: object,
+  responseType?: 'json' | 'blob' | 'arraybuffer' | 'text', // ✅ optional
   additionalRequestOptions?: object
 }
 
-export const fetchData = async ({ endpoint, method = 'GET', body = null, headers = {}, additionalRequestOptions = {} }: FetchParams) => {
+export const fetchData = async ({
+  endpoint,
+  method = 'GET',
+  body = null,
+  headers = {},
+  responseType = 'json', // ✅ default to 'json'
+  additionalRequestOptions = {}
+}: FetchParams) => {
   try {
     const url = `${BASE_API_URL}${endpoint}`;
-    // console.log("url", url)
     const requestOptions = {
       method,
       headers: {
@@ -30,23 +34,27 @@ export const fetchData = async ({ endpoint, method = 'GET', body = null, headers
       },
       body: body ? JSON.stringify(body) : null,
     };
-    
+
     const response = await fetch(url, { ...requestOptions, ...additionalRequestOptions });
-    // if (!response.ok) {
-    //   throw new Error(`Request failed with status ${response.status}`);
-    // }
-    if (response != null && response != undefined) {
-      return await response.json() as ResponseType;
+
+    if (!response.ok) {
+      throw new Error(`Request failed with status ${response.status}`);
     }
-    return {
-      statusCode: 404,
-      success: false,
-      message: "Not found",
-      data: null,
-    } as ResponseType
+
+    // ✅ Conditional parsing based on responseType
+    switch (responseType) {
+      case 'blob':
+        return await response.blob();
+      case 'arraybuffer':
+        return await response.arrayBuffer();
+      case 'text':
+        return await response.text();
+      case 'json':
+      default:
+        return await response.json() as ResponseType;
+    }
   } catch (error) {
-    console.log(error, "ERROR");
-    
-    return error
+    console.log("ERROR", error);
+    return error;
   }
 };

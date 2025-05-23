@@ -1,6 +1,7 @@
 "use client";
 
-import { capitalizeText } from "@/lib/utils"
+import { capitalizeText, getImageForService, saveFile } from "@/lib/utils"
+import { fetchData } from "@/services/api";
 import { Package } from "@/types/package/package"
 import Image from "next/image"
 import Link from "next/link"
@@ -15,7 +16,8 @@ type RouteParams = {
     basePackageName: string;
     packageName: string;
 };
-export default function Itinerary({ packageInfo }: ItineraryProps) {    
+export default function Itinerary({ packageInfo }: ItineraryProps) {
+    const [isDownloadLoading, setIsDownloadLoading] = useState(false)
     const { basePackageName, packageName } = useParams<RouteParams>()
     const decodedPackageName = decodeURIComponent(packageName)
     const [activeDay, setActiveDay] = useState(0);
@@ -29,6 +31,18 @@ export default function Itinerary({ packageInfo }: ItineraryProps) {
 
     const places = packageInfo?.overview?.places || [];
     const halfPlaces = Math.ceil(places.length / 2);
+
+    const handlePackagePdf = async (id: string, name: string) => {
+            try {
+                setIsDownloadLoading(true)
+                const response = await fetchData({ endpoint: `export-file/package-pdf/public/${id}`, responseType: "blob" })
+                await saveFile(response, `${name}`, "pdf");
+            } catch (error) {
+                console.log("ERROR", error);
+            } finally {
+                setIsDownloadLoading(false)
+            }
+        }
 
     return (
         <div className="itinerary-section">
@@ -334,52 +348,36 @@ export default function Itinerary({ packageInfo }: ItineraryProps) {
                                     </div>
                                     <div className="services">
                                         <div className="card-services">
-                                            <div className="card-service">
-                                                <div className="service-icon">
-                                                    <img src="/assets/images/car.png" alt="car" />
-                                                </div>
-                                                <div className="service-name">Pickup/Drop</div>
-                                            </div>
-                                            <div className="card-service">
-                                                <div className="service-icon">
-                                                    <img src="/assets/images/hotel.png" alt="hotel" />
-                                                </div>
-                                                <div className="service-name">Hotels</div>
-                                            </div>
-                                            <div className="card-service">
-                                                <div className="service-icon">
-                                                    <img src="/assets/images/meal.png" alt="meal" />
-                                                </div>
-                                                <div className="service-name">Meals</div>
-                                            </div>
-                                            <div className="card-service">
-                                                <div className="service-icon">
-                                                    <img src="/assets/images/itinerary.png" alt="itinerary" />
-                                                </div>
-                                                <div className="service-name">Sightseeing</div>
-                                            </div>
-                                            <div className="card-service">
-                                                <div className="service-icon">
-                                                    <img src="/assets/images/transport.png" alt="transport" />
-                                                </div>
-                                                <div className="service-name">Transport</div>
-                                            </div>
-                                            <div className="card-service">
-                                                <div className="service-icon">
-                                                    <img src="/assets/images/guide.png" alt="tour managers" />
-                                                </div>
-                                                <div className="service-name">Guide</div>
-                                            </div>
+                                            {packageInfo?.services.map((service) => {
+                                                const imageSrc = getImageForService(service.name);
+                                                return (
+                                                    <div className="card-service" key={service._id}>
+                                                        <div className="service-icon">
+                                                            <Image
+                                                                src={imageSrc}
+                                                                width={30}
+                                                                height={30}
+                                                                layout="intrinsic"
+                                                                alt={service.name}
+                                                            />
+                                                        </div>
+                                                        <div className="service-name">{service.name}</div>
+                                                    </div>
+                                                );
+                                            })}
                                         </div>
                                         <div className="act-btns">
                                             <div className="iti-outline-btn">
                                                 <button
-                                                    // onClick={async () => {
-                                                    //     await handlePackagePdf(packageInfo?._id, packageInfo?.package_name)
-                                                    // }}
+                                                    disabled={isDownloadLoading}
+                                                    onClick={async () => {
+                                                        if (!isDownloadLoading) {
+                                                            await handlePackagePdf(packageInfo?._id, packageInfo?.package_name)
+                                                        }
+                                                    }}
                                                     type="button"
                                                 >
-                                                    Download
+                                                    {isDownloadLoading ? "Downloading..." : "Download"}
                                                 </button>
                                             </div>
                                             <div className="iti-btn">
@@ -390,7 +388,7 @@ export default function Itinerary({ packageInfo }: ItineraryProps) {
                                     <div className="call-now">
                                         <button className="call-now-btn">
                                             <img src="/assets/images/call-reciver.png" alt="call" />
-                                            <span>CALL US NOW</span>
+                                            <span><a href="tel:+919727000916">CALL US NOW</a></span>
                                         </button>
                                     </div>
                                 </div>

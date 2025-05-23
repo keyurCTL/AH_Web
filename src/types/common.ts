@@ -3,5 +3,4 @@ export type PageProps = {
     params: any;
     searchParams: any;
 }
-
-export type Category = "gujarat-tourism" | "india-tour"
+export type FileExtension = "pdf" | "xlsx" | "csv"
