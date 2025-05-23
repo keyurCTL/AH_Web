@@ -1,17 +1,13 @@
-import { Metadata } from "next";
-
 export default function HomeLayout({
     heroSection,
     dealssection,
     happyTravelersSection,
-    hotelSection,
     serviceSection,
     ourFamilySection,
     commitmentSection,
     destinationSection,
     holidayAssistance
 }: Readonly<{
-    children: React.ReactNode;
     heroSection: React.ReactNode,
     dealssection: React.ReactNode,
     happyTravelersSection: React.ReactNode,

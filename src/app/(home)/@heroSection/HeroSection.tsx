@@ -15,7 +15,7 @@ const HeroSection = () => {
                 <div className="sub-hero-title">
                   Lively and captivating destinations around the world.
                 </div>
-                <ExploreBox />
+                {/* <ExploreBox /> */}
               </div>
               <div className="left-bg"></div>
             </div>

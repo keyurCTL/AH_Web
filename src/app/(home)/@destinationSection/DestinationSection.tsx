@@ -32,7 +32,7 @@ const DestinationSection = ({ packages }: DestinationSectionProps) => {
 //     setUniquePackages(unique);
 
     const domestic = unique.filter(item => item.category.includes("india-tours"));
-    const international = unique.filter(item => item.category.includes("international-tour"));
+    const international = unique.filter(item => item.category.includes("international-tours"));
 
     setDomesticInfo(domestic);
     setInternationalInfo(international);

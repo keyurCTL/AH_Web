@@ -1,3 +1,4 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Just+Another+Hand&display=swap'); */
 :root {
   --primary-color: #134076;
   --secondary-color: #F39132;
@@ -171,7 +172,7 @@ a {
   background: var(--placeholder-bg);
 }
 
-.placeholder-bg-light{
+.placeholder-bg-light {
   background: var(--selection-color);
 }
 
@@ -282,7 +283,10 @@ a {
   font-size: 0.875rem;
 }
 
-/* Package Section */
+/* ITINERARY PAGE */
+.itinerary-section {
+    padding: 50px 0;
+}
 
 .inner-header-main {
   width: 100%;
@@ -311,7 +315,8 @@ a {
   /* font-weight: bold; */
   color: #371086;
   padding-bottom: 5px;
-  font-family: "Just Another Hand";
+  /* font-family: "Just Another Hand"; */
+  font-family: var(--font-just-another-hand), cursive;
   font-size: 4rem;
   line-height: 0.55;
 }
@@ -331,18 +336,18 @@ a {
   font-weight: 500;
 }
 
-.inner-header-main .inner-page-title .inner-breadcrumb {
+.inner-breadcrumb {
   display: flex;
   gap: 7px;
   align-items: center;
 }
 
-.inner-header-main .inner-page-title .inner-breadcrumb a {
+.inner-breadcrumb a {
   font-weight: 600;
   color: var(--primary-color);
 }
 
-.inner-header-main .inner-page-title .inner-breadcrumb .self-page {
+.inner-breadcrumb .self-page {
   color: var(--secondary-color);
 }
 
@@ -575,6 +580,490 @@ a {
   color: red;
   font-weight: bold;
 }
+
+/* PACKAGE ITINERARY */
+.itinerary-page {
+  position: relative;
+}
+
+.itinerary-page .itinerary-page-left {
+  position: relative;
+}
+
+.itinerary-page .itinerary-page-right {
+  position: sticky;
+  top: 85px;
+}
+
+.itinerary-page .itinerary-page-right .package-price-box {
+  width: 100%;
+  border: 1px solid #D4D4D4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.itinerary-page .itinerary-page-right .package-price-box .price,
+.itinerary-page .itinerary-page-right .package-price-box .services {
+  text-align: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #D4D4D4;
+  width: 100%;
+}
+
+.itinerary-page .itinerary-page-right .package-price-box .price .ammont {
+  font-size: 1.75rem;
+  color: #134076;
+  font-weight: bold;
+  margin: 20px 0 5px 0;
+}
+
+.itinerary-page .itinerary-page-right .package-price-box .price .info {
+  font-size: 0.875rem;
+  color: #757575;
+}
+
+.itinerary-page .itinerary-page-right .package-price-box .services {
+  padding: 20px 0 15px 0;
+}
+
+.itinerary-page .itinerary-page-right .package-price-box .services .card-services {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 15px;
+  justify-content: space-evenly;
+}
+
+.itinerary-page .itinerary-page-right .package-price-box .services .card-services .card-service {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  min-height: 56px;
+  margin-bottom: 5px;
+}
+
+.itinerary-page .itinerary-page-right .package-price-box .services .card-services .card-service .service-icon img {
+  width: 30px;
+}
+
+.itinerary-page .itinerary-page-right .package-price-box .services .card-services .card-service .service-icon i {
+  font-size: 1.125rem;
+}
+
+.itinerary-page .itinerary-page-right .package-price-box .services .card-services .card-service .service-name {
+  font-weight: 400;
+  font-size: 0.875rem;
+  color: #000;
+}
+
+.itinerary-page .itinerary-page-right .package-price-box .services .act-btns {
+  display: flex;
+  gap: 10px;
+  padding: 10px 20px;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.itinerary-page .itinerary-page-right .package-price-box .services .act-btns .iti-outline-btn,
+.itinerary-page .itinerary-page-right .package-price-box .services .act-btns .iti-btn {
+  width: 100%;
+}
+
+.itinerary-page .itinerary-page-right .package-price-box .services .act-btns .iti-outline-btn button {
+  border-radius: 32px;
+  border: 1px solid #134076;
+  color: #000;
+  background: #fff;
+  padding: 7px 0;
+  font-size: 0.875rem;
+  width: 100%;
+}
+
+.itinerary-page .itinerary-page-right .package-price-box .services .act-btns .iti-btn button {
+  border-radius: 32px;
+  background: #134076;
+  border: 1px solid #134076;
+  color: #fff;
+  padding: 7px 0;
+  font-size: 0.875rem;
+  width: 100%;
+}
+
+.itinerary-page .itinerary-page-right .package-price-box .call-now {
+  padding: 20px 0;
+}
+
+.itinerary-page .itinerary-page-right .package-price-box .call-now .call-now-btn {
+  padding: 10px 20px;
+  border-radius: 26px;
+  border: 0.5px solid #134076;
+  background: linear-gradient(0deg, #ECE9E6 0%, #F3F3F3 100%);
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-title {
+  padding: 30px 0 20px 0;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-title h3 {
+  font-size: 1.5rem;
+  color: #134076;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-title .day-info {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-title .day-info .info {
+  padding: 7px 15px;
+  border-radius: 25px;
+  background: #f39132;
+  color: #fff;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .description {
+  padding: 20px 0 0 0;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .description .description-img img {
+  width: 100%;
+  max-height: 350px;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .description .description-content {
+  padding: 20px 0 10px 0;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .description .description-content h5 {
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 15px;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .description .description-content span {
+  font-size: 1rem;
+  color: #000;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian {
+  margin-top: 20px;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .szh-accordion__item-content {
+  border: 1px solid #D4D4D4;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .accordion-item .szh-accordion__item-btn {
+  padding: 10px 20px;
+  width: 100%;
+  text-align: left;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .szh-accordion__item-heading {
+  border: 1px solid #D4D4D4;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .accordion-item .overview-content {
+  padding: 10px 20px 15px 20px;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .accordion-button {
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: #000;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .accordion-button:focus {
+  box-shadow: none;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .accordion-button:not(.collapsed) {
+  box-shadow: none;
+  color: #000;
+  background-color: white;
+  border-bottom: 1px solid #D4D4D4;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .overview-content .overview-title {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .overview-content .overview-title img {
+  width: 20px;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .overview-content .overview-title span {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .overview-content .overview-list {
+  list-style-image: url("/media/images/nav-img-active.png");
+  margin-left: 20px;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .overview-content .overview-list li {
+  margin-bottom: 5px;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .overview-content .itinerary-container {
+  max-width: 800px;
+  margin: auto;
+  margin: 10px 0 20px 0;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .overview-content .itinerary-container .itinerary-item {
+  display: flex;
+  border: 1px solid #D4D4D4;
+  overflow: hidden;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .overview-content .itinerary-container .day {
+  color: #000;
+  font-weight: bold;
+  font-size: 1rem;
+  min-width: 100px;
+  border-right: 1px solid #D4D4D4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .overview-content .itinerary-container .content {
+  flex-grow: 1;
+  margin: 3px 10px;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .overview-content .itinerary-container .content .title {
+  color: #000;
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .overview-content .itinerary-container .content p {
+  margin: 0;
+  color: #757575;
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .overview-content .meals .overview-list {
+  display: flex;
+  gap: 35px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .itinerary-detail {
+  border: 1px solid #ccc;
+  margin: 20px;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .itinerary-detail .nav-tabs {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  border-bottom: 2px solid #e0e0e0;
+  background: #F2F2F2;
+  margin: 0;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .itinerary-detail .nav-tabs .title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 80px;
+  color: #134076;
+  font-weight: 600;
+  border-right: 1px solid #D4D4D4;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .itinerary-detail .nav-link {
+  color: #134076;
+  font-weight: 600;
+  background-color: #F2F2F2;
+  border-radius: 0;
+  border-right: 1px solid #D4D4D4;
+  padding: 12px 20px;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .itinerary-detail .nav-link.active {
+  background-color: #f39132;
+  border: 1px solid #f39132;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .itinerary-detail .img-fluid {
+  border-radius: 12px;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .itinerary-detail .tab-content {
+  background-color: #fff;
+  border-radius: 0 0 12px 12px;
+  padding: 20px;
+  margin-top: -1px;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .itinerary-detail h4 {
+  color: #134076;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .itinerary-detail ul {
+  margin-left: 12px;
+  border: none;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .itinerary-detail ul.list-unstyled li {
+  list-style: disc;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .itinerary-detail ul.list-unstyled li strong {
+  color: #000;
+  font-size: 1rem;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .itinerary-detail ul.list-unstyled li p {
+  color: #757575;
+  font-size: 0.875rem;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .hotel-section-accordion {
+  margin: 20px;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .hotel-section-accordion .note {
+  font-size: 0.875rem;
+  color: #757575;
+  margin-bottom: 20px;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .hotel-section-accordion hr {
+  margin: 20px 0;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .hotel-section-accordion .hotel-item .hotel-img img {
+  width: 100%;
+  max-width: 370px;
+  max-height: 225px;
+  border-radius: 21px;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .hotel-section-accordion .hotel-item .hotel-info h5 {
+  font-weight: 600;
+  color: #000;
+  font-size: 1rem;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .hotel-section-accordion .hotel-item .hotel-info img {
+  margin: 5px 0;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .hotel-section-accordion .hotel-item .hotel-info .location {
+  color: #757575;
+  font-size: 0.875rem;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .hotel-section-accordion .hotel-item .hotel-info .hotel-services {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .hotel-section-accordion .hotel-item .hotel-info .hotel-services span {
+  border-radius: 47px;
+  border: 1px solid #757575;
+  color: #757575;
+  font-size: 0.875rem;
+  padding: 5px 10px;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .hotel-section-accordion .hotel-item .hotel-info .star-img{
+  width: 20px;
+  height: 20px;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .inc-exc-section,
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .visa-checklist-section {
+  margin: 10px 20px 20px 20px;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .inc-exc-section .title {
+  padding: 5px 0 7px 0;
+  font-weight: bold;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .inc-exc-section .inc {
+  list-style-image: url("/media/images/inc-tick.png");
+  margin-left: 25px;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .inc-exc-section .exc {
+  list-style-image: url("/media/images/exc-cancle.png");
+  margin-left: 25px;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .inc-exc-section ul li {
+  margin-bottom: 4px;
+  font-weight: 400;
+  font-size: 0.875rem;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .visa-checklist-section .title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 10px 0;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .visa-checklist-section .title span {
+  font-weight: 600;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .visa-checklist-section ul {
+  list-style: disc;
+  margin-left: 30px;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .visa-checklist-section ul li {
+  margin: 0 0 4px 0;
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+.rotate-180 {
+  transform: rotate(180deg);
+  transition: transform 0.3s;
+}
+
+.rotate-0 {
+  transform: rotate(0deg);
+  transition: transform 0.3s;
+}
+
+/* PACKAGE ITINERARY ENDS */
 
 /* LOADING */
 .tours-section .tours-content .tour-cards .tour-card .tour-image .img-loading {

@@ -48,7 +48,8 @@
 
 .hero-section .hero-section-content .hero-section-left .hero-title {
      color: #371086;
-     font-family: "Just Another Hand", cursive;
+     /* font-family: "Just Another Hand", cursive; */
+     font-family: var(--font-just-another-hand);
      font-size: 83px;
      line-height: 0.85;
 }

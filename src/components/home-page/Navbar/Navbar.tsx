@@ -23,7 +23,7 @@ const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [isLoading, setIsLoading] = useState(true)
   const [navbarinfo, setNavbarInfo] = useState<NavbarInfoType | null>(null)
-  // console.log("navbarinfo", navbarinfo);
+  console.log("navbarinfo", navbarinfo);
 
   // Sticky Navbar Logic
   useEffect(() => {
@@ -109,25 +109,25 @@ const Navbar = () => {
                   <div className="placeholder-glow me-2">
                     <span className="placeholder placeholder-bg-light w-100 px-5 py-3 rounded-pill"></span>
                   </div>}>
-                  <GujratTours packages={navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("gujarat-tourism"))?.length ? navbarinfo?.packages?.filter(item => item.category.includes("gujarat-tourism")) : []} />
+                  {navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("gujarat-tourism"))?.length ? <GujratTours packages={navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("gujarat-tourism"))?.length ? navbarinfo?.packages?.filter(item => item.category.includes("gujarat-tourism")) : []} /> : null}
                 </LoadingWrapper>
                 <LoadingWrapper isLoading={isLoading} loadingComponent={
                   <div className="placeholder-glow me-2">
                     <span className="placeholder placeholder-bg-light w-100 px-5 py-3 rounded-pill"></span>
                   </div>}>
-                  <IndiaTours packages={navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("india-tours"))?.length ? navbarinfo?.packages?.filter(item => item.category.includes("india-tours")) : []} />
+                  {navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("india-tours"))?.length ? <IndiaTours packages={navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("india-tours"))?.length ? navbarinfo?.packages?.filter(item => item.category.includes("india-tours")) : []} /> : null}
                 </LoadingWrapper>
                 <LoadingWrapper isLoading={isLoading} loadingComponent={
                   <div className="placeholder-glow me-2">
                     <span className="placeholder placeholder-bg-light w-100 px-5 py-3 rounded-pill"></span>
                   </div>}>
-                  <InternationalTours packages={navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("international-tour"))?.length ? navbarinfo?.packages?.filter(item => item.category.includes("international-tour")) : []} />
+                  {navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("international-tours"))?.length ? <InternationalTours packages={navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("international-tours"))?.length ? navbarinfo?.packages?.filter(item => item.category.includes("international-tours")) : []} /> : null}
                 </LoadingWrapper>
                 <LoadingWrapper isLoading={isLoading} loadingComponent={
                   <div className="placeholder-glow me-2">
                     <span className="placeholder placeholder-bg-light w-100 px-5 py-3 rounded-pill"></span>
                   </div>}>
-                  <HoneymoonTours packages={navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("honeymoon-tours"))?.length ? navbarinfo?.packages?.filter(item => item.category.includes("honeymoon-tours")) : []} />
+                  {navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("honeymoon-tours"))?.length ? <HoneymoonTours packages={navbarinfo != null && navbarinfo?.packages?.filter(item => item.category.includes("honeymoon-tours"))?.length ? navbarinfo?.packages?.filter(item => item.category.includes("honeymoon-tours")) : []} /> : null}
                 </LoadingWrapper>
                 <LoadingWrapper isLoading={isLoading} loadingComponent={
                   <div className="placeholder-glow me-2">

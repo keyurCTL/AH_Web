@@ -5,7 +5,7 @@ import { fetchData } from '@/services/api'
 import { Package } from '@/types/package/package'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useParams } from 'next/navigation'
+import { useParams, usePathname } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
 type PackagesSectionProps = {
@@ -17,17 +17,17 @@ type RouteParams = {
 };
 
 const PackagesSection = ({ packages: initialPackages }: PackagesSectionProps) => {
-     console.log("initialPackages", initialPackages);
+     const pathName = usePathname()
      const { basePackageName } = useParams<RouteParams>();
      const totalPackages = initialPackages?.length || 0
      const [packages, setPackages] = useState<Package[]>(initialPackages);
-     const [shortBy, setShortBy] = useState('short');
+     const [sortBy, setShortBy] = useState('sort');
 
      console.log(basePackageName.replace(/-+/g, " "));
 
      const handleFilterChange = async () => {
           try {
-               const sortQuery = shortBy !== 'short' ? `&sort_by=${shortBy}` : '';
+               const sortQuery = sortBy !== 'sort' ? `&sort_by=${sortBy}` : '';
                const response: any = await fetchData({
                     endpoint: `package/public/search?base_package=${basePackageName.replace(/-+/g, " ")}${sortQuery}`
                });
@@ -44,8 +44,10 @@ const PackagesSection = ({ packages: initialPackages }: PackagesSectionProps) =>
 
 
      useEffect(() => {
-          handleFilterChange();
-     }, [shortBy]);
+          if (sortBy != "sort") {
+               handleFilterChange();
+          }
+     }, [sortBy]);
 
      return (
           <>
@@ -58,20 +60,20 @@ const PackagesSection = ({ packages: initialPackages }: PackagesSectionProps) =>
                               <div className="tour-filters">
                                    <div className="filter">
                                         <select
-                                             value={shortBy}
+                                             value={sortBy}
                                              onChange={(e) => setShortBy(e.target.value)}
                                         >
-                                             <option value="short" disabled>&#x21c5; Sort by</option>
+                                             <option value="sort" disabled>&#x21c5; Sort by</option>
                                              <option value="price-high-to-low" >Price High to Low</option>
                                              <option value="price-low-to-high">Price Low to High</option>
-                                             <option value="duration-long-to-short">Druration Long to Short</option>
-                                             <option value="duration-short-to-long">Druration Short to Long</option>
+                                             <option value="duration-long-to-sort">Druration Long to Short</option>
+                                             <option value="duration-sort-to-long">Druration Short to Long</option>
                                         </select>
                                    </div>
 
                                    <div className="reset-filter">
                                         <button type="button" onClick={() => {
-                                             setShortBy('short');
+                                             setShortBy('sort');
                                              setPackages(initialPackages);
                                         }}>Reset All</button>
                                    </div>
@@ -145,10 +147,10 @@ const PackagesSection = ({ packages: initialPackages }: PackagesSectionProps) =>
                                                                                      </div>
                                                                                      <div className="card-action-btns">
                                                                                           <div className="view-more-btn wo">
-                                                                                               <a href="./tour-itinerary.html" className=""><span>View details</span></a>
+                                                                                               <Link href={`${pathName}/${packageInfo?.package_name}`} className=""><span>View details</span></Link>
                                                                                           </div>
                                                                                           <div className="view-more-btn">
-                                                                                               <Link href="#" className="btn"><span>Enquire</span></Link>
+                                                                                               <a href={`#`} className="btn"><span>Enquire</span></a>
                                                                                           </div>
                                                                                      </div>
                                                                                 </div>

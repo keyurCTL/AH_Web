@@ -125,7 +125,7 @@ const InternationalTours = ({ packages }: InternationalToursProps) => {
                                                             <div className="row">
                                                                  {groupedBySubCategory[packageTab]?.map((packagePlace: Package, placeIndex) => (
                                                                       <div key={placeIndex} className="col-lg-3">
-                                                                           <Link className="destination-card" href={`/international-tour/${packagePlace?.base_package?.toLowerCase().replace(/\s+/g, "-")}`}>
+                                                                           <Link className="destination-card" href={`/international-tours/${packagePlace?.base_package?.toLowerCase().replace(/\s+/g, "-")}`}>
                                                                                 <div className="dest-img">
                                                                                      <Image src={packagePlace.navbar?.img?.file_public_url} alt={packagePlace.base_package?.toLowerCase()} width={173} height={105} className="rounded-4" unoptimized loading="lazy" />
                                                                                 </div>
@@ -171,7 +171,7 @@ const InternationalTours = ({ packages }: InternationalToursProps) => {
                                         </div>
                                         <p>{menuData[2].description}</p>
                                         <div className="view-more-btn">
-                                             <Link href="/international-tour"><span>View More</span></Link>
+                                             <Link href="/international-tours"><span>View More</span></Link>
                                         </div>
                                    </div>
                               </div>

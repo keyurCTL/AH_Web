@@ -3,15 +3,19 @@ import { capitalizeText } from '@/lib/utils';
 import { fetchData } from '@/services/api';
 import { PageProps } from '@/types/common'
 import React from 'react'
-import PackagesSection from './(components)/PackagesSection';
+import PackagesSection from './[components]/PackagesSection';
 
 const page = async ({ params, searchParams }: PageProps) => {
     const { basePackageName } = await params
     const { explore } = await searchParams
+    console.log("basePackageName", basePackageName);
 
     const res: any = await fetchData({
         endpoint: `review/public`
     })
+
+    console.log(basePackageName.replace(/-+/g, " "));
+
 
     const packagesRes: any = await fetchData({
         endpoint: `package/public?base_package=${basePackageName.replace(/-+/g, " ")}&package_starting_from=true&${explore != undefined ? `&duration=${explore}&budget=${explore}` : ""}`
@@ -38,8 +42,8 @@ const page = async ({ params, searchParams }: PageProps) => {
                 subtitle="Tour Packages"
                 breadcrumbs={[
                     { label: 'Home', link: '/', class: "" },
-                    { label: 'India Tours', link: '/india-tours', class: "" },
-                    { label: `${capitalizeText(basePackageName.replace(/-+/g, " "))} Tour Packages`, link: `/india-tours/${basePackageName}`, class: "self-page" },
+                    { label: 'International Tours', link: '/international-tours', class: "" },
+                    { label: `${capitalizeText(basePackageName.replace(/-+/g, " "))} Tour Packages`, link: `/international-tours/${basePackageName}`, class: "self-page" },
                 ]}
                 stats={[
                     {

@@ -21,7 +21,7 @@
      /* font-weight: bold; */
      color: #371086;
      padding-bottom: 5px;
-     font-family: "Just Another Hand", cursive;
+     font-family: var(--font-just-another-hand), cursive;
      font-size: 4rem;
      line-height: 0.55;
 }
@@ -71,10 +71,11 @@
 
 .inner-header-main .inner-header-stats {
      padding-top: 80px;
-    display: flex;
-    justify-content: space-around;
-    max-width: 420px;
-    width: 100%;
+     display: flex;
+     justify-content: space-around;
+     align-items: start;
+     max-width: 420px;
+     width: 100%;
 }
 
 .inner-header-main .inner-header-stats .stats {
