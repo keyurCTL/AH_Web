@@ -47,21 +47,21 @@ const Footer = () => {
                                                             <div className="col-6">
                                                                  <ul className="list-unstyled">
                                                                       <li>
-                                                                           <Link href="#">Gujarat Tourism</Link>
+                                                                           <Link href="/gujarat-tourism">Gujarat Tourism</Link>
                                                                       </li>
                                                                       <li><Link href="/india-tours">India Tour</Link></li>
                                                                       <li>
-                                                                           <Link href="#">International Tour</Link>
+                                                                           <Link href="/international-tours">International Tour</Link>
                                                                       </li>
                                                                       <li>
-                                                                           <Link href="#">Honeymoon Packages</Link>
+                                                                           <Link href="/honeymoon-tours">Honeymoon Packages</Link>
                                                                       </li>
                                                                  </ul>
                                                             </div>
                                                             <div className="col-6">
                                                                  <ul className="list-unstyled">
                                                                       <li>
-                                                                           <Link href="#">Religious Tour</Link>
+                                                                           <Link href="/religious-tours">Religious Tour</Link>
                                                                       </li>
                                                                       {/* <li><Link href="#">Hotels</Link></li> */}
                                                                       <li>
