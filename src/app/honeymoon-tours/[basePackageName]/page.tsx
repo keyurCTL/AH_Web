@@ -3,20 +3,16 @@ import { capitalizeText } from '@/lib/utils';
 import { fetchData } from '@/services/api';
 import { PageProps } from '@/types/common'
 import React from 'react'
-import PackagesSection from './[components]/PackagesSection';
+import PackagesSection from './(components)/PackagesSection';
 import { notFound } from 'next/navigation';
 
 const page = async ({ params, searchParams }: PageProps) => {
     const { basePackageName } = await params
     const { explore } = await searchParams
-    console.log("basePackageName", basePackageName);
 
     const res: any = await fetchData({
         endpoint: `review/public`
     })
-
-    console.log(basePackageName.replace(/-+/g, " "));
-
 
     const packagesRes: any = await fetchData({
         endpoint: `package/public?base_package=${basePackageName.replace(/-+/g, " ")}&package_starting_from=true&${explore != undefined ? `&duration=${explore}&budget=${explore}` : ""}`
@@ -38,7 +34,7 @@ const page = async ({ params, searchParams }: PageProps) => {
 
     // console.log("packages", packages);
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    // await new Promise((resolve) => setTimeout(resolve, 1000));
 
     return (
         <>

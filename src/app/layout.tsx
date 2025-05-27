@@ -6,7 +6,7 @@ import Navbar from "@/components/home-page/Navbar/Navbar";
 // import BootstrapClient from "@/components/common/BootstrapClient";
 import Footer from "@/components/home-page/Footer/Footer";
 import BootstrapClient from '@/components/common/BootstrapClient';
-import Head from 'next/head';
+import { Metadata } from 'next';
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -22,22 +22,58 @@ const JustAnotherHand = Just_Another_Hand({
   // display: "swap",
 });
 
+export const metadata: Metadata = {
+  title: {
+    default: "Home - Alakh Holidays",
+    template: "%s - Alakh Holidays"
+  },
+  description: "Discover what our travelers say about their experiences with Alakh Holidays. Read reviews and testimonials from satisfied customers.",
+  keywords: "travel reviews, customer testimonials, Alakh Holidays, travel experiences",
+  openGraph: {
+    title: 'Home',
+    description: 'Discover what our travelers say about their experiences with Alakh Holidays',
+    siteName: 'Alakh Holidays',
+    url: 'https://ah-stage.vercel.app',
+    locale: 'en_US',
+    type: 'website',
+  },
+};
+
 export default function RootLayout({
+  heroSection,
+  dealssection,
+  destinationSection,
+  serviceSection,
+  happyTravelersSection,
+  holidayAssistance,
+  ourFamilySection,
+  commitmentSection,
   children,
 }: Readonly<{
+  heroSection: React.ReactNode,
+  dealssection: React.ReactNode,
+  destinationSection: React.ReactNode,
+  serviceSection: React.ReactNode,
+  happyTravelersSection: React.ReactNode,
+  holidayAssistance: React.ReactNode,
+  ourFamilySection: React.ReactNode,
+  commitmentSection: React.ReactNode,
   children: React.ReactNode;
 }>) {
 
   return (
     <html lang="en">
-      <Head>
-        <title>Home | Alakh Holidays</title>
-        <meta name="description" content="Learn more about Alakh Holidays, our mission, values, and the dedicated team behind your travel experiences." />
-        <meta name="keywords" content="Alakh Holidays, travel agency, best tour planner, best travelling agency" />
-      </Head>
       <body className={`${poppins.variable} ${JustAnotherHand.variable}`}>
         <Navbar />
         {children}
+        {heroSection}
+        {dealssection}
+        {destinationSection}
+        {serviceSection}
+        {happyTravelersSection}
+        {holidayAssistance}
+        {ourFamilySection}
+        {commitmentSection}
         <Footer />
         <BootstrapClient />
       </body>

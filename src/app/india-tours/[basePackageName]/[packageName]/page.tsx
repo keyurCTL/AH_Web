@@ -3,13 +3,19 @@ import React from 'react'
 import Itinerary from './(components)/Itinerary'
 import { fetchData } from '@/services/api'
 import { Package } from '@/types/package/package'
-import Link from 'next/link'
-import Image from 'next/image'
-import { capitalizeText } from '@/lib/utils'
-import { Metadata } from 'next'
+import { Metadata, ResolvingMetadata } from 'next'
 import { notFound } from 'next/navigation'
 
-export async function generateMetaData({ params: { basePackageName, packageName } }): Promise<Metadata> {
+type Props = {
+    params: Promise<{ packageName: string }>
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}
+
+export async function generateMetadata(
+    { params, searchParams }: Props,
+    parent: ResolvingMetadata
+): Promise<Metadata> {
+    const { packageName } = await params
     const packageRes: any = await fetchData({
         endpoint: `package/public/${packageName}`
     })
@@ -20,6 +26,7 @@ export async function generateMetaData({ params: { basePackageName, packageName 
         description: packageInfo?.basic_info?.about_description
     }
 }
+
 
 const page = async ({ params: { packageName }, searchParams }: PageProps) => {
     const packageRes: any = await fetchData({

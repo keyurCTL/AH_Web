@@ -3,7 +3,7 @@ import { capitalizeText } from '@/lib/utils';
 import { fetchData } from '@/services/api';
 import { PageProps } from '@/types/common'
 import React from 'react'
-import PackagesSection from './[components]/PackagesSection';
+import PackagesSection from './(components)/PackagesSection';
 
 const page = async ({ params, searchParams }: PageProps) => {
     const { basePackageName } = await params
@@ -33,7 +33,7 @@ const page = async ({ params, searchParams }: PageProps) => {
 
     // console.log("packages", packages);
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    // await new Promise((resolve) => setTimeout(resolve, 1000));
 
     return (
         <>

@@ -902,6 +902,18 @@ a {
 .itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .itinerary-detail .nav-link.active {
   background-color: #f39132;
   border: 1px solid #f39132;
+  border-bottom: 1px solid #134076;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .itinerary-detail .nextprev{
+  font-weight: 400;
+}
+
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .itinerary-detail .nextprev:disabled {
+  color: var(--primary-color);
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: default;
 }
 
 .itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .itinerary-detail .img-fluid {

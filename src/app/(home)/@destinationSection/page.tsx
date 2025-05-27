@@ -10,7 +10,7 @@ export default async function destinationSection() {
 
      // console.log("packages", res?.data?.packages);
 
-     await new Promise((resolve) => setTimeout(resolve, 1000));
+     // await new Promise((resolve) => setTimeout(resolve, 1000));
 
      return (
           <>

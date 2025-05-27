@@ -17,7 +17,7 @@ type RouteParams = {
 };
 
 const PackagesSection = ({ packages: initialPackages }: PackagesSectionProps) => {
-     const pathName = usePathname()
+     const pathName = usePathname()     
      const { basePackageName } = useParams<RouteParams>();
      const totalPackages = initialPackages?.length || 0
      const [packages, setPackages] = useState<Package[]>(initialPackages);

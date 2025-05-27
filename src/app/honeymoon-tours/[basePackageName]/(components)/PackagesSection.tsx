@@ -79,11 +79,15 @@ const PackagesSection = ({ packages: initialPackages }: PackagesSectionProps) =>
                                    </div>
                               </div>
 
-                              <div className="inner-tour-cards">
-                                   <div className="row">
-                                        {packages?.map(
-                                             (packageInfo, index) => {
-                                                  const pkgImg = packageInfo.basic_info?.img?.file_public_url || null
+                              {Array.isArray(packages) && packages.length > 0 && (
+                                   <div className="inner-tour-cards">
+                                        <div className="row">
+                                             {packages.map((packageInfo, index) => {
+                                                  if (!packageInfo || typeof packageInfo !== "object") return null;
+
+                                                  const pkgImg =
+                                                       packageInfo.basic_info?.img?.file_public_url || null;
+
                                                   return (
                                                        <div key={index} className="col-1g-12 mb-4">
                                                             <div className="card package-card h-100">
@@ -102,34 +106,39 @@ const PackagesSection = ({ packages: initialPackages }: PackagesSectionProps) =>
                                                                       <div className="col-lg-9 inner-card">
                                                                            <div className="card-body package-card-body">
                                                                                 <div className="card-title-box">
-                                                                                     <h5 className="card-title package-card-title">{firstLetterCapital(packageInfo?.package_name)}</h5>
+                                                                                     <h5 className="card-title package-card-title">
+                                                                                          {firstLetterCapital(packageInfo?.package_name)}
+                                                                                     </h5>
                                                                                      <span className="card-subtitle package-card-subtitle">
                                                                                           {`${packageInfo?.basic_info?.night} Nights / ${packageInfo?.basic_info?.days} Days`}
                                                                                      </span>
                                                                                 </div>
                                                                                 <hr />
-                                                                                <div className="card-services">
-                                                                                     {packageInfo?.services.map((service) => {
-                                                                                          const imageSrc = getImageForService(service.name);
-                                                                                          return (
-                                                                                               <div className="card-service" key={service._id}>
-                                                                                                    <div className="service-icon">
-                                                                                                         <Image
-                                                                                                              src={imageSrc}
-                                                                                                              width={30}
-                                                                                                              height={30}
-                                                                                                              layout="intrinsic"
-                                                                                                              alt={service.name}
-                                                                                                         />
+                                                                                {Array.isArray(packageInfo?.services) && packageInfo.services?.length ?
+                                                                                     <><div className="card-services">
+                                                                                          {packageInfo.services.map((service) => {
+                                                                                               if (!service || !service._id || !service.name) return null;
+                                                                                               const imageSrc = getImageForService(service.name);
+                                                                                               return (
+                                                                                                    <div className="card-service" key={service._id}>
+                                                                                                         <div className="service-icon">
+                                                                                                              <Image
+                                                                                                                   src={imageSrc}
+                                                                                                                   width={30}
+                                                                                                                   height={30}
+                                                                                                                   layout="intrinsic"
+                                                                                                                   alt={service.name}
+                                                                                                              />
+                                                                                                         </div>
+                                                                                                         <div className="service-name">{service.name}</div>
                                                                                                     </div>
-                                                                                                    <div className="service-name">{service.name}</div>
-                                                                                               </div>
-                                                                                          );
-                                                                                     })}
-                                                                                </div>
-
-                                                                                <hr />
-                                                                                <p className="card-text package-card-text card-note mt-2"><span>* </span>
+                                                                                               );
+                                                                                          })}
+                                                                                     </div>
+                                                                                          <hr />
+                                                                                     </> : null}
+                                                                                <p className="card-text package-card-text card-note mt-2">
+                                                                                     <span>* </span>
                                                                                      Off-season rates are not Applicable in Diwali/ Dussehra / Holi /
                                                                                      Republic Day /Independent Day/Long Weekend. Etc. (Not Valid
                                                                                      for last two weeks of Dec and first week of Jan)
@@ -142,15 +151,24 @@ const PackagesSection = ({ packages: initialPackages }: PackagesSectionProps) =>
                                                                                 <div className="hl"></div>
                                                                                 <div className="card-price">
                                                                                      <div className="price">
-                                                                                          <div className="price-value">₹<span>{packageInfo?.price}/-</span>*</div>
-                                                                                          <div className="price-content">Starting price Per Adult </div>
+                                                                                          <div className="price-value">
+                                                                                               ₹<span>{packageInfo?.price}/-</span>*
+                                                                                          </div>
+                                                                                          <div className="price-content">Starting price Per Adult</div>
                                                                                      </div>
                                                                                      <div className="card-action-btns">
                                                                                           <div className="view-more-btn wo">
-                                                                                               <Link href={`${pathName}/${packageInfo?.package_name}`} className=""><span>View details</span></Link>
+                                                                                               <Link
+                                                                                                    href={`${pathName}/${packageInfo?.package_name}`}
+                                                                                                    className=""
+                                                                                               >
+                                                                                                    <span>View details</span>
+                                                                                               </Link>
                                                                                           </div>
                                                                                           <div className="view-more-btn">
-                                                                                               <a href={`#`} className="btn"><span>Enquire</span></a>
+                                                                                               <a href="#" className="btn">
+                                                                                                    <span>Enquire</span>
+                                                                                               </a>
                                                                                           </div>
                                                                                      </div>
                                                                                 </div>
@@ -159,12 +177,11 @@ const PackagesSection = ({ packages: initialPackages }: PackagesSectionProps) =>
                                                                  </div>
                                                             </div>
                                                        </div>
-                                                  )
-                                             }
-                                        )}
-
+                                                  );
+                                             })}
+                                        </div>
                                    </div>
-                              </div>
+                              )}
                          </div>
                     </div>
                </section>

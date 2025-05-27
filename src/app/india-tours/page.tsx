@@ -2,7 +2,6 @@ import InnerHeaderWithStats from "@/components/common/inner-header/InnerHeaderWi
 import { fetchData } from "@/services/api";
 import { PageProps } from "@/types/common";
 import { Metadata } from "next";
-import { notFound } from "next/navigation";
 import ToursSection from "./(components)/ToursSection";
 
 export const metadata: Metadata = {

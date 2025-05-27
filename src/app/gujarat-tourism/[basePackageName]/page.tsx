@@ -33,7 +33,7 @@ const page = async ({ params, searchParams }: PageProps) => {
 
     // console.log("packages", packages);
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    // await new Promise((resolve) => setTimeout(resolve, 1000));
 
     return (
         <>

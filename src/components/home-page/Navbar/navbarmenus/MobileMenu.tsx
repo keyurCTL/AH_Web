@@ -145,7 +145,7 @@ const MobileMenu = ({ packages }: NavbarInfoType) => {
                     }) : null}
 
                     <ul className="list-unstyled">
-                         {Object.keys(groupedByCategory)?.length && Object.keys(groupedByCategory)?.filter(category => category == "religious-tours")?.length ? <li className="rt"><a href="#">Religious Tours</a></li> : null}
+                         {Object.keys(groupedByCategory)?.length && Object.keys(groupedByCategory)?.filter(category => category == "religious-tours")?.length ? <li className="rt"><a href="/religious-tours">Religious Tours</a></li> : null}
                          <li className="top-contact-content">
                               <Image src="/assets/images/call.png" alt="call" width={20} height={20} unoptimized />
                               <a href="tel:+919727000916">+91 97270 00916</a>
