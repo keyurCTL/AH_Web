@@ -39,16 +39,16 @@ export default function Itinerary({ packageInfo }: ItineraryProps) {
     const halfPlaces = Math.ceil(places.length / 2);
 
     const handlePackagePdf = async (id: string, name: string) => {
-            try {
-                setIsDownloadLoading(true)
-                const response = await fetchData({ endpoint: `export-file/package-pdf/public/${id}`, responseType: "blob" })
-                await saveFile(response, `${name}`, "pdf");
-            } catch (error) {
-                console.log("ERROR", error);
-            } finally {
-                setIsDownloadLoading(false)
-            }
+        try {
+            setIsDownloadLoading(true)
+            const response = await fetchData({ endpoint: `export-file/package-pdf/public/${id}`, responseType: "blob" })
+            await saveFile(response, `${name}`, "pdf");
+        } catch (error) {
+            console.log("ERROR", error);
+        } finally {
+            setIsDownloadLoading(false)
         }
+    }
 
     return (
         <>
@@ -321,58 +321,69 @@ export default function Itinerary({ packageInfo }: ItineraryProps) {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="col-lg-4">
-                            <div className="itinerary-page-right">
-                                <div className="package-price-box">
-                                    <div className="price">
-                                        <div className="ammont">₹{packageInfo?.price}/-</div>
-                                        <div className="info">Starting price per adult</div>
-                                    </div>
-                                    <div className="services">
-                                        <div className="card-services">
-                                            {packageInfo?.services.map((service) => {
-                                                const imageSrc = getImageForService(service.name);
-                                                return (
-                                                    <div className="card-service" key={service._id}>
-                                                        <div className="service-icon">
-                                                            <Image
-                                                                src={imageSrc}
-                                                                width={30}
-                                                                height={30}
-                                                                layout="intrinsic"
-                                                                alt={service.name}
-                                                            />
+                            <div className="col-lg-4">
+                                <div className="itinerary-page-right">
+                                    <div className="package-price-box">
+                                        <div className="price">
+                                            <div className="ammont">₹{packageInfo?.price}/-</div>
+                                            <div className="info">Starting price per adult</div>
+                                        </div>
+                                        <div className="services">
+                                            <div className="card-services">
+                                                {packageInfo?.services.map((service) => {
+                                                    const imageSrc = getImageForService(service.name);
+                                                    return (
+                                                        <div className="card-service" key={service._id}>
+                                                            <div className="service-icon">
+                                                                <Image
+                                                                    src={imageSrc}
+                                                                    width={30}
+                                                                    height={30}
+                                                                    layout="intrinsic"
+                                                                    alt={service.name}
+                                                                />
+                                                            </div>
+                                                            <div className="service-name">{service.name}</div>
                                                         </div>
-                                                        <div className="service-name">{service.name}</div>
-                                                    </div>
-                                                );
-                                            })}
-                                        </div>
-                                        <div className="act-btns">
-                                            <div className="iti-outline-btn">
-                                                <button
-                                                    disabled={isDownloadLoading}
-                                                    onClick={async () => {
-                                                        if (!isDownloadLoading) {
-                                                            await handlePackagePdf(packageInfo?._id, packageInfo?.package_name)
-                                                        }
-                                                    }}
-                                                    type="button"
-                                                >
-                                                    {isDownloadLoading ? "Downloading..." : "Download"}
-                                                </button>
+                                                    );
+                                                })}
                                             </div>
-                                            <div className="iti-btn">
-                                                <button type="button">Inquiry Now</button>
+                                            <div className="act-btns">
+                                                <div className="iti-outline-btn">
+                                                    <button
+                                                        disabled={isDownloadLoading}
+                                                        onClick={async () => {
+                                                            if (!isDownloadLoading) {
+                                                                await handlePackagePdf(packageInfo?._id, packageInfo?.package_name)
+                                                            }
+                                                        }}
+                                                        type="button"
+                                                    >
+                                                        {isDownloadLoading ? "Downloading..." : "Download"}
+                                                    </button>
+                                                </div>
+                                                <div className="iti-btn">
+                                                    <button
+                                                        onClick={() => {
+                                                            setPackageDetails({
+                                                                packageName: packageInfo?.package_name,
+                                                                budget: packageInfo?.price
+                                                            }); // Set the name here
+                                                            setModalShow(true); // Then show the modal
+                                                        }}
+                                                        type="button"
+                                                    >
+                                                        <span>Enquire</span>
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className="call-now">
-                                        <button className="call-now-btn">
-                                            <img src="/assets/images/call-reciver.png" alt="call" />
-                                            <span><a href="tel:+919727000916">CALL US NOW</a></span>
-                                        </button>
+                                        <div className="call-now">
+                                            <button className="call-now-btn">
+                                                <img src="/assets/images/call-reciver.png" alt="call" />
+                                                <span><a href="tel:+919727000916">CALL US NOW</a></span>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

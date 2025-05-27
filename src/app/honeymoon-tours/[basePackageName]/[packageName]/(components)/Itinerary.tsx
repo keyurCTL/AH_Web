@@ -39,16 +39,16 @@ export default function Itinerary({ packageInfo }: ItineraryProps) {
     const halfPlaces = Math.ceil(places.length / 2);
 
     const handlePackagePdf = async (id: string, name: string) => {
-            try {
-                setIsDownloadLoading(true)
-                const response = await fetchData({ endpoint: `export-file/package-pdf/public/${id}`, responseType: "blob" })
-                await saveFile(response, `${name}`, "pdf");
-            } catch (error) {
-                console.log("ERROR", error);
-            } finally {
-                setIsDownloadLoading(false)
-            }
+        try {
+            setIsDownloadLoading(true)
+            const response = await fetchData({ endpoint: `export-file/package-pdf/public/${id}`, responseType: "blob" })
+            await saveFile(response, `${name}`, "pdf");
+        } catch (error) {
+            console.log("ERROR", error);
+        } finally {
+            setIsDownloadLoading(false)
         }
+    }
 
     return (
         <>
@@ -389,7 +389,18 @@ export default function Itinerary({ packageInfo }: ItineraryProps) {
                                                 </button>
                                             </div>
                                             <div className="iti-btn">
-                                                <button type="button">Inquiry Now</button>
+                                                <button
+                                                    onClick={() => {
+                                                        setPackageDetails({
+                                                            packageName: packageInfo?.package_name,
+                                                            budget: packageInfo?.price
+                                                        }); // Set the name here
+                                                        setModalShow(true); // Then show the modal
+                                                    }}
+                                                    type="button"
+                                                >
+                                                    <span>Enquire</span>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
