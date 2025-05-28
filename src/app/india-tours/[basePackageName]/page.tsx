@@ -1,5 +1,5 @@
 import InnerHeaderWithStats from '@/components/common/inner-header/InnerHeaderWithStats';
-import { capitalizeText } from '@/lib/utils';
+import { capitalizeText, formatIndianNumber } from '@/lib/utils';
 import { fetchData } from '@/services/api';
 import { PageProps } from '@/types/common'
 import React from 'react'
@@ -45,7 +45,7 @@ const page = async ({ params, searchParams }: PageProps) => {
                     {
                         icon: '/assets/images/wallet.png',
                         title: 'Packages Starting',
-                        value: `₹${String(Math.round(Number(package_starting_from)))}/-`,
+                        value: `₹${formatIndianNumber(package_starting_from)}/-`,
                     },
                     {
                         icon: '/assets/images/Reviews.png',

@@ -47,11 +47,11 @@ const Captcha: React.FC<CaptchaProps> = ({ onCaptchaChange, onInputChange }) => 
           <input
             type="text"
             className="form-control"
-            placeholder="Enter CAPTCHA" 
+            placeholder="Enter CAPTCHA"
             name="captchaInput"
             onChange={handleInputChange}
           />
-          <span className="captcha-refresh p-2" onClick={refreshCaptcha} style={{cursor: 'pointer'}}>
+          <span className="captcha-refresh p-2" onClick={refreshCaptcha} style={{ cursor: 'pointer' }}>
             &#x21ba;
           </span>
         </div>

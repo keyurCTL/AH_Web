@@ -1,6 +1,6 @@
 "use client";
 
-import { capitalizeText, getImageForService, saveFile } from "@/lib/utils"
+import { capitalizeText, formatIndianNumber, getImageForService, saveFile } from "@/lib/utils"
 import { fetchData } from "@/services/api";
 import InquiryModal from "@/components/common/inquiry-modal/InquiryModal";
 import { Package } from "@/types/package/package"
@@ -346,69 +346,80 @@ export default function Itinerary({ packageInfo }: ItineraryProps) {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="col-lg-4">
-                            <div className="itinerary-page-right">
-                                <div className="package-price-box">
-                                    <div className="price">
-                                        <div className="ammont">₹{packageInfo?.price}/-</div>
-                                        <div className="info">Starting price per adult</div>
-                                    </div>
-                                    <div className="services">
-                                        <div className="card-services">
-                                            {packageInfo?.services.map((service) => {
-                                                const imageSrc = getImageForService(service.name);
-                                                return (
-                                                    <div className="card-service" key={service._id}>
-                                                        <div className="service-icon">
-                                                            <Image
-                                                                src={imageSrc}
-                                                                width={30}
-                                                                height={30}
-                                                                layout="intrinsic"
-                                                                alt={service.name}
-                                                            />
-                                                        </div>
-                                                        <div className="service-name">{service.name}</div>
+                            <div className="col-lg-4">
+                                <div className="itinerary-page-right">
+                                    <div className="package-price-box">
+                                        <div className="price">
+                                            {packageInfo?.discounted_price > 0 ? (
+                                                <div className="dis-price">
+                                                    <div className="price-value-sm">₹{formatIndianNumber(packageInfo?.price)}/-</div>
+                                                    <div className="ammont">
+                                                        ₹{formatIndianNumber(packageInfo?.discounted_price)}<span>/-*</span>
                                                     </div>
-                                                );
-                                            })}
+                                                </div>
+                                            ) : (
+                                                <div className="dis-price">
+                                                    <div className="ammont">₹{formatIndianNumber(packageInfo?.price)}/-</div>
+                                                </div>)
+                                            }
+                                            <div className="info">Starting price per adult</div>
                                         </div>
-                                        <div className="act-btns">
-                                            <div className="iti-outline-btn">
-                                                <button
-                                                    disabled={isDownloadLoading}
-                                                    onClick={async () => {
-                                                        if (!isDownloadLoading) {
-                                                            await handlePackagePdf(packageInfo?._id, packageInfo?.package_name)
-                                                        }
-                                                    }}
-                                                    type="button"
-                                                >
-                                                    {isDownloadLoading ? "Downloading..." : "Download"}
-                                                </button>
+                                        <div className="services">
+                                            <div className="card-services">
+                                                {packageInfo?.services.map((service) => {
+                                                    const imageSrc = getImageForService(service.name);
+                                                    return (
+                                                        <div className="card-service" key={service._id}>
+                                                            <div className="service-icon">
+                                                                <Image
+                                                                    src={imageSrc}
+                                                                    width={30}
+                                                                    height={30}
+                                                                    layout="intrinsic"
+                                                                    alt={service.name}
+                                                                />
+                                                            </div>
+                                                            <div className="service-name">{service.name}</div>
+                                                        </div>
+                                                    );
+                                                })}
                                             </div>
-                                            <div className="iti-btn">
-                                                <button
-                                                    onClick={() => {
-                                                        setPackageDetails({
-                                                            packageName: packageInfo?.package_name,
-                                                            budget: packageInfo?.price
-                                                        }); // Set the name here
-                                                        setModalShow(true); // Then show the modal
-                                                    }}
-                                                    type="button"
-                                                >
-                                                    <span>Enquire</span>
-                                                </button>
+                                            <div className="act-btns">
+                                                <div className="iti-outline-btn">
+                                                    <button
+                                                        disabled={isDownloadLoading}
+                                                        onClick={async () => {
+                                                            if (!isDownloadLoading) {
+                                                                await handlePackagePdf(packageInfo?._id, packageInfo?.package_name)
+                                                            }
+                                                        }}
+                                                        type="button"
+                                                    >
+                                                        {isDownloadLoading ? "Downloading..." : "Download"}
+                                                    </button>
+                                                </div>
+                                                <div className="iti-btn">
+                                                    <button
+                                                        onClick={() => {
+                                                            setPackageDetails({
+                                                                packageName: packageInfo?.package_name,
+                                                                budget: packageInfo?.price
+                                                            }); // Set the name here
+                                                            setModalShow(true); // Then show the modal
+                                                        }}
+                                                        type="button"
+                                                    >
+                                                        <span>Enquire</span>
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className="call-now">
-                                        <button className="call-now-btn">
-                                            <img src="/assets/images/call-reciver.png" alt="call" />
-                                            <span><a href="tel:+919727000916">CALL US NOW</a></span>
-                                        </button>
+                                        <div className="call-now">
+                                            <button className="call-now-btn">
+                                                <img src="/assets/images/call-reciver.png" alt="call" />
+                                                <span><a href="tel:+919727000916">CALL US NOW</a></span>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

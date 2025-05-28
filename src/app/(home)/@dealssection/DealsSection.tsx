@@ -10,12 +10,13 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Offer } from "@/types/offers/offer";
 import Link from "next/link";
+import { formatIndianNumber } from "@/lib/utils";
 
 type DealsSectionProps = {
      offers: Offer[]
 }
 
-const DealsSection = ({ offers }: DealsSectionProps) => {     
+const DealsSection = ({ offers }: DealsSectionProps) => {
      // const [activeTab, setActiveTab] = useState("domestic");
      const [viewPortWidth, setViewPortWidth] = useState<number | null>(null)
 
@@ -94,21 +95,23 @@ const DealsSection = ({ offers }: DealsSectionProps) => {
                                                             <Image src={packageImg} alt={`${packageItem.package_name} best deal`} width={153} height={153} />
                                                             <div className="price">
                                                                  <span>save</span>
-                                                                 <span className="price-value">₹{String(Math.round(Number(packageItem?.difference_price)))}/-</span>
+                                                                 <span className="price-value">₹{formatIndianNumber(packageItem?.difference_price)}/-</span>
                                                             </div>
                                                        </div>
                                                        <div className="deal-card-body">
                                                             <div className="deal-card-content">
-                                                                 <div className="deal-card-title">{packageName}</div>
+                                                                 <Link href={`${packageItem?.category}/${packageItem?.base_package}/${packageItem?.package_name}`}>
+                                                                      <div className="deal-card-title">{packageName}</div>
+                                                                 </Link>
                                                                  <div className="deal-card-duration">{`${packageItem?.basic_info?.days} Days & ${packageItem?.basic_info?.night} Night${Number(packageItem?.basic_info?.night) > 1 ? "s" : ""}`}</div>
                                                                  <div className="deal-card-hotel">
                                                                       Hotel: <span>★</span> {packageItem?.hotels?.reduce((acc: any, hotel: any) => hotel.hotel_star < acc ? hotel.hotel_star : acc, 1)}
                                                                  </div>
                                                             </div>
                                                             <div className="deal-card-price">
-                                                                 <div className="deal-card-price-value">₹{Math.round(Number(packageItem?.price))}/-</div>
+                                                                 <div className="deal-card-price-value">₹{formatIndianNumber(packageItem?.price)}/-</div>
                                                                  <div className="deal-card-final-price-value">
-                                                                      ₹{String(Math.round(Number(packageItem.discounted_price)))}/-<span>*</span>
+                                                                      ₹{formatIndianNumber(packageItem.discounted_price)}/-<span>*</span>
                                                                  </div>
                                                             </div>
                                                        </div>

@@ -132,7 +132,7 @@
 
      .inner-header-main .inner-page-title {
           padding-left: 20px;
-          padding-top: 50px;
+          padding-top: 50px !important;
      }
 
      .inner-header-main .inner-header-stats {

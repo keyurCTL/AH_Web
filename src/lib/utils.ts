@@ -90,3 +90,31 @@ export async function saveFile(response: Blob, filename = 'file', extension: Fil
   }
 }
 
+export function converttoRoundedNumber(value: number | string): number {
+  if (typeof value === 'string') {
+    value = parseFloat(value);
+  }
+  return Math.round(value);
+}
+
+
+// INDIAN CURRENCY FORMAT
+export function formatIndianNumber(x: number | string): string {
+  x = converttoRoundedNumber(x)
+  const str = x.toString().split('.');
+  const intPart = str[0];
+  const decimalPart = str[1] ? '.' + str[1] : '';
+
+  let lastThree = intPart.slice(-3);
+  const rest = intPart.slice(0, -3);
+
+  if (rest !== '') {
+    lastThree = ',' + lastThree;
+  }
+
+  const formatted = rest.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree + decimalPart;
+  return formatted;
+}
+
+
+

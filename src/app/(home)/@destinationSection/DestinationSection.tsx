@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Package } from "@/types/package/package";
-import { firstLetterCapital } from "@/lib/utils";
+import { firstLetterCapital, formatIndianNumber } from "@/lib/utils";
 import Link from "next/link";
 
 type DestinationSectionProps = {
@@ -99,7 +99,7 @@ const DestinationSection = ({ packages }: DestinationSectionProps) => {
                         <h4>{firstLetterCapital(packageItem.base_package)}</h4>
                         <p>{packageItem.services.map(service => service.name).join(", ")}</p>
                         <div className="dc-price-badge">
-                          <span>₹{packageItem.price}/-*</span>
+                          <span>₹{formatIndianNumber(packageItem.price)}/-*</span>
                         </div>
                       </div>
                     </Link>
@@ -124,7 +124,7 @@ const DestinationSection = ({ packages }: DestinationSectionProps) => {
                             />
                             <div className="scroll-card-content">
                               <h2>{firstLetterCapital(packageItem.base_package)}</h2>
-                              <span>Starting From ₹{packageItem.price}/-</span>
+                              <span>Starting From ₹{formatIndianNumber(packageItem.price)}/-</span>
                             </div>
                           </Link>
                         </div>
