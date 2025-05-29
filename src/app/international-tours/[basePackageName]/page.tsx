@@ -1,9 +1,32 @@
 import InnerHeaderWithStats from '@/components/common/inner-header/InnerHeaderWithStats';
-import { capitalizeText } from '@/lib/utils';
+import { capitalizeText, formatIndianNumber } from '@/lib/utils';
 import { fetchData } from '@/services/api';
 import { PageProps } from '@/types/common'
 import React from 'react'
 import PackagesSection from './(components)/PackagesSection';
+import { Metadata } from 'next';
+
+type Props = {
+    params: Promise<{ basePackageName: string }>
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}
+
+export async function generateMetadata(
+    { params }: Props,
+): Promise<Metadata> {
+    const { basePackageName } = await params
+
+    //     return {
+    //         title: `Explore ${basePackageName.replace(/-+/g, " ")}`,
+    //         description: packages?.slice(0,2)?.map(p => p?.seo?.meta_description)?.toString(),
+    //         keywords: packages?.slice(0,2)?.map(p => p?.seo?.meta_description)?.toString(),
+    //     }
+    return {
+        title: `Explore ${basePackageName.replace(/-+/g, " ")}`,
+        description: `Explore ${basePackageName.replace(/-+/g, " ")}`,
+        keywords: `Explore ${basePackageName.replace(/-+/g, " ")}`,
+    }
+}
 
 const page = async ({ params, searchParams }: PageProps) => {
     const { basePackageName } = await params
@@ -49,7 +72,7 @@ const page = async ({ params, searchParams }: PageProps) => {
                     {
                         icon: '/assets/images/wallet.png',
                         title: 'Packages Starting',
-                        value: `₹${String(Math.round(Number(package_starting_from)))}/-`,
+                       value: `₹${formatIndianNumber(package_starting_from)}/-`,
                     },
                     {
                         icon: '/assets/images/Reviews.png',

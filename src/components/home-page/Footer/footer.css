@@ -69,6 +69,11 @@
      text-decoration: none;
      font-size: 0.875rem;
      font-weight: 400;
+     transition: all 0.3s ease-in-out;
+}
+
+.footer-section .footer-content .footer-links ul li a:hover {
+     text-decoration: underline;
 }
 
 .footer-section .footer-content .footer-links ul li {

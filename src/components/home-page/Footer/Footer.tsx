@@ -9,9 +9,9 @@ const Footer = () => {
           <>
                <section className="footer-section">
                     <div className="container">
-                         <div className="footer-logo">
+                         <Link href={"/"} className="footer-logo">
                               <Image src="/assets/images/logo/ah-logo.png" alt="ah-logo" height={84} width={260} unoptimized />
-                         </div>
+                         </Link>
                          <div className="footer-content">
                               <div className="row">
                                    <div className="col-lg-6">

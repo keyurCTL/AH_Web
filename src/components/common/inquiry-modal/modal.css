@@ -42,6 +42,7 @@
 
 .captcha-container {
      margin: 10px 0 0 0;
+     width: 100%;
 }
 
 .captcha-box {
@@ -55,6 +56,8 @@
      border-radius: 5px;
      user-select: none;
      max-width: 150px;
+     min-width: 115px;
+     width: 100%;
      text-align: center;
 }
 
@@ -76,4 +79,14 @@
      flex-wrap: nowrap;
      align-items: center;
      position: relative;
+}
+
+@media (max-width: 768px) {
+
+     .modal-body .form-label,
+     .modal-body input,
+     .modal-body select,
+     .modal-body textarea {
+          font-size: 0.75rem;
+     }
 }

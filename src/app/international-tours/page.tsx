@@ -4,8 +4,10 @@ import { PageProps } from "@/types/common";
 import { Metadata } from "next";
 import ToursSection from "./(components)/ToursSection";
 import { notFound } from "next/navigation";
+import { formatIndianNumber } from "@/lib/utils";
 
 export const metadata: Metadata = {
+    title: "International Tours",
     description: "International tours meta description",
     keywords: "about us, Alakh Holidays, travel agency, company mission, travel experiences",
 };
@@ -48,7 +50,7 @@ const page = async ({ searchParams }: PageProps) => {
                     {
                         icon: '/assets/images/wallet.png',
                         title: 'Packages Starting',
-                        value: `₹${String(Math.round(Number(package_starting_from)))}/-`,
+                        value: `₹${formatIndianNumber(package_starting_from)}/-`,
                     },
                     {
                         icon: '/assets/images/Reviews.png',

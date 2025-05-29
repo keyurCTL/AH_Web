@@ -2,7 +2,7 @@
 
 import InquiryModal from "@/components/common/inquiry-modal/InquiryModal";
 import usePagination from "@/hooks/usePagination";
-import { capitalizeText, getImageForService, saveFile } from "@/lib/utils"
+import { capitalizeText, formatIndianNumber, getImageForService, saveFile } from "@/lib/utils"
 import { fetchData } from "@/services/api";
 import { Package } from "@/types/package/package"
 import Image from "next/image"
@@ -31,6 +31,7 @@ export default function Itinerary({ packageInfo }: ItineraryProps) {
         lastPage,
         setCurrentPage,
     } = usePagination({ totalPages: packageInfo?.itinerary?.length || 0 });
+
     const [isDownloadLoading, setIsDownloadLoading] = useState(false)
     const { basePackageName, packageName } = useParams<RouteParams>()
     const decodedPackageName = decodeURIComponent(packageName)
@@ -408,6 +409,33 @@ export default function Itinerary({ packageInfo }: ItineraryProps) {
                                                         </Accordion.Body>
                                                     </Accordion.Item>
                                                 )}
+
+                                                {(packageInfo?.category?.includes("international-tours") || packageInfo?.sub_category == "world") ?
+                                                    <Accordion.Item eventKey="5">
+                                                        <Accordion.Header>
+                                                            <div className="d-flex justify-content-between align-items-center w-100">
+                                                                <span>Visa checklist</span>
+                                                            </div>
+                                                        </Accordion.Header>
+                                                        <Accordion.Body>
+                                                            <div className="visa-checklist-section">
+                                                                {packageInfo?.visa_checklist?.map((item: any, index: number) => (
+                                                                    <React.Fragment key={index}>
+                                                                        <div className="title">
+                                                                            <img src="/assets/images/nav-img-active.png"
+                                                                                alt="title-style-img" />
+                                                                            <span>{capitalizeText(item?.title)}</span>
+                                                                        </div>
+                                                                        <ul>
+                                                                            {item?.description.map((descriptionItem: any, i: number) => (
+                                                                                <li key={i}>{capitalizeText(descriptionItem)}</li>
+                                                                            ))}
+                                                                        </ul>
+                                                                    </React.Fragment>
+                                                                ))}
+                                                            </div>
+                                                        </Accordion.Body>
+                                                    </Accordion.Item> : null}
                                             </Accordion>
                                         </div>
                                     </div>
@@ -419,7 +447,18 @@ export default function Itinerary({ packageInfo }: ItineraryProps) {
                                 <div className="itinerary-page-right">
                                     <div className="package-price-box">
                                         <div className="price">
-                                            {packageInfo?.price && <div className="ammont">₹{packageInfo.price}/-</div>}
+                                            {packageInfo?.discounted_price > 0 ? (
+                                                <div className="dis-price">
+                                                    <div className="price-value-sm">₹{formatIndianNumber(packageInfo?.price)}/-</div>
+                                                    <div className="ammont">
+                                                        ₹{formatIndianNumber(packageInfo?.discounted_price)}<span>/-*</span>
+                                                    </div>
+                                                </div>
+                                            ) : (
+                                                <div className="dis-price">
+                                                    <div className="ammont">₹{formatIndianNumber(packageInfo?.price)}/-</div>
+                                                </div>)
+                                            }
                                             <div className="info">Starting price per adult</div>
                                         </div>
                                         {packageInfo?.services?.length > 0 && (

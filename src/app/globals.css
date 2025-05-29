@@ -206,6 +206,7 @@ a {
   apperance: none;
   background: var(--selection-color) url(../../public/assets/images/chevron-down-solid.svg) 94% / 7% no-repeat;
   width: 200px;
+  color: var(--black);
 }
 
 .tours-section .tours-content .tour-filters .reset-filter button,
@@ -214,6 +215,7 @@ a {
   border: none;
   border-bottom: 1px solid var(--black);
   font-weight: 500;
+  color: var(--black);
 }
 
 .tours-section .tours-content .tour-filters .reset-filter button:hover,
@@ -230,6 +232,7 @@ a {
   border: 1px solid var(--border-color);
   -moz-appearance: none;
   -webkit-appearance: none;
+  color: var(--black);
   apperance: none;
   background: var(--selection-color) url(../../public/assets/images/chevron-down-solid.svg) 94% / 7% no-repeat;
   width: 220px;
@@ -566,6 +569,13 @@ a {
   font-weight: bold;
 }
 
+.inner-tours-section .inner-tour-cards .package-card .price .price-value-sm {
+  font-size: 1rem;
+  color: var(--gray);
+  font-weight: 600;
+  text-decoration: line-through;
+}
+
 .inner-tours-section .inner-tour-cards .package-card .price .price-content {
   font-size: 0.75rem;
   color: var(--gray);
@@ -612,11 +622,35 @@ a {
   width: 100%;
 }
 
+.itinerary-page .itinerary-page-right .package-price-box .price.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0 0 0;
+}
+
 .itinerary-page .itinerary-page-right .package-price-box .price .ammont {
   font-size: 1.75rem;
   color: #134076;
   font-weight: bold;
+}
+
+.itinerary-page .itinerary-page-right .package-price-box .price .dis-price {
   margin: 20px 0 5px 0;
+}
+
+.itinerary-page .itinerary-page-right .package-price-box .price .dis-price {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-direction: column;
+}
+
+.itinerary-page .itinerary-page-right .package-price-box .price .dis-price .price-value-sm {
+  text-decoration: line-through;
+  font-weight: bold;
+  color: var(--gray);
 }
 
 .itinerary-page .itinerary-page-right .package-price-box .price .info {
@@ -747,6 +781,10 @@ a {
   position: relative;
 }
 
+.itinerary-page .itinerary-page-left .itinerary-content .description .description-img.loading {
+  height: 250px;
+}
+
 .itinerary-page .itinerary-page-left .itinerary-content .description .description-content {
   padding: 20px 0 10px 0;
 }
@@ -766,7 +804,7 @@ a {
   margin-top: 20px;
 }
 
-.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .szh-accordion__item-heading {
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .accordion.accordion-flush {
   border: 1px solid #D4D4D4;
 }
 
@@ -1050,7 +1088,7 @@ a {
 
 .itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .visa-checklist-section ul {
   list-style: disc;
-  margin-left: 30px;
+  margin-left: 10px;
 }
 
 .itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .visa-checklist-section ul li {

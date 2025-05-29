@@ -12,22 +12,29 @@ type Props = {
 }
 
 export async function generateMetadata(
-    { params, searchParams }: Props,
-    parent: ResolvingMetadata
+    { params }: Props,
 ): Promise<Metadata> {
-    const { packageName } = await params
+    const { packageName } = await params;
+
     const packageRes: any = await fetchData({
-        endpoint: `package/public/${packageName}`
-    })
-    const packageInfo: Package = packageRes?.data
+        endpoint: `package/public/${packageName}`,
+    });
+
+    const packageInfo: Package = packageRes?.data;
 
     return {
-        title: packageInfo?.package_name,
-        description: packageInfo?.basic_info?.about_description
-    }
+        // This shows in the browser tab (document.title)
+        title: `${packageInfo?.package_name}`,
+        description: packageInfo?.seo?.meta_description,
+        other: {
+            'title': packageInfo?.seo?.meta_title,
+        },
+        keywords: packageInfo?.seo?.meta_keywords?.toString(),
+    };
 }
 
-const page = async ({ params: { packageName }, searchParams }: PageProps) => {
+const page = async ({ params, searchParams }: PageProps) => {
+    const { packageName } = await params
     const packageRes: any = await fetchData({
         endpoint: `package/public/${packageName}`
     })

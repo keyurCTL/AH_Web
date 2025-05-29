@@ -1,7 +1,7 @@
 'use client'
 
 import InquiryModal from '@/components/common/inquiry-modal/InquiryModal'
-import { capitalizeText, firstLetterCapital, getImageForService } from '@/lib/utils'
+import { capitalizeText, firstLetterCapital, formatIndianNumber, getImageForService } from '@/lib/utils'
 import { fetchData } from '@/services/api'
 import { Package } from '@/types/package/package'
 import Image from 'next/image'
@@ -114,27 +114,29 @@ const PackagesSection = ({ packages: initialPackages }: PackagesSectionProps) =>
                                                                                      </span>
                                                                                 </div>
                                                                                 <hr />
-                                                                                <div className="card-services">
-                                                                                     {packageInfo?.services.map((service) => {
-                                                                                          const imageSrc = getImageForService(service.name);
-                                                                                          return (
-                                                                                               <div className="card-service" key={service._id}>
-                                                                                                    <div className="service-icon">
-                                                                                                         <Image
-                                                                                                              src={imageSrc}
-                                                                                                              width={30}
-                                                                                                              height={30}
-                                                                                                              layout="intrinsic"
-                                                                                                              alt={service.name}
-                                                                                                         />
+                                                                                {Array.isArray(packageInfo?.services) && packageInfo.services?.length ?
+                                                                                     <><div className="card-services">
+                                                                                          {packageInfo.services.map((service) => {
+                                                                                               if (!service || !service._id || !service.name) return null;
+                                                                                               const imageSrc = getImageForService(service.name);
+                                                                                               return (
+                                                                                                    <div className="card-service" key={service._id}>
+                                                                                                         <div className="service-icon">
+                                                                                                              <Image
+                                                                                                                   src={imageSrc}
+                                                                                                                   width={30}
+                                                                                                                   height={30}
+                                                                                                                   layout="intrinsic"
+                                                                                                                   alt={service.name}
+                                                                                                              />
+                                                                                                         </div>
+                                                                                                         <div className="service-name">{service.name}</div>
                                                                                                     </div>
-                                                                                                    <div className="service-name">{service.name}</div>
-                                                                                               </div>
-                                                                                          );
-                                                                                     })}
-                                                                                </div>
-
-                                                                                <hr />
+                                                                                               );
+                                                                                          })}
+                                                                                     </div>
+                                                                                          <hr />
+                                                                                     </> : null}
                                                                                 <p className="card-text package-card-text card-note mt-2"><span>* </span>
                                                                                      Off-season rates are not Applicable in Diwali/ Dussehra / Holi /
                                                                                      Republic Day /Independent Day/Long Weekend. Etc. (Not Valid
@@ -148,7 +150,16 @@ const PackagesSection = ({ packages: initialPackages }: PackagesSectionProps) =>
                                                                                 <div className="hl"></div>
                                                                                 <div className="card-price">
                                                                                      <div className="price">
-                                                                                          <div className="price-value">₹<span>{packageInfo?.price}/-</span>*</div>
+                                                                                          {packageInfo?.difference_price && packageInfo?.difference_price > 0 ? (
+                                                                                               <>
+                                                                                                    <div className="price-value-sm">₹{formatIndianNumber(packageInfo?.price)}/-</div>
+                                                                                                    <div className="price-value">
+                                                                                                         ₹{formatIndianNumber(packageInfo?.discounted_price)}<span>/-*</span>
+                                                                                                    </div>
+                                                                                               </>
+                                                                                          ) : (
+                                                                                               <div className="price-value">₹<span>{formatIndianNumber(packageInfo?.price)}/-</span>*</div>
+                                                                                          )}
                                                                                           <div className="price-content">Starting price Per Adult </div>
                                                                                      </div>
                                                                                      <div className="card-action-btns">

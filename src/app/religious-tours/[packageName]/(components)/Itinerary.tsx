@@ -2,7 +2,7 @@
 
 import InquiryModal from "@/components/common/inquiry-modal/InquiryModal";
 import usePagination from "@/hooks/usePagination";
-import { capitalizeText, getImageForService, saveFile } from "@/lib/utils"
+import { capitalizeText, formatIndianNumber, getImageForService, saveFile } from "@/lib/utils"
 import { fetchData } from "@/services/api";
 import { Package } from "@/types/package/package"
 import Image from "next/image"
@@ -418,7 +418,18 @@ export default function Itinerary({ packageInfo }: ItineraryProps) {
                                 <div className="itinerary-page-right">
                                     <div className="package-price-box">
                                         <div className="price">
-                                            {packageInfo?.price && <div className="ammont">₹{packageInfo.price}/-</div>}
+                                            {packageInfo?.discounted_price > 0 ? (
+                                                <div className="dis-price">
+                                                    <div className="price-value-sm">₹{formatIndianNumber(packageInfo?.price)}/-</div>
+                                                    <div className="ammont">
+                                                        ₹{formatIndianNumber(packageInfo?.discounted_price)}<span>/-*</span>
+                                                    </div>
+                                                </div>
+                                            ) : (
+                                                <div className="dis-price">
+                                                    <div className="ammont">₹{formatIndianNumber(packageInfo?.price)}/-</div>
+                                                </div>)
+                                            }
                                             <div className="info">Starting price per adult</div>
                                         </div>
                                         {packageInfo?.services?.length > 0 && (

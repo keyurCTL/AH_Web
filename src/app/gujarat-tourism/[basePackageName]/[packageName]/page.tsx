@@ -3,7 +3,7 @@ import React from 'react'
 import Itinerary from './(components)/Itinerary'
 import { fetchData } from '@/services/api'
 import { Package } from '@/types/package/package'
-import { Metadata, ResolvingMetadata } from 'next'
+import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 type Props = {
@@ -12,23 +12,29 @@ type Props = {
 }
 
 export async function generateMetadata(
-    { params, searchParams }: Props,
-    parent: ResolvingMetadata
+    { params }: Props,
 ): Promise<Metadata> {
-    const { packageName } = await params
+    const { packageName } = await params;
+
     const packageRes: any = await fetchData({
-        endpoint: `package/public/${packageName}`
-    })
-    const packageInfo: Package = packageRes?.data
-    console.log("Package Info:", packageInfo);
+        endpoint: `package/public/${packageName}`,
+    });
+
+    const packageInfo: Package = packageRes?.data;
 
     return {
-        title: packageInfo?.package_name,
-        description: packageInfo?.basic_info?.about_description
-    }
+        // This shows in the browser tab (document.title)
+        title: `${packageInfo?.package_name}`,
+        description: packageInfo?.seo?.meta_description,
+        other: {
+            'title': packageInfo?.seo?.meta_title,
+        },
+        keywords: packageInfo?.seo?.meta_keywords?.toString(),
+    };
 }
 
-const page = async ({ params: { packageName }, searchParams }: PageProps) => {
+const page = async ({ params }: PageProps) => {
+    const { packageName } = await params
     const packageRes: any = await fetchData({
         endpoint: `package/public/${packageName}`
     })

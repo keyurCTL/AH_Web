@@ -59,14 +59,14 @@ const Navbar = () => {
       <div className={`nav-main ${isSticky ? 'sticky' : ''}`}>
         <div className="top-bar">
           <div className="logo">
-            <a href="/">
+            <Link href="/">
               <Image
                 src={logo}
                 alt="Alakh Holidays Logo"
                 width={176}
                 unoptimized
               />
-            </a>
+            </Link>
           </div>
           <div className="top-contact">
             <div className="top-contact-content">

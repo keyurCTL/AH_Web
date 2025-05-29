@@ -2,53 +2,8 @@ import { Offer } from '@/types/offers/offer';
 import Image from 'next/image';
 import React, { memo } from 'react'
 import moment from 'moment';
-
-// const offersData = [
-//      {
-//           image: "/assets/images/offer-card-img-1.png",
-//           discount: "₹4000/-",
-//           title: "Himachal Tour Package",
-//           duration: "5 Nights & 6 Days",
-//           hotelStars: 3,
-//           expiry: "Expires in 1 month 2 weeks",
-//           originalPrice: "₹38,500/-",
-//           finalPrice: "₹32,500/-",
-//           link: "#",
-//      },
-//      {
-//           image: "/assets/images/offer-card-img-3.png",
-//           discount: "₹5000/-",
-//           title: "Kerala Tour Package",
-//           duration: "9 Nights & 10 Days",
-//           hotelStars: 4,
-//           expiry: "Expires in 1 month 2 weeks",
-//           originalPrice: "₹29,999/-",
-//           finalPrice: "₹24,999/-",
-//           link: "#",
-//      },
-//      {
-//           image: "/assets/images/offer-card-img-2.png",
-//           discount: "₹6000/-",
-//           title: "Goa Tour Package",
-//           duration: "3 Nights & 4 Days",
-//           hotelStars: 5,
-//           expiry: "Expires in 1 month 2 weeks",
-//           originalPrice: "₹25,000/-",
-//           finalPrice: "₹19,000/-",
-//           link: "#",
-//      },
-//      {
-//           image: "/assets/images/offer-card-img-4.png",
-//           discount: "₹3000/-",
-//           title: "Kashmir Tour Package",
-//           duration: " Nights & 6 Days",
-//           hotelStars: 4,
-//           expiry: "Expires in 1 month 2 weeks",
-//           originalPrice: "₹25,000/-",
-//           finalPrice: "₹22,000/-",
-//           link: "#",
-//      }
-// ];
+import Link from 'next/link';
+import { formatIndianNumber } from '@/lib/utils';
 
 type AllOffersProps = {
      offers: Offer[]
@@ -77,6 +32,11 @@ const AllOffers = ({ offers }: AllOffersProps) => {
                                    // Optional: Extract days if needed
                                    const days = offerDuration.days();
 
+                                   // Get total duration in days
+                                   const totalDays = endDate.diff(startDate, 'days'); // difference in full days
+
+                                   console.log(`${totalDays} days`);
+
                                    return offerPackages?.map((packageItem, packageItemIndex) => {
                                         const packageImg = packageItem?.navbar?.img?.file_public_url || null
 
@@ -88,7 +48,7 @@ const AllOffers = ({ offers }: AllOffersProps) => {
                                                                  <Image src={packageImg} alt={packageItem?.package_name} width={300} height={250} />
                                                                  <div className="price">
                                                                       <span>save</span>
-                                                                      <span className="price-value">₹{String(Math.round(Number(packageItem?.difference_price)))}</span>
+                                                                      <span className="price-value">₹{formatIndianNumber(packageItem?.difference_price)}</span>
                                                                  </div>
                                                             </div>
                                                             <div className="offer-card-body">
@@ -103,19 +63,20 @@ const AllOffers = ({ offers }: AllOffersProps) => {
                                                                  <div className="offer-price">
                                                                       <div className="offer-validity">
                                                                            <Image src="/assets/images/Time.png" alt="offer-validity" width={20} height={20} />
-                                                                           <span>{`Expires in ${months ? `${months} Month${months > 1 ? "s" : ""}` : ""} ${weeks ? `${weeks} Week${weeks > 1 ? "s" : ""}` : ""} ${days ? `${days} Day${days > 1 ? "s" : ""}` : ""}`}</span>
+                                                                           {/* <span>{`Expires in ${months ? `${months} Month${months > 1 ? "s" : ""}` : ""} ${weeks ? `${weeks} Week${weeks > 1 ? "s" : ""}` : ""} ${days ? `${days} Day${days > 1 ? "s" : ""}` : ""}`}</span> */}
+                                                                           <span>{`Expires in ${totalDays} days`}</span>
                                                                       </div>
                                                                       <div className="deal-card-price">
-                                                                           <div className="deal-card-price-value">{String(Math.round(Number(packageItem?.price)))}</div>
+                                                                           <div className="deal-card-price-value">{formatIndianNumber(packageItem?.price)}</div>
                                                                            <div className="deal-card-final-price-value">
-                                                                                ₹{String(Math.round(Number(packageItem?.discounted_price)))}<span>/-*</span>
+                                                                                ₹{formatIndianNumber(packageItem?.discounted_price)}<span>/-*</span>
                                                                            </div>
                                                                       </div>
                                                                  </div>
                                                             </div>
                                                        </div>
                                                        <div className="view-more-btn">
-                                                            <a href={"#"}><span>View More</span></a>
+                                                            <Link href={`${packageItem?.category}/${packageItem?.base_package}/${packageItem?.package_name}`}><span>View More</span></Link>
                                                        </div>
                                                   </div>
                                              </div>

@@ -42,7 +42,7 @@
 }
 
 .nav-main .navbar .navbar-nav {
-     padding-right: 80px;
+     padding-right: 66px;
 }
 
 .nav-main .navbar .navbar-nav .dropdown-toggle::after {
@@ -291,6 +291,14 @@
      color: var(--black);
 }
 
+.mobile-menu .accordion-header.vm .accordion-button::after {
+     display: none;
+}
+
+.mobile-menu .accordion-header.vm .accordion-button {
+     color: var(--gray);
+}
+
 .mobile-menu .accordion-button:not(.collapsed) {
      background: var(--selection-color);
 }
@@ -322,7 +330,6 @@
      transform: rotate(270deg);
 }
 
-
 .mobile-menu .top-contact-content a {
      padding: 0;
      color: var(--black);
@@ -332,7 +339,6 @@
 .sticky .top-bar {
      position: fixed;
      top: 0;
-     width: 100%;
      box-shadow: 0 4px 8px 0 #21222014;
      transition: 0.2s ease-in-out;
      z-index: 20;
