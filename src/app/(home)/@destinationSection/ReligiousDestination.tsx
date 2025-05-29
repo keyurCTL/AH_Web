@@ -3,6 +3,7 @@
 import { firstLetterCapital } from "@/lib/utils";
 import { Package } from "@/types/package/package"
 import Image from "next/image"
+import Link from "next/link";
 import { useEffect, useState } from "react"
 
 type ReligiousDestinationProps = {
@@ -19,12 +20,15 @@ const ReligiousDestination = (props: ReligiousDestinationProps) => {
                const religious = packages.filter(item =>
                     item.category.includes("religious-tours")
                );
+               console.log("religious", religious);
+               
                if (religious.length) {
                     setReligiousInfo(religious);
                }
           }
      }, [packages]);
 
+     console.log("packages", packages);
      console.log("religiousInfo", religiousInfo);
 
      return (
@@ -46,7 +50,7 @@ const ReligiousDestination = (props: ReligiousDestinationProps) => {
                                              return (
                                                   <div key={index} className="col-lg-4 col-md-6 col-6">
                                                        <div className="religious-img-card">
-                                                            <a href="#">
+                                                            <Link href={`religious-tours/${packageItem?.package_name}`}>
                                                                  <Image
                                                                       className="br-rad"
                                                                       src={religiousImg}
@@ -63,7 +67,7 @@ const ReligiousDestination = (props: ReligiousDestinationProps) => {
                                                                       <Image src="/assets/images/circle-arrow-up-right.png"
                                                                            alt="circle-arrow-up-right" width={60} height={60} unoptimized />
                                                                  </div>
-                                                            </a>
+                                                            </Link>
                                                        </div>
                                                   </div>
                                              )

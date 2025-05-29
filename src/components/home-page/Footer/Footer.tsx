@@ -2,15 +2,16 @@ import Image from "next/image"
 // import "./footer.css"
 import Link from "next/link"
 import FooterForm from "./FooterForm"
+import CopyrightSection from "./CopyrightSection"
 
 const Footer = () => {
      return (
           <>
                <section className="footer-section">
                     <div className="container">
-                         <div className="footer-logo">
+                         <Link href={"/"} className="footer-logo">
                               <Image src="/assets/images/logo/ah-logo.png" alt="ah-logo" height={84} width={260} unoptimized />
-                         </div>
+                         </Link>
                          <div className="footer-content">
                               <div className="row">
                                    <div className="col-lg-6">
@@ -47,23 +48,23 @@ const Footer = () => {
                                                             <div className="col-6">
                                                                  <ul className="list-unstyled">
                                                                       <li>
-                                                                           <Link href="#">Gujarat Tourism</Link>
+                                                                           <Link href="/gujarat-tourism">Gujarat Tourism</Link>
                                                                       </li>
                                                                       <li><Link href="/india-tours">India Tour</Link></li>
                                                                       <li>
-                                                                           <Link href="#">International Tour</Link>
+                                                                           <Link href="/international-tours">International Tour</Link>
                                                                       </li>
                                                                       <li>
-                                                                           <Link href="#">Honeymoon Packages</Link>
+                                                                           <Link href="/honeymoon-tours">Honeymoon Packages</Link>
                                                                       </li>
                                                                  </ul>
                                                             </div>
                                                             <div className="col-6">
                                                                  <ul className="list-unstyled">
                                                                       <li>
-                                                                           <Link href="#">Religious Tour</Link>
+                                                                           <Link href="/religious-tours">Religious Tour</Link>
                                                                       </li>
-                                                                      <li><Link href="#">Hotels</Link></li>
+                                                                      {/* <li><Link href="#">Hotels</Link></li> */}
                                                                       <li>
                                                                            <Link
                                                                                 href="/terms-and-conditions">Terms & Conditions</Link>
@@ -128,12 +129,7 @@ const Footer = () => {
                                    </div>
                               </div>
                               <hr />
-                              <div className="copy-right">
-                                   <div>Copyright By © <Link href="#">Alakh Holidays</Link> - 2025</div>
-                                   <div>
-                                        Developed By <Link href="https://challengetechnolabs.com/" target="_blank">Challenge Technolabs</Link> - 2025
-                                   </div>
-                              </div>
+                              <CopyrightSection />
                          </div>
                     </div>
                </section>

@@ -3,7 +3,8 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Package } from "@/types/package/package";
-import { firstLetterCapital } from "@/lib/utils";
+import { firstLetterCapital, formatIndianNumber } from "@/lib/utils";
+import Link from "next/link";
 
 type DestinationSectionProps = {
   packages: Package[];
@@ -32,7 +33,7 @@ const DestinationSection = ({ packages }: DestinationSectionProps) => {
 //     setUniquePackages(unique);
 
     const domestic = unique.filter(item => item.category.includes("india-tours"));
-    const international = unique.filter(item => item.category.includes("international-tour"));
+    const international = unique.filter(item => item.category.includes("international-tours"));
 
     setDomesticInfo(domestic);
     setInternationalInfo(international);
@@ -84,7 +85,7 @@ const DestinationSection = ({ packages }: DestinationSectionProps) => {
               <div className="col-md-6">
                 <div className="destination-content">
                   {displayedPackages?.slice(0, 4).map((packageItem, index) => (
-                    <a key={index} href="#" className="dc-card">
+                    <Link key={index} href={`${packageItem?.category}/${(packageItem?.base_package).toLowerCase()?.replace(/\s+/g, "-")}`} className="dc-card">
                       <div className="dc-card-img">
                         <Image
                           src={packageItem?.navbar?.img?.file_public_url}
@@ -98,10 +99,10 @@ const DestinationSection = ({ packages }: DestinationSectionProps) => {
                         <h4>{firstLetterCapital(packageItem.base_package)}</h4>
                         <p>{packageItem.services.map(service => service.name).join(", ")}</p>
                         <div className="dc-price-badge">
-                          <span>₹{packageItem.price}/-*</span>
+                          <span>₹{formatIndianNumber(packageItem.price)}/-*</span>
                         </div>
                       </div>
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -112,7 +113,7 @@ const DestinationSection = ({ packages }: DestinationSectionProps) => {
                     {displayedPackages.map((packageItem, index) => (
                       <div key={index} className="col-6">
                         <div className="scroll-img-card">
-                          <a href="#">
+                          <Link href={`${packageItem?.category}/${(packageItem?.base_package).toLowerCase()?.replace(/\s+/g, "-")}`}>
                             <Image
                               src={packageItem.navbar?.img?.file_public_url}
                               alt={packageItem.navbar?.name}
@@ -123,9 +124,9 @@ const DestinationSection = ({ packages }: DestinationSectionProps) => {
                             />
                             <div className="scroll-card-content">
                               <h2>{firstLetterCapital(packageItem.base_package)}</h2>
-                              <span>Starting From ₹{packageItem.price}/-</span>
+                              <span>Starting From ₹{formatIndianNumber(packageItem.price)}/-</span>
                             </div>
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     ))}

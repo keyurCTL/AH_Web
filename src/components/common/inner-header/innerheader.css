@@ -21,7 +21,7 @@
      /* font-weight: bold; */
      color: #371086;
      padding-bottom: 5px;
-     font-family: "Just Another Hand", cursive;
+     font-family: var(--font-just-another-hand), cursive;
      font-size: 4rem;
      line-height: 0.55;
 }
@@ -71,10 +71,11 @@
 
 .inner-header-main .inner-header-stats {
      padding-top: 80px;
-    display: flex;
-    justify-content: space-around;
-    max-width: 420px;
-    width: 100%;
+     display: flex;
+     justify-content: space-around;
+     align-items: start;
+     max-width: 420px;
+     width: 100%;
 }
 
 .inner-header-main .inner-header-stats .stats {
@@ -131,7 +132,7 @@
 
      .inner-header-main .inner-page-title {
           padding-left: 20px;
-          padding-top: 50px;
+          padding-top: 50px !important;
      }
 
      .inner-header-main .inner-header-stats {
@@ -145,23 +146,12 @@
      }
 
      .inner-header-main .inner-header-stats .stats {
-          padding: 20px 0;
+          padding: 20px 0 !important;
      }
 
      .inner-header-main .inner-header-stats .stats .title {
           font-size: 0.875rem;
-     }
-
-     .inner-header-main .inner-header-stats .stats .stats-foot span {
-          font-size: 0.75rem;
-     }
-
-     .inner-header-main .inner-header-stats .stats {
-          padding: 20px 0;
-     }
-
-     .inner-header-main .inner-header-stats .stats .title {
-          font-size: 0.875rem;
+          text-align: center;
      }
 
      .inner-header-main .inner-header-stats .stats .stats-foot span {

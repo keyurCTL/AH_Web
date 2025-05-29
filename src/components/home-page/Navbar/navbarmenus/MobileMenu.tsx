@@ -3,11 +3,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { NavbarInfoType } from "../Navbar";
 import { Package } from "@/types/package/package";
 import { capitalizeText, firstLetterCapital } from "@/lib/utils";
 
 const MobileMenu = ({ packages }: NavbarInfoType) => {
+     const pathname = usePathname();
+
      const groupedByCategory = packages.reduce((acc: any, pkg) => {
           const categoryKey = pkg.category;
           if (!acc[categoryKey]) acc[categoryKey] = [];
@@ -16,20 +19,26 @@ const MobileMenu = ({ packages }: NavbarInfoType) => {
      }, {});
 
      useEffect(() => {
+          const mobileNav = document.getElementById("mobileNav");
+          if (mobileNav) {
+               mobileNav.style.display = "none";
+          }
+     }, [pathname]); // Hide menu on route change only
+
+     useEffect(() => {
           const menuToggle = document.getElementById("menuToggle");
           const mobileNav = document.getElementById("mobileNav");
 
           if (menuToggle && mobileNav) {
-               menuToggle.addEventListener("click", function () {
+               const toggleHandler = () => {
                     mobileNav.style.display = mobileNav.style.display === "block" ? "none" : "block";
-               });
-          }
+               };
+               menuToggle.addEventListener("click", toggleHandler);
 
-          return () => {
-               if (menuToggle) {
-                    menuToggle.removeEventListener("click", () => { });
-               }
-          };
+               return () => {
+                    menuToggle.removeEventListener("click", toggleHandler);
+               };
+          }
      }, []);
 
      return (
@@ -46,42 +55,44 @@ const MobileMenu = ({ packages }: NavbarInfoType) => {
                </div>
 
                <nav id="mobileNav" className="mobile-nav">
-                    {Object.keys(groupedByCategory)?.length ? Object.keys(groupedByCategory)?.filter(category => category != "religious-tours").map((category, index) => {
-                         const groupedBySubCategory = groupedByCategory[category].reduce((acc: any, pkg: any) => {
-                              const subCategoryKey = pkg.sub_category;
-                              if (!acc[subCategoryKey]) acc[subCategoryKey] = [];
-                              const exists = acc[subCategoryKey].some((item: any) => item.base_package === pkg.base_package);
-                              if (!exists) acc[subCategoryKey].push(pkg);
-                              return acc;
-                         }, {});
+                    {/* Shared Parent Accordion for Categories */}
+                    <div className="accordion" id="accordionMainCategory">
+                         {Object.keys(groupedByCategory)
+                              .filter((category) => category !== "religious-tours")
+                              .map((category, index) => {
+                                   const groupedBySubCategory = groupedByCategory[category].reduce((acc: any, pkg: any) => {
+                                        const subCategoryKey = pkg.sub_category;
+                                        if (!acc[subCategoryKey]) acc[subCategoryKey] = [];
+                                        const exists = acc[subCategoryKey].some((item: any) => item.base_package === pkg.base_package);
+                                        if (!exists) acc[subCategoryKey].push(pkg);
+                                        return acc;
+                                   }, {});
 
-                         const categoryCollapseId = `collapseCategory${index}`;
-                         const categoryHeadingId = `headingCategory${index}`;
+                                   const categoryCollapseId = `collapseCategory${index}`;
+                                   const categoryHeadingId = `headingCategory${index}`;
 
-                         return (
-                              <div key={index} className="accordion" id={`accordionCategory${index}`}>
-                                   <div className="accordion-item">
-                                        <h2 className="accordion-header" id={categoryHeadingId}>
-                                             <button
-                                                  className="accordion-button collapsed"
-                                                  type="button"
-                                                  data-bs-toggle="collapse"
-                                                  data-bs-target={`#${categoryCollapseId}`}
-                                                  aria-expanded="false"
-                                                  aria-controls={categoryCollapseId}
+                                   return (
+                                        <div key={index} className="accordion-item">
+                                             <h2 className="accordion-header" id={categoryHeadingId}>
+                                                  <button
+                                                       className="accordion-button collapsed"
+                                                       type="button"
+                                                       data-bs-toggle="collapse"
+                                                       data-bs-target={`#${categoryCollapseId}`}
+                                                       aria-expanded="false"
+                                                       aria-controls={categoryCollapseId}
+                                                  >
+                                                       {capitalizeText(category?.replace(/-+/g, " "))}
+                                                  </button>
+                                             </h2>
+                                             <div
+                                                  id={categoryCollapseId}
+                                                  className="accordion-collapse collapse"
+                                                  aria-labelledby={categoryHeadingId}
+                                                  data-bs-parent="#accordionMainCategory"
                                              >
-                                                  {capitalizeText(category?.replace(/-+/g, " "))}
-                                             </button>
-                                        </h2>
-                                        <div
-                                             id={categoryCollapseId}
-                                             className="accordion-collapse collapse"
-                                             aria-labelledby={categoryHeadingId}
-                                             data-bs-parent={`#accordionCategory${index}`}
-                                        >
-                                             <div className="accordion-body">
-                                                  <>
-                                                       <div className={`accordion`} id={`accordionSubCategory${index}`}>
+                                                  <div className="accordion-body">
+                                                       <div className="accordion" id={`accordionSubCategory${index}`}>
                                                             {Object.keys(groupedBySubCategory).map((subCategory, subIndex) => {
                                                                  const subCollapseId = `collapseSub${index}${subIndex}`;
                                                                  const subHeadingId = `headingSub${index}${subIndex}`;
@@ -111,7 +122,10 @@ const MobileMenu = ({ packages }: NavbarInfoType) => {
                                                                                      <ul className="list-unstyled">
                                                                                           {groupedBySubCategory[subCategory].map((place: Package, placeIndex: number) => (
                                                                                                <li key={placeIndex}>
-                                                                                                    <Link href={`/${category}/${place?.base_package?.toLowerCase().replace(/\s+/g, "-")}`} className="dropdown-item">
+                                                                                                    <Link
+                                                                                                         href={`/${category}/${place?.base_package?.toLowerCase().replace(/\s+/g, "-")}`}
+                                                                                                         className="dropdown-item"
+                                                                                                    >
                                                                                                          {place.base_package}
                                                                                                     </Link>
                                                                                                </li>
@@ -123,36 +137,33 @@ const MobileMenu = ({ packages }: NavbarInfoType) => {
                                                                  );
                                                             })}
                                                        </div>
+
+                                                       {/* View More */}
                                                        <div className="accordion border-0">
                                                             <div className="accordion-item">
-                                                                 <h2 className="accordion-header">
-                                                                      <Link
-                                                                           className="accordion-button sub-accordian collapsed"
-                                                                           href={`/${category}`}
-                                                                      >
-                                                                           <div className="nav-img"></div>
-                                                                           View More In {`${capitalizeText(category?.replace(/-+/g, " "))}`}
+                                                                 <h2 className="accordion-header vm">
+                                                                      <Link className="accordion-button sub-accordian collapsed" href={`/${category}`}>
+                                                                           View More In {capitalizeText(category?.replace(/-+/g, " "))}
                                                                       </Link>
                                                                  </h2>
                                                             </div>
                                                        </div>
-                                                  </>
+                                                  </div>
                                              </div>
                                         </div>
-                                   </div>
-                              </div>
-                         );
-                    }) : null}
+                                   );
+                              })}
+                    </div>
 
                     <ul className="list-unstyled">
-                         {Object.keys(groupedByCategory)?.length && Object.keys(groupedByCategory)?.filter(category => category == "religious-tours")?.length ? <li className="rt"><a href="#">Religious Tours</a></li> : null}
+                         {Object.keys(groupedByCategory)?.length && Object.keys(groupedByCategory)?.filter(category => category == "religious-tours")?.length ? <li className="rt"><a href="/religious-tours">Religious Tours</a></li> : null}
                          <li className="top-contact-content">
                               <Image src="/assets/images/call.png" alt="call" width={20} height={20} unoptimized />
                               <a href="tel:+919727000916">+91 97270 00916</a>
                          </li>
                          <li className="top-contact-content">
                               <Image src="/assets/images/offers.png" alt="offers" width={20} height={20} unoptimized />
-                              <a href="./offers.html">Offers</a>
+                              <Link href="/offers">Offers</Link>
                          </li>
                     </ul>
                </nav>

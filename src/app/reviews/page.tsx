@@ -4,7 +4,7 @@ import { fetchData } from "@/services/api";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-     title: "Reviews | Alakh Holidays",
+     title: "Reviews",
      description: "Discover what our travelers say about their experiences with Alakh Holidays. Read reviews and testimonials from satisfied customers.",
      keywords: "travel reviews, customer testimonials, Alakh Holidays, travel experiences",
 };
@@ -31,12 +31,12 @@ export default async function Reviews() {
                          { label: 'Reviews', link: '/reviews', class: "self-page" },
                     ]}
                     stats={[
-                         { icon: '/assets/images/thumbs-up.png', title: 'Reviews', value: '50' },
+                         { icon: '/assets/images/thumbs-up.png', title: 'Reviews', value: `${totalReviews}` },
                          {
                               icon: '/assets/images/Reviews.png',
                               title: 'Rated',
-                              value: '4.4/5',
-                              subtext: '(based on 4676 reviews)',
+                              value: `${avgRatting}/5`,
+                              subtext: `(based on ${totalReviews} reviews)`,
                          }
                     ]}
                />

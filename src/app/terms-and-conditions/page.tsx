@@ -2,7 +2,7 @@ import TermsAndConditionsSection from "@/components/privacy-policy/TermsAndCondi
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-     title: "Terms and Conditions | Alakh Holidays",
+     title: "Terms and Conditions",
      description: "Alakh Holidays Terms and Conditions",
      keywords: "terms and conditions, Alakh Holidays, user agreement, travel policies",
 }

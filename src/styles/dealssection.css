@@ -118,6 +118,12 @@
      font-weight: bold;
      font-size: 1.125rem;
      padding-bottom: 5px;
+     transition: all 0.3s ease-in-out;
+}
+
+.deals-section .deals-content .deal-card .deal-card-body .deal-card-content .deal-card-title:hover {
+     color: var(--primary-color);
+     text-decoration: underline;
 }
 
 .deals-section .deals-content .deal-card .deal-card-body .deal-card-content .deal-card-duration,
@@ -198,6 +204,10 @@
      .deals-section .deals-content .deal-card .card-image img {
           width: 120px;
           height: 120px;
+     }
+
+     .deals-section .deals-content .deal-card .deal-card-body .deal-card-content {
+          padding: 60px 0 0 80px;
      }
 }
 
