@@ -1,4 +1,3 @@
-// Captcha.tsx
 import React, { useEffect, useState } from 'react';
 import './captcha.css';
 
@@ -9,6 +8,7 @@ interface CaptchaProps {
 
 const Captcha: React.FC<CaptchaProps> = ({ onCaptchaChange, onInputChange }) => {
   const [captcha, setCaptcha] = useState('');
+  const [isClient, setIsClient] = useState(false); // <-- add this flag
 
   const generateCaptcha = () => {
     const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -20,10 +20,16 @@ const Captcha: React.FC<CaptchaProps> = ({ onCaptchaChange, onInputChange }) => 
   };
 
   useEffect(() => {
-    const newCaptcha = generateCaptcha();
-    setCaptcha(newCaptcha);
-    onCaptchaChange(newCaptcha);
+    setIsClient(true); // Ensures code below only runs client-side
   }, []);
+
+  useEffect(() => {
+    if (isClient) {
+      const newCaptcha = generateCaptcha();
+      setCaptcha(newCaptcha);
+      onCaptchaChange(newCaptcha);
+    }
+  }, [isClient]);
 
   const refreshCaptcha = () => {
     const newCaptcha = generateCaptcha();
@@ -40,7 +46,7 @@ const Captcha: React.FC<CaptchaProps> = ({ onCaptchaChange, onInputChange }) => 
       <div className="row">
         <div className="col-md-4">
           <div className="captcha-box">
-            <div id='captchaBox'>{captcha}</div>
+            <div id='captchaBox'>{isClient ? captcha : ''}</div>
           </div>
         </div>
         <div className="col-md-8 captcha-input">

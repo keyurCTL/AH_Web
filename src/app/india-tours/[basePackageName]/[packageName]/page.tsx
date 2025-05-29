@@ -35,6 +35,8 @@ const page = async ({ params: { packageName }, searchParams }: PageProps) => {
 
     const packageInfo: Package = packageRes?.data || null
 
+    // await new Promise((resolve) => setTimeout(resolve, 2000));
+
     return (
         <Itinerary packageInfo={packageInfo} />
     )

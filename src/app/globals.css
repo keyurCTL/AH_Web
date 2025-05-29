@@ -622,6 +622,14 @@ a {
   width: 100%;
 }
 
+.itinerary-page .itinerary-page-right .package-price-box .price.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0 0 0;
+}
+
 .itinerary-page .itinerary-page-right .package-price-box .price .ammont {
   font-size: 1.75rem;
   color: #134076;
@@ -773,6 +781,10 @@ a {
   position: relative;
 }
 
+.itinerary-page .itinerary-page-left .itinerary-content .description .description-img.loading {
+  height: 250px;
+}
+
 .itinerary-page .itinerary-page-left .itinerary-content .description .description-content {
   padding: 20px 0 10px 0;
 }
@@ -792,7 +804,7 @@ a {
   margin-top: 20px;
 }
 
-.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .szh-accordion__item-heading {
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .accordion.accordion-flush {
   border: 1px solid #D4D4D4;
 }
 
