@@ -146,23 +146,12 @@
      }
 
      .inner-header-main .inner-header-stats .stats {
-          padding: 20px 0;
+          padding: 20px 0 !important;
      }
 
      .inner-header-main .inner-header-stats .stats .title {
           font-size: 0.875rem;
-     }
-
-     .inner-header-main .inner-header-stats .stats .stats-foot span {
-          font-size: 0.75rem;
-     }
-
-     .inner-header-main .inner-header-stats .stats {
-          padding: 20px 0;
-     }
-
-     .inner-header-main .inner-header-stats .stats .title {
-          font-size: 0.875rem;
+          text-align: center;
      }
 
      .inner-header-main .inner-header-stats .stats .stats-foot span {

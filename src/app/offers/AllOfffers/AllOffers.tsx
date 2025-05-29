@@ -49,6 +49,7 @@ import moment from 'moment';
 //           link: "#",
 //      }
 // ];
+
 type AllOffersProps = {
      offers: Offer[]
 }

@@ -1,5 +1,6 @@
 'use client'
 
+import InquiryModal from '@/components/common/inquiry-modal/InquiryModal'
 import { capitalizeText, firstLetterCapital, getImageForService } from '@/lib/utils'
 import { fetchData } from '@/services/api'
 import { Package } from '@/types/package/package'
@@ -22,6 +23,11 @@ const PackagesSection = ({ packages: initialPackages }: PackagesSectionProps) =>
      const totalPackages = initialPackages?.length || 0
      const [packages, setPackages] = useState<Package[]>(initialPackages);
      const [sortBy, setSortBy] = useState('sort');
+     const [packageDetails, setPackageDetails] = useState({
+          packageName: "",
+          budget: 0
+     });
+     const [modalShow, setModalShow] = useState(false);
 
      const handleFilterChange = async () => {
           try {
@@ -165,9 +171,18 @@ const PackagesSection = ({ packages: initialPackages }: PackagesSectionProps) =>
                                                                                                </Link>
                                                                                           </div>
                                                                                           <div className="view-more-btn">
-                                                                                               <a href="#" className="btn">
+                                                                                               <button
+                                                                                                    onClick={() => {
+                                                                                                         setPackageDetails({
+                                                                                                              packageName: packageInfo?.package_name,
+                                                                                                              budget: packageInfo?.price
+                                                                                                         }); // Set the name here
+                                                                                                         setModalShow(true); // Then show the modal
+                                                                                                    }}
+                                                                                                    className="btn"
+                                                                                               >
                                                                                                     <span>Enquire</span>
-                                                                                               </a>
+                                                                                               </button>
                                                                                           </div>
                                                                                      </div>
                                                                                 </div>
@@ -184,6 +199,13 @@ const PackagesSection = ({ packages: initialPackages }: PackagesSectionProps) =>
                          </div>
                     </div>
                </section>
+
+               <InquiryModal
+                    show={modalShow}
+                    onHide={() => setModalShow(false)}
+                    packageDetals={packageDetails}
+                    autoCloseOnSubmit={true}
+               />
           </>
      )
 }

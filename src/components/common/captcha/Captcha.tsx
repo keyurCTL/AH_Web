@@ -40,14 +40,14 @@ const Captcha: React.FC<CaptchaProps> = ({ onCaptchaChange, onInputChange }) => 
       <div className="row">
         <div className="col-md-4">
           <div className="captcha-box">
-            <div>{captcha}</div>
+            <div id='captchaBox'>{captcha}</div>
           </div>
         </div>
         <div className="col-md-8 captcha-input">
           <input
             type="text"
             className="form-control"
-            placeholder="Enter CAPTCHA"
+            placeholder="Enter CAPTCHA" 
             name="captchaInput"
             onChange={handleInputChange}
           />

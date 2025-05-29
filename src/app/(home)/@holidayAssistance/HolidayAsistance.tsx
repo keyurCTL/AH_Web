@@ -120,7 +120,8 @@ const HolidayAsistance = () => {
                               <div className="ha-box">
                                    <div className="ha-box-img">
                                         <Image src="/assets/images/ha-location-map.png" alt="location-map" unoptimized height={100} width={100} />
-                                        <h4>Chalo Bag Bharo Nikal Pado</h4>
+                                        {/* <h4>Chalo Bag Bharo Nikal Pado</h4> */}
+                                        <h4>Chalo Ghumne Chale!</h4>
                                    </div>
                                    {formMessage && (
                                         <p style={{ color: formStatus === 'success' ? 'green' : 'red' }} className='mb-0 text-center fw-light'>
