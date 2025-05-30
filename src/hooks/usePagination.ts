@@ -22,7 +22,6 @@ const usePagination = ({
 }: UsePaginationProps): UsePaginationReturn => {
   const [maxVisibleButtons, setMaxVisibleButtons] = useState(5)
   const [viewPortWidth, setViewPortWidth] = useState<number>(0);
-  console.log("Viewport Width:", viewPortWidth);
 
   useEffect(() => {
     if (window) {
@@ -31,9 +30,18 @@ const usePagination = ({
   }, [])
 
   useEffect(() => {
-    if (window && viewPortWidth < 400) {
-      setMaxVisibleButtons(1)
-    } else {
+    if (window && viewPortWidth < 300) {
+      setMaxVisibleButtons(2)
+    } if (window && viewPortWidth <= 600) {
+      setMaxVisibleButtons(3)
+    } if (window && viewPortWidth <= 768) {
+      setMaxVisibleButtons(5)
+    } if (window && viewPortWidth <= 1024) {
+      setMaxVisibleButtons(5)
+    } if (window && viewPortWidth <= 1440) {
+      setMaxVisibleButtons(5)
+    }
+    else {
       setMaxVisibleButtons(5)
     }
   }, [viewPortWidth])

@@ -105,7 +105,7 @@ const DealsSection = ({ offers }: DealsSectionProps) => {
                                                                  </Link>
                                                                  <div className="deal-card-duration">{`${packageItem?.basic_info?.days} Days & ${packageItem?.basic_info?.night} Night${Number(packageItem?.basic_info?.night) > 1 ? "s" : ""}`}</div>
                                                                  <div className="deal-card-hotel">
-                                                                      Hotel: <span>★</span> {packageItem?.hotels?.reduce((acc: any, hotel: any) => hotel.hotel_star < acc ? hotel.hotel_star : acc, 1)}
+                                                                      Hotel: <span>★</span> {packageItem?.hotels?.reduce((acc: number, hotel: any) => Math.max(acc, hotel.hotel_star), 1)}
                                                                  </div>
                                                             </div>
                                                             <div className="deal-card-price">
