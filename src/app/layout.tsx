@@ -8,6 +8,7 @@ import Navbar from "@/components/home-page/Navbar/Navbar";
 import Footer from "@/components/home-page/Footer/Footer";
 import BootstrapClient from '@/components/common/BootstrapClient';
 import { Metadata } from 'next';
+import { Analytics } from '@vercel/analytics/next';
 
 export const poppins = Poppins({
   variable: "--font-poppins",
@@ -75,6 +76,7 @@ export default function RootLayout({
         {holidayAssistance}
         {ourFamilySection}
         {commitmentSection}
+        <Analytics />
         <Footer />
         <BootstrapClient />
       </body>

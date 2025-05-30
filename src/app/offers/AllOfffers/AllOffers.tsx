@@ -35,8 +35,6 @@ const AllOffers = ({ offers }: AllOffersProps) => {
                                    // Get total duration in days
                                    const totalDays = endDate.diff(startDate, 'days'); // difference in full days
 
-                                   console.log(`${totalDays} days`);
-
                                    return offerPackages?.map((packageItem, packageItemIndex) => {
                                         const packageImg = packageItem?.navbar?.img?.file_public_url || null
 
@@ -56,7 +54,7 @@ const AllOffers = ({ offers }: AllOffersProps) => {
                                                                       <h5>{packageItem?.package_name}</h5>
                                                                       <span>{`${packageItem?.basic_info?.days} Days & ${packageItem?.basic_info?.night} Night${Number(packageItem?.basic_info?.night) > 1 ? "s" : ""}`}</span>
                                                                       <span>
-                                                                           Hotel: <span className="star">★</span> {packageItem?.hotels?.reduce((acc: any, hotel: any) => hotel.hotel_star < acc ? hotel.hotel_star : acc, 1)}
+                                                                           Hotel: <span className="star">★</span> {packageItem?.hotels?.reduce((acc: number, hotel: any) => Math.max(acc, hotel.hotel_star), 1)}
                                                                       </span>
                                                                  </div>
                                                                  <hr />
