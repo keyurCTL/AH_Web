@@ -488,9 +488,15 @@ a {
 }
 
 .inner-tours-section .inner-tour-cards .package-card .card-subtitle {
-  color: var(--secondary-color);
-  font-weight: 400;
-  margin-bottom: 10px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 8px;
+    background: #f3933228;
+    padding: 2px 8px;
+    color: var(--primary-color);
+    text-align: center;
+    min-width: 80px;
+    font-size: 0.875rem;
+    font-weight: 700;
 }
 
 .inner-tours-section .inner-tour-cards .package-card .package-card-body hr {
@@ -1130,6 +1136,7 @@ a {
 @media(max-width: 768px) {
   .inner-tours-section .inner-tour-cards .package-card .card-title-box {
     flex-wrap: wrap;
+    margin: 5px 0 10px 0;
   }
 
   .inner-tours-section .inner-tour-cards .package-card .inner-card {

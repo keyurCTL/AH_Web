@@ -106,7 +106,7 @@ const PackagesSection = ({ packages: initialPackages }: PackagesSectionProps) =>
                                                                                 <div className="card-title-box">
                                                                                      <h5 className="card-title package-card-title">{firstLetterCapital(packageInfo?.package_name)}</h5>
                                                                                      <span className="card-subtitle package-card-subtitle">
-                                                                                          {`${packageInfo?.basic_info?.night} Nights / ${packageInfo?.basic_info?.days} Days`}
+                                                                                          {`${packageInfo?.basic_info?.night}N / ${packageInfo?.basic_info?.days}D`}
                                                                                      </span>
                                                                                 </div>
                                                                                 <hr />
