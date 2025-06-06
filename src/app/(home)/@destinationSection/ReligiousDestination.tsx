@@ -20,12 +20,15 @@ const ReligiousDestination = (props: ReligiousDestinationProps) => {
                const religious = packages.filter(item =>
                     item.category.includes("religious-tours")
                );
+               console.log("religious", religious);
+               
                if (religious.length) {
                     setReligiousInfo(religious);
                }
           }
      }, [packages]);
 
+     console.log("packages", packages);
      console.log("religiousInfo", religiousInfo);
 
      return (

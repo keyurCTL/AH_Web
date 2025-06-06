@@ -1,6 +1,8 @@
 'use client'; // must be a Client Component
 
+import Link from 'next/link';
 import { useEffect } from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
 
 export default function Error({ error, reset }: { error: Error; reset: () => void }) {
   useEffect(() => {
@@ -8,9 +10,19 @@ export default function Error({ error, reset }: { error: Error; reset: () => voi
   }, [error]);
 
   return (
-    <div className="p-6">
-      <h2 className="text-xl font-bold text-red-600">Something went wrong!</h2>
-      <p className="mt-2 text-gray-700">{error.message}</p>
-    </div>
+    <div className='error-section d-flex align-items-center justify-content-center'>
+            <Container>
+                <Row>
+                    <Col md={12} className="text-center">
+                        {/* <h1>404</h1> */}
+                        {/* <h2 className='primary-text'>Page Not Found</h2> */}
+                        <p className='text-gray'>Something went wrong!</p>
+                        {/* <Link href="/" className='nav-link'>
+                            Goto Home Page
+                        </Link> */}
+                    </Col>
+                </Row>
+            </Container>
+        </div>
   );
 }

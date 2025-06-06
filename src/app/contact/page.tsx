@@ -3,7 +3,7 @@ import ContactSection from "@/components/contact/Contactsection/ContactSection";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-     title: "Contact Us | Alakh Holidays",
+     title: "Contact Us",
      description: "Get in touch with Alakh Holidays for all your travel inquiries. Contact us for personalized travel solutions.",
      keywords: "contact us, travel inquiries, Alakh Holidays, travel solutions, customer support",
 };

@@ -86,9 +86,36 @@ export async function saveFile(response: Blob, filename = 'file', extension: Fil
     // Revoke the Blob URL after the download to free up memory
     URL.revokeObjectURL(url);
   } catch (error) {
-    console.log("Something went wrong!");
+    // console.log("Something went wrong!");
   }
 }
+
+export function paginate(totalItems, itemsPerPage, currentPage = 1) {
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+  // Ensure currentPage is within range
+  currentPage = Math.max(1, Math.min(currentPage, totalPages));
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = Math.min(startIndex + itemsPerPage - 1, totalItems - 1);
+
+  return {
+    totalItems,
+    itemsPerPage,
+    currentPage,
+    totalPages,
+    startIndex,
+    endIndex,
+
+    // Navigation functions
+    goToFirstPage: () => paginate(totalItems, itemsPerPage, 1),
+    goToLastPage: () => paginate(totalItems, itemsPerPage, totalPages),
+    goToNextPage: () => paginate(totalItems, itemsPerPage, currentPage + 1),
+    goToPrevPage: () => paginate(totalItems, itemsPerPage, currentPage - 1),
+    goToPage: (page) => paginate(totalItems, itemsPerPage, page),
+  };
+}
+
 
 export function converttoRoundedNumber(value: number | string): number {
   if (typeof value === 'string') {

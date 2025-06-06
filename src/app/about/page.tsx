@@ -6,7 +6,7 @@ import InnerHeader from "@/components/common/inner-header/InnerHeader";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-     title: "About Us | Alakh Holidays",
+     title: "About us",
      description: "Learn more about Alakh Holidays, our mission, values, and the dedicated team behind your travel experiences.",
      keywords: "about us, Alakh Holidays, travel agency, company mission, travel experiences",
 };

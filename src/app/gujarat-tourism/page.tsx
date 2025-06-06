@@ -2,12 +2,12 @@ import InnerHeaderWithStats from "@/components/common/inner-header/InnerHeaderWi
 import { fetchData } from "@/services/api";
 import { PageProps } from "@/types/common";
 import { Metadata } from "next";
-import { notFound } from "next/navigation";
 import ToursSection from "./(components)/ToursSection";
 import { formatIndianNumber } from "@/lib/utils";
 
 export const metadata: Metadata = {
-    description: "India tours meta description",
+    title: "Gujarat tourism",
+    description: "Gujarat tours meta description",
     keywords: "about us, Alakh Holidays, travel agency, company mission, travel experiences",
 };
 

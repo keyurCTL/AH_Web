@@ -4,7 +4,7 @@ import { fetchData } from "@/services/api";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-     title: "Reviews | Alakh Holidays",
+     title: "Reviews",
      description: "Discover what our travelers say about their experiences with Alakh Holidays. Read reviews and testimonials from satisfied customers.",
      keywords: "travel reviews, customer testimonials, Alakh Holidays, travel experiences",
 };

@@ -1,0 +1,11 @@
+.not-found-section, .error-section{
+    height: 80vh;
+}
+
+.not-found-section .nav-link{
+    text-decoration: underline;
+}
+
+.not-found-section .nav-link:hover{
+    color: var(--secondary-color);
+}

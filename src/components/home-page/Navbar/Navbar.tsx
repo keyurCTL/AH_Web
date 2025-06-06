@@ -23,8 +23,6 @@ const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [isLoading, setIsLoading] = useState(true)
   const [navbarinfo, setNavbarInfo] = useState<NavbarInfoType | null>(null)
-  console.log("navbarinfo", navbarinfo);
-
   // Sticky Navbar Logic
   useEffect(() => {
     const handleScroll = () => {

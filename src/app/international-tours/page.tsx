@@ -7,6 +7,7 @@ import { notFound } from "next/navigation";
 import { formatIndianNumber } from "@/lib/utils";
 
 export const metadata: Metadata = {
+    title: "International Tours",
     description: "International tours meta description",
     keywords: "about us, Alakh Holidays, travel agency, company mission, travel experiences",
 };

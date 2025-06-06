@@ -1,8 +1,9 @@
 "use client";
 
+import InquiryModal from "@/components/common/inquiry-modal/InquiryModal";
+import usePagination from "@/hooks/usePagination";
 import { capitalizeText, formatIndianNumber, getImageForService, saveFile } from "@/lib/utils"
 import { fetchData } from "@/services/api";
-import InquiryModal from "@/components/common/inquiry-modal/InquiryModal";
 import { Package } from "@/types/package/package"
 import Image from "next/image"
 import Link from "next/link"
@@ -17,16 +18,28 @@ type RouteParams = {
     basePackageName: string;
     packageName: string;
 };
+
 export default function Itinerary({ packageInfo }: ItineraryProps) {
+    const {
+        currentPage,
+        visiblePages,
+        hasNextPage,
+        hasPrevPage,
+        nextPage,
+        prevPage,
+        firstPage,
+        lastPage,
+        setCurrentPage,
+    } = usePagination({ totalPages: packageInfo?.itinerary?.length || 0 });
+
     const [isDownloadLoading, setIsDownloadLoading] = useState(false)
     const { basePackageName, packageName } = useParams<RouteParams>()
     const decodedPackageName = decodeURIComponent(packageName)
-    const [activeDay, setActiveDay] = useState(0);
+    const [modalShow, setModalShow] = useState(false);
     const [packageDetails, setPackageDetails] = useState({
         packageName: "",
         budget: 0
     });
-    const [modalShow, setModalShow] = useState(false);
 
     const breadcrumbs = [
         { label: 'Home', link: '/', class: "" },
@@ -82,265 +95,347 @@ export default function Itinerary({ packageInfo }: ItineraryProps) {
                         <div className="row">
                             <div className="col-lg-8">
                                 <div className="itinerary-page-left">
-                                    <div className="itinerary-title">
-                                        <h3>{capitalizeText(packageInfo?.package_name)}</h3>
-                                        <div className="day-info">
-                                            <div className="info">{packageInfo?.basic_info?.night} Night</div>
-                                            <div className="info">{packageInfo?.basic_info?.days} Days</div>
+                                    {/* Title Section */}
+                                    {packageInfo?.package_name && (
+                                        <div className="itinerary-title">
+                                            <h3>{capitalizeText(packageInfo.package_name)}</h3>
+                                            <div className="day-info">
+                                                {packageInfo.basic_info?.night && (
+                                                    <div className="info">{packageInfo.basic_info.night} Night</div>
+                                                )}
+                                                {packageInfo.basic_info?.days && (
+                                                    <div className="info">{packageInfo.basic_info.days} Days</div>
+                                                )}
+                                            </div>
                                         </div>
-                                    </div>
+                                    )}
+
+                                    {/* Description Section */}
                                     <div className="itinerary-content">
-                                        <div className="description">
-                                            <div className="description-img">
-                                                <Image src={packageInfo?.basic_info?.img?.file_secure_url} width={100} height={300}
-                                                    alt="itinerary description img" layout='intrinsic' unoptimized />
+                                        {(packageInfo?.basic_info?.img?.file_secure_url || packageInfo?.basic_info?.about_description) && (
+                                            <div className="description">
+                                                {packageInfo.basic_info?.img?.file_secure_url && (
+                                                    <div className="description-img">
+                                                        <Image
+                                                            src={packageInfo.basic_info.img.file_secure_url}
+                                                            width={100}
+                                                            height={300}
+                                                            alt="itinerary description img"
+                                                            layout="intrinsic"
+                                                            unoptimized
+                                                        />
+                                                    </div>
+                                                )}
+                                                {packageInfo.basic_info?.about_description && (
+                                                    <div className="description-content">
+                                                        <h5>About Destination</h5>
+                                                        <span>{capitalizeText(packageInfo.basic_info.about_description)}</span>
+                                                    </div>
+                                                )}
                                             </div>
-                                            <div className="description-content">
-                                                <h5>About Destination</h5>
-                                                <span>{capitalizeText(packageInfo?.basic_info?.about_description)}
-                                                </span>
-                                            </div>
-                                        </div>
+                                        )}
+
+                                        {/* Accordion */}
                                         <div className="itineary-accordian">
                                             <Accordion defaultActiveKey={['0']} alwaysOpen>
-                                                <Accordion.Item eventKey="0">
-                                                    <Accordion.Header>
-                                                        <div className="d-flex justify-content-between align-items-center w-100">
-                                                            <span>Overview</span>
-                                                        </div>
-                                                    </Accordion.Header>
-                                                    <Accordion.Body>
-                                                        <div className="overview-content">
-                                                            <div className="places">
-                                                                <div className="overview-title">
-                                                                    <Image width={20} height={20} src="/assets/images/location-map.png"
-                                                                        alt="location-map" />
-                                                                    <span>Places</span>
-                                                                </div>
-                                                                <div className="row">
-                                                                    <div className="col-6">
-                                                                        <ul className="overview-list">
-                                                                            {places?.slice(0, halfPlaces).map((place: string, index: number) => (
-                                                                                <li key={index}>{capitalizeText(place)}</li>
-                                                                            ))}
-                                                                        </ul>
-                                                                    </div>
-                                                                    <div className="col-6">
-                                                                        <ul className="overview-list">
-                                                                            {places?.slice(halfPlaces).map((place: string, index: number) => (
-                                                                                <li key={index + halfPlaces}>{capitalizeText(place)}</li>
-                                                                            ))}
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
+                                                {/* Overview Tab */}
+                                                {(places?.length || packageInfo?.overview?.days_overview?.length || packageInfo?.overview?.meals?.length || packageInfo?.overview?.accomodation?.length) && (
+                                                    <Accordion.Item eventKey="0">
+                                                        <Accordion.Header>
+                                                            <div className="d-flex justify-content-between align-items-center w-100">
+                                                                <span>Overview</span>
                                                             </div>
-                                                            <div className="itinerary-container">
-                                                                {packageInfo?.overview?.days_overview?.map((day: any, index: number) => (
-                                                                    <div className="itinerary-item" key={index}>
-                                                                        <div className="day">Day {index + 1}</div>
-                                                                        <div className="content">
-                                                                            <div className="title">{capitalizeText(day?.title)}</div>
-                                                                            <p>{capitalizeText(day?.description)}</p>
+                                                        </Accordion.Header>
+                                                        <Accordion.Body>
+                                                            <div className="overview-content">
+                                                                {/* Places */}
+                                                                {places?.length > 0 && (
+                                                                    <div className="places">
+                                                                        <div className="overview-title">
+                                                                            <Image width={20} height={20} src="/assets/images/location-map.png" alt="location-map" />
+                                                                            <span>Places</span>
                                                                         </div>
-                                                                    </div>
-                                                                ))}
-                                                            </div>
-                                                            <div className="meals mb-2">
-                                                                <div className="overview-title">
-                                                                    <img src="/assets/images/meal.png"
-                                                                        alt="meals" />
-                                                                    <span>Meals</span>
-                                                                </div>
-                                                                <ul className="overview-list">
-                                                                    {packageInfo?.overview?.meals?.map((meal: any, index: number) => (
-                                                                        <li key={index}>{meal?.name} – <span>{meal?.value}</span></li>
-                                                                    ))}
-                                                                </ul>
-                                                            </div>
-                                                            <div className="accomodation">
-                                                                <div className="overview-title">
-                                                                    <img src="/assets/images/meal.png"
-                                                                        alt="meals" />
-                                                                    <span>Accomodation</span>
-                                                                </div>
-                                                                <ul className="overview-list">
-                                                                    {packageInfo?.overview?.accomodation?.map((accomodation: any, index: number) => (
-                                                                        <li key={index}>{capitalizeText(accomodation)}</li>
-                                                                    ))}
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </Accordion.Body>
-                                                </Accordion.Item>
-                                                <Accordion.Item eventKey="1">
-                                                    <Accordion.Header>
-                                                        <div className="d-flex justify-content-between align-items-center w-100">
-                                                            <span>Itinerary</span>
-                                                        </div>
-                                                    </Accordion.Header>
-                                                    <Accordion.Body>
-                                                        <div className="itinerary-detail">
-                                                            <ul className="nav nav-tabs" id="itineraryTabs" role="tablist">
-                                                                <div className="title">Days</div>
-                                                                {packageInfo?.itinerary.map((day, index) => (
-                                                                    <li className="nav-item" role="presentation" key={index}>
-                                                                        <button
-                                                                            className={`nav-link ${activeDay === index ? "active bg-blue-600 text-white" : "bg-gray-100 text-gray-700"}`}
-                                                                            id={`day${index + 1}-tab`}
-                                                                            type="button"
-                                                                            role="tab"
-                                                                            onClick={() => setActiveDay(index)}
-                                                                        >
-                                                                            {index + 1}
-                                                                        </button>
-                                                                    </li>
-                                                                ))}
-                                                            </ul>
-
-                                                            <div className="tab-content mt-4">
-                                                                {packageInfo?.itinerary.map((day, index) => (
-                                                                    <div
-                                                                        key={index}
-                                                                        className={`tab-pane fade ${activeDay === index ? "show active block" : "hidden"}`}
-                                                                        id={`day${index + 1}`}
-                                                                        role="tabpanel"
-                                                                    >
                                                                         <div className="row">
-                                                                            <div className="col-md-5">
-                                                                                <Image
-                                                                                    src={day.img?.file_secure_url}
-                                                                                    width={200}
-                                                                                    height={100}
-                                                                                    className="img-fluid rounded"
-                                                                                    alt={`Day ${index + 1} view`}
-                                                                                    layout='intrinsic'
-                                                                                    unoptimized
-                                                                                />
+                                                                            <div className="col-6">
+                                                                                <ul className="overview-list">
+                                                                                    {places.slice(0, halfPlaces).map((place, index) => (
+                                                                                        <li key={index}>{capitalizeText(place)}</li>
+                                                                                    ))}
+                                                                                </ul>
                                                                             </div>
-                                                                            <div className="col-md-7">
-                                                                                <h4 className="mb-3">{capitalizeText(day.title)}</h4>
-                                                                                <ul className="list-unstyled">
-                                                                                    {day.activities.map((activity, i) => (
-                                                                                        <li key={i}>
-                                                                                            <strong>{capitalizeText(activity.title)}</strong>
-                                                                                            <p>{capitalizeText(activity.description)}</p>
-                                                                                        </li>
+                                                                            <div className="col-6">
+                                                                                <ul className="overview-list">
+                                                                                    {places.slice(halfPlaces).map((place, index) => (
+                                                                                        <li key={index + halfPlaces}>{capitalizeText(place)}</li>
                                                                                     ))}
                                                                                 </ul>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                ))}
-                                                            </div>
-                                                        </div>
-                                                    </Accordion.Body>
-                                                </Accordion.Item>
-                                                <Accordion.Item eventKey="3">
-                                                    <Accordion.Header>
-                                                        <div className="d-flex justify-content-between align-items-center w-100">
-                                                            <span>Hotels</span>
-                                                        </div>
-                                                    </Accordion.Header>
-                                                    <Accordion.Body>
-                                                        <div className="hotel-section-accordion">
-                                                            <div className="note">Note: Our agents will provide
-                                                                you these or similar hotels depending on
-                                                                availability</div>
-                                                            <div className="hotel-list">
-                                                                {packageInfo?.hotels?.map((hotel: any, index: number) => (
-                                                                    <div key={index} className="hotel-item mb-4">
-                                                                        <div className="row">
-                                                                            <div className="col-lg-6">
-                                                                                <div className="hotel-img">
-                                                                                    <img src={hotel.hotel_img?.file_secure_url}
-                                                                                        alt="Hotel 1" />
+                                                                )}
+
+                                                                {/* Days Overview */}
+                                                                {packageInfo?.overview?.days_overview?.length > 0 && (
+                                                                    <div className="itinerary-container">
+                                                                        {packageInfo.overview.days_overview.map((day, index) => (
+                                                                            <div className="itinerary-item" key={index}>
+                                                                                <div className="day">Day {index + 1}</div>
+                                                                                <div className="content">
+                                                                                    {day?.title && <div className="title">{capitalizeText(day.title)}</div>}
+                                                                                    {day?.description && <p>{capitalizeText(day.description)}</p>}
                                                                                 </div>
                                                                             </div>
-                                                                            <div className="col-lg-6">
-                                                                                <div className="hotel-info">
-                                                                                    <h5>{capitalizeText(hotel?.hotel_name)}</h5>
-                                                                                    <div className="d-flex align-items-center my-1">
-                                                                                        {[...Array(5)].map((_, i) => (
-                                                                                            <svg
-                                                                                                key={i}
-                                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                                fill={i < hotel.hotel_star ? "#facc15" : "none"}
-                                                                                                viewBox="0 0 24 24"
-                                                                                                stroke="#facc15"
-                                                                                                className="star-img"
-                                                                                            >
-                                                                                                <path
-                                                                                                    strokeLinecap="round"
-                                                                                                    strokeLinejoin="round"
-                                                                                                    strokeWidth="1.5"
-                                                                                                    d="M11.48 3.499l2.285 4.629 5.106.742-3.695 3.601.872 5.086-4.568-2.403-4.568 2.403.872-5.086-3.695-3.601 5.106-.742 2.285-4.629z"
-                                                                                                />
-                                                                                            </svg>
-                                                                                        ))}
+                                                                        ))}
+                                                                    </div>
+                                                                )}
+
+                                                                {/* Meals */}
+                                                                {packageInfo?.overview?.meals?.length > 0 && (
+                                                                    <div className="meals mb-2">
+                                                                        <div className="overview-title">
+                                                                            <img src="/assets/images/meal.png" alt="meals" />
+                                                                            <span>Meals</span>
+                                                                        </div>
+                                                                        <ul className="overview-list">
+                                                                            {packageInfo.overview.meals.map((meal, index) => (
+                                                                                <li key={index}>{meal?.name} – <span>{meal?.value}</span></li>
+                                                                            ))}
+                                                                        </ul>
+                                                                    </div>
+                                                                )}
+
+                                                                {/* Accommodation */}
+                                                                {packageInfo?.overview?.accomodation?.length > 0 && (
+                                                                    <div className="accomodation">
+                                                                        <div className="overview-title">
+                                                                            <img src="/assets/images/meal.png" alt="meals" />
+                                                                            <span>Accomodation</span>
+                                                                        </div>
+                                                                        <ul className="overview-list">
+                                                                            {packageInfo.overview.accomodation.map((acc, index) => (
+                                                                                <li key={index}>{capitalizeText(acc)}</li>
+                                                                            ))}
+                                                                        </ul>
+                                                                    </div>
+                                                                )}
+                                                            </div>
+                                                        </Accordion.Body>
+                                                    </Accordion.Item>
+                                                )}
+
+                                                {/* Itinerary Tab */}
+                                                {packageInfo?.itinerary?.length > 0 && (
+                                                    <Accordion.Item eventKey="1">
+                                                        <Accordion.Header>
+                                                            <div className="d-flex justify-content-between align-items-center w-100">
+                                                                <span>Itinerary</span>
+                                                            </div>
+                                                        </Accordion.Header>
+                                                        <Accordion.Body>
+                                                            <div className="itinerary-detail">
+                                                                <ul className="nav nav-tabs" id="itineraryTabs" role="tablist">
+                                                                    <div className="title">Days</div>
+                                                                    <button
+                                                                        disabled={!hasPrevPage}
+                                                                        onClick={prevPage}
+                                                                        className={`nav-link bg-gray-100 text-gray-700`}
+                                                                        // id={`day${index + 1}-tab`}
+                                                                        type="button"
+                                                                        role="tab"
+                                                                    >
+                                                                        {"<"}
+                                                                    </button>
+                                                                    {visiblePages.map((page) => (
+                                                                        <li className="nav-item" role="presentation" key={page}>
+                                                                            <button
+                                                                                className={`nav-link ${currentPage === (page) ? "active bg-blue-600 text-white" : "bg-gray-100 text-gray-700"}`}
+                                                                                // id={`day${index + 1}-tab`}
+                                                                                onClick={() => setCurrentPage(page)}
+                                                                                type="button"
+                                                                                role="tab"
+                                                                            >
+                                                                                {page}
+                                                                            </button>
+                                                                        </li>
+                                                                    ))}
+                                                                    <button
+                                                                        disabled={!hasNextPage}
+                                                                        className={`nav-link bg-gray-100 text-gray-700`}
+                                                                        // id={`day${index + 1}-tab`}
+                                                                        onClick={nextPage}
+                                                                        type="button"
+                                                                        role="tab"
+                                                                    >
+                                                                        {">"}
+                                                                    </button>
+                                                                </ul>
+
+                                                                <div className="tab-content mt-4">
+                                                                    {packageInfo.itinerary.map((day, index) => (
+                                                                        <div
+                                                                            key={index}
+                                                                            className={`tab-pane fade ${currentPage === (index + 1) ? "show active block" : "hidden"}`}
+                                                                            id={`day${index + 1}`}
+                                                                            role="tabpanel"
+                                                                        >
+                                                                            <div className="row">
+                                                                                {day?.img?.file_secure_url && (
+                                                                                    <div className="col-md-5">
+                                                                                        <Image
+                                                                                            src={day.img.file_secure_url}
+                                                                                            width={200}
+                                                                                            height={100}
+                                                                                            className="img-fluid rounded"
+                                                                                            alt={`Day ${index + 1} view`}
+                                                                                            layout="intrinsic"
+                                                                                            unoptimized
+                                                                                        />
                                                                                     </div>
-                                                                                    <div className="location"> {capitalizeText(hotel?.area)}, {capitalizeText(hotel.state)}</div>
-                                                                                    <div className="hotel-services">
-                                                                                        {hotel.tags.map((tag: string, i: number) => (
-                                                                                            <span key={i}>{capitalizeText(tag)}</span>
+                                                                                )}
+                                                                                <div className="col-md-7">
+                                                                                    {day?.title && <h4 className="mb-3">{capitalizeText(day.title)}</h4>}
+                                                                                    <ul className="list-unstyled">
+                                                                                        {day?.activities?.map((activity, i) => (
+                                                                                            <li key={i}>
+                                                                                                <strong>{capitalizeText(activity.title)}</strong>
+                                                                                                <p>{capitalizeText(activity.description)}</p>
+                                                                                            </li>
                                                                                         ))}
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    ))}
+                                                                </div>
+                                                            </div>
+                                                        </Accordion.Body>
+                                                    </Accordion.Item>
+                                                )}
+
+                                                {/* Hotels Tab */}
+                                                {packageInfo?.hotels?.length > 0 && (
+                                                    <Accordion.Item eventKey="3">
+                                                        <Accordion.Header>
+                                                            <div className="d-flex justify-content-between align-items-center w-100">
+                                                                <span>Hotels</span>
+                                                            </div>
+                                                        </Accordion.Header>
+                                                        <Accordion.Body>
+                                                            <div className="hotel-section-accordion">
+                                                                <div className="note">Note: Our agents will provide you these or similar hotels depending on availability</div>
+                                                                <div className="hotel-list">
+                                                                    {packageInfo.hotels.map((hotel: any, index) => (
+                                                                        <div key={index} className="hotel-item mb-4">
+                                                                            <div className="row">
+                                                                                {hotel.hotel_img?.file_secure_url && (
+                                                                                    <div className="col-lg-6">
+                                                                                        <div className="hotel-img">
+                                                                                            <img src={hotel.hotel_img.file_secure_url} alt={hotel.hotel_name || 'Hotel'} />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                )}
+                                                                                <div className="col-lg-6">
+                                                                                    <div className="hotel-info">
+                                                                                        <h5>{capitalizeText(hotel.hotel_name)}</h5>
+                                                                                        <div className="d-flex align-items-center my-1">
+                                                                                            {[...Array(5)].map((_, i) => (
+                                                                                                <svg
+                                                                                                    key={i}
+                                                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                                                    fill={i < hotel.hotel_star ? "#facc15" : "none"}
+                                                                                                    viewBox="0 0 24 24"
+                                                                                                    stroke="#facc15"
+                                                                                                    className="star-img"
+                                                                                                >
+                                                                                                    <path
+                                                                                                        strokeLinecap="round"
+                                                                                                        strokeLinejoin="round"
+                                                                                                        strokeWidth="1.5"
+                                                                                                        d="M11.48 3.499l2.285 4.629 5.106.742-3.695 3.601.872 5.086-4.568-2.403-4.568 2.403.872-5.086-3.695-3.601 5.106-.742 2.285-4.629z"
+                                                                                                    />
+                                                                                                </svg>
+                                                                                            ))}
+                                                                                        </div>
+                                                                                        <div className="location">
+                                                                                            {capitalizeText(hotel.area)}, {capitalizeText(hotel.state)}
+                                                                                        </div>
+                                                                                        <div className="hotel-services">
+                                                                                            {hotel.tags?.map((tag, i) => (
+                                                                                                <span key={i}>{capitalizeText(tag)}</span>
+                                                                                            ))}
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
+                                                                    ))}
+                                                                </div>
+                                                            </div>
+                                                        </Accordion.Body>
+                                                    </Accordion.Item>
+                                                )}
+
+                                                {/* Inclusions / Exclusions Tab */}
+                                                {(packageInfo?.inclusions?.length || packageInfo?.exclusions?.length) && (
+                                                    <Accordion.Item eventKey="4">
+                                                        <Accordion.Header>
+                                                            <div className="d-flex justify-content-between align-items-center w-100">
+                                                                <span>Inclusions / Exclusions</span>
+                                                            </div>
+                                                        </Accordion.Header>
+                                                        <Accordion.Body>
+                                                            <div className="inc-exc-section">
+                                                                {packageInfo?.inclusions?.length > 0 && (
+                                                                    <>
+                                                                        <div className="title">Inclusions</div>
+                                                                        <ul className="inc">
+                                                                            {packageInfo.inclusions.map((inclusion, index) => (
+                                                                                <li key={index}>{capitalizeText(inclusion)}</li>
+                                                                            ))}
+                                                                        </ul>
+                                                                    </>
+                                                                )}
+                                                                {packageInfo?.exclusions?.length > 0 && (
+                                                                    <>
+                                                                        <div className="title">Exclusions</div>
+                                                                        <ul className="exc">
+                                                                            {packageInfo.exclusions.map((exclusion, index) => (
+                                                                                <li key={index}>{capitalizeText(exclusion)}</li>
+                                                                            ))}
+                                                                        </ul>
+                                                                    </>
+                                                                )}
+                                                            </div>
+                                                        </Accordion.Body>
+                                                    </Accordion.Item>
+                                                )}
+
+                                                {(packageInfo?.category?.includes("international-tours") || packageInfo?.sub_category == "world") ?
+                                                    <Accordion.Item eventKey="5">
+                                                        <Accordion.Header>
+                                                            <div className="d-flex justify-content-between align-items-center w-100">
+                                                                <span>Visa checklist</span>
+                                                            </div>
+                                                        </Accordion.Header>
+                                                        <Accordion.Body>
+                                                            <div className="visa-checklist-section">
+                                                                {packageInfo?.visa_checklist?.map((item: any, index: number) => (
+                                                                    <React.Fragment key={index}>
+                                                                        <div className="title">
+                                                                            <img src="/assets/images/nav-img-active.png"
+                                                                                alt="title-style-img" />
+                                                                            <span>{capitalizeText(item?.title)}</span>
+                                                                        </div>
+                                                                        <ul>
+                                                                            {item?.description.map((descriptionItem: any, i: number) => (
+                                                                                <li key={i}>{capitalizeText(descriptionItem)}</li>
+                                                                            ))}
+                                                                        </ul>
+                                                                    </React.Fragment>
                                                                 ))}
                                                             </div>
-                                                        </div>
-                                                    </Accordion.Body>
-                                                </Accordion.Item>
-                                                <Accordion.Item eventKey="4">
-                                                    <Accordion.Header>
-                                                        <div className="d-flex justify-content-between align-items-center w-100">
-                                                            <span>Inclusions / Exclusions</span>
-                                                        </div>
-                                                    </Accordion.Header>
-                                                    <Accordion.Body>
-                                                        <div className="inc-exc-section">
-                                                            <div className="title">Inclusions</div>
-                                                            <ul className="inc">
-                                                                {packageInfo?.inclusions?.map((inclusion: any, index: number) => (
-                                                                    <li key={index}>{capitalizeText(inclusion)}</li>
-                                                                ))}
-                                                            </ul>
-                                                            <div className="title">Exclusions</div>
-                                                            <ul className="exc">
-                                                                {packageInfo?.exclusions?.map((exclusion: any, index: number) => (
-                                                                    <li key={index}>{capitalizeText(exclusion)}</li>
-                                                                ))}
-                                                            </ul>
-                                                        </div>
-                                                    </Accordion.Body>
-                                                </Accordion.Item>
-                                                {(packageInfo?.category?.includes("international-tours") || packageInfo?.sub_category == "world") ? <Accordion.Item eventKey="5">
-                                                    <Accordion.Header>
-                                                        <div className="d-flex justify-content-between align-items-center w-100">
-                                                            <span>Visa checklist</span>
-                                                        </div>
-                                                    </Accordion.Header>
-                                                    <Accordion.Body>
-                                                        <div className="visa-checklist-section">
-                                                            {packageInfo?.visa_checklist?.map((item: any, index: number) => (
-                                                                <React.Fragment key={index}>
-                                                                    <div className="title">
-                                                                        <img src="/assets/images/nav-img-active.png"
-                                                                            alt="title-style-img" />
-                                                                        <span>{capitalizeText(item?.title)}</span>
-                                                                    </div>
-                                                                    <ul>
-                                                                        {item?.description.map((descriptionItem: any, i: number) => (
-                                                                            <li key={i}>{capitalizeText(descriptionItem)}</li>
-                                                                        ))}
-                                                                    </ul>
-                                                                </React.Fragment>
-                                                            ))}
-                                                        </div>
-                                                    </Accordion.Body>
-                                                </Accordion.Item> : null}
+                                                        </Accordion.Body>
+                                                    </Accordion.Item> : null}
                                             </Accordion>
                                         </div>
                                     </div>
@@ -364,60 +459,55 @@ export default function Itinerary({ packageInfo }: ItineraryProps) {
                                             }
                                             <div className="info">Starting price per adult</div>
                                         </div>
-                                        <div className="services">
-                                            <div className="card-services">
-                                                {packageInfo?.services.map((service) => {
-                                                    const imageSrc = getImageForService(service.name);
-                                                    return (
-                                                        <div className="card-service" key={service._id}>
-                                                            <div className="service-icon">
-                                                                <Image
-                                                                    src={imageSrc}
-                                                                    width={30}
-                                                                    height={30}
-                                                                    layout="intrinsic"
-                                                                    alt={service.name}
-                                                                />
+                                        {packageInfo?.services?.length > 0 && (
+                                            <div className="services">
+                                                <div className="card-services">
+                                                    {packageInfo.services.map((service) => {
+                                                        const imageSrc = getImageForService(service.name);
+                                                        return (
+                                                            <div className="card-service" key={service._id}>
+                                                                <div className="service-icon">
+                                                                    <Image src={imageSrc} width={30} height={30} layout="intrinsic" alt={service.name} />
+                                                                </div>
+                                                                <div className="service-name">{service.name}</div>
                                                             </div>
-                                                            <div className="service-name">{service.name}</div>
-                                                        </div>
-                                                    );
-                                                })}
-                                            </div>
-                                            <div className="act-btns">
-                                                <div className="iti-outline-btn">
-                                                    <button
-                                                        disabled={isDownloadLoading}
-                                                        onClick={async () => {
-                                                            if (!isDownloadLoading) {
-                                                                await handlePackagePdf(packageInfo?._id, packageInfo?.package_name)
-                                                            }
-                                                        }}
-                                                        type="button"
-                                                    >
-                                                        {isDownloadLoading ? "Downloading..." : "Download"}
-                                                    </button>
+                                                        );
+                                                    })}
                                                 </div>
-                                                <div className="iti-btn">
-                                                    <button
-                                                        onClick={() => {
-                                                            setPackageDetails({
-                                                                packageName: packageInfo?.package_name,
-                                                                budget: packageInfo?.price
-                                                            }); // Set the name here
-                                                            setModalShow(true); // Then show the modal
-                                                        }}
-                                                        type="button"
-                                                    >
-                                                        <span>Enquire</span>
-                                                    </button>
+                                                <div className="act-btns">
+                                                    <div className="iti-outline-btn">
+                                                        <button
+                                                            disabled={isDownloadLoading}
+                                                            onClick={async () => {
+                                                                if (!isDownloadLoading) {
+                                                                    await handlePackagePdf(packageInfo?._id, packageInfo?.package_name);
+                                                                }
+                                                            }}
+                                                            type="button"
+                                                        >
+                                                            {isDownloadLoading ? "Downloading..." : "Download"}
+                                                        </button>
+                                                    </div>
+                                                    <div className="iti-btn">
+                                                        <button type="button"
+                                                            onClick={() => {
+                                                                setPackageDetails({
+                                                                    packageName: packageInfo?.package_name,
+                                                                    budget: packageInfo?.price
+                                                                }); // Set the name here
+                                                                setModalShow(true); // Then show the modal
+                                                            }}
+                                                        >Inquiry Now</button>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        )}
                                         <div className="call-now">
                                             <button className="call-now-btn">
                                                 <img src="/assets/images/call-reciver.png" alt="call" />
-                                                <span><a href="tel:+919727000916">CALL US NOW</a></span>
+                                                <span>
+                                                    <a href="tel:+919727000916">CALL US NOW</a>
+                                                </span>
                                             </button>
                                         </div>
                                     </div>
