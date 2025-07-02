@@ -17,11 +17,6 @@ export async function generateMetadata(
 ): Promise<Metadata> {
     const { basePackageName } = await params
 
-    //     return {
-    //         title: `Explore ${basePackageName.replace(/-+/g, " ")}`,
-    //         description: packages?.slice(0,2)?.map(p => p?.seo?.meta_description)?.toString(),
-    //         keywords: packages?.slice(0,2)?.map(p => p?.seo?.meta_description)?.toString(),
-    //     }
     return {
         title: `Explore ${basePackageName.replace(/-+/g, " ")}`,
         description: `Explore ${basePackageName.replace(/-+/g, " ")}`,
