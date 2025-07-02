@@ -27,8 +27,9 @@ const PackagesSection = ({ packages: initialPackages }: PackagesSectionProps) =>
           packageName: "",
           budget: 0
      });
+
      const [modalShow, setModalShow] = useState(false);
-     console.log("initialPackages", initialPackages);
+     console.log("packageDetails in gujrat", packageDetails);
 
 
      const handleFilterChange = async () => {
@@ -198,7 +199,7 @@ const PackagesSection = ({ packages: initialPackages }: PackagesSectionProps) =>
                <InquiryModal
                     show={modalShow}
                     onHide={() => setModalShow(false)}
-                    packageDetals={packageDetails}
+                    packageDetails={packageDetails}
                     autoCloseOnSubmit={true}
                />
           </>

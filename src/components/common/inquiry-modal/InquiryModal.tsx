@@ -13,16 +13,19 @@ type PackageDetails = {
      packageName: string
      budget: number
      extra_details?: string
+     date_of_travel?: string
 }
 
 type InquiryModalProps = {
      show: boolean
      onHide: () => void
-     packageDetals: PackageDetails
+     packageDetails: PackageDetails
      autoCloseOnSubmit?: boolean
 }
 
-const InquiryModal: React.FC<InquiryModalProps> = ({ show, onHide, packageDetals, autoCloseOnSubmit }) => {
+const InquiryModal: React.FC<InquiryModalProps> = ({ show, onHide, packageDetails, autoCloseOnSubmit }) => {
+     console.log("packageDetails", packageDetails);
+     
      const [formMessage, setFormMessage] = useState<string>('');
      const [formStatus, setFormStatus] = useState<'success' | 'error' | ''>('');
      const [loading, setLoading] = useState<boolean>(false);
@@ -69,14 +72,12 @@ const InquiryModal: React.FC<InquiryModalProps> = ({ show, onHide, packageDetals
 
           const finalPayload = {
                ...rest,
-               package_details: [
-                    {
-                         package_name: packageDetals.packageName,
-                         budget: packageDetals.budget,
-                         extra_details,
-                         date_of_travel,
-                    },
-               ],
+               package_details: {
+                    package_name: packageDetails?.packageName,
+                    budget: packageDetails?.budget,
+                    extra_details,
+                    date_of_travel,
+               },
           }
 
           try {
@@ -166,7 +167,7 @@ const InquiryModal: React.FC<InquiryModalProps> = ({ show, onHide, packageDetals
                          <div className="row">
                               <div className="col-6 mb-1">
                                    <label className="form-label">Package Name</label>
-                                   <input type="text" className="form-control" value={packageDetals.packageName} readOnly />
+                                   <input type="text" className="form-control" value={packageDetails?.packageName} readOnly />
                               </div>
                               <div className="col-6 mb-1">
                                    <label className="form-label">Email</label>

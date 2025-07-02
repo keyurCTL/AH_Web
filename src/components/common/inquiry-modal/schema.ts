@@ -13,12 +13,12 @@ export const inquirySchema = z.object({
      extra_details: z.string().optional(),
      // This won't be part of the form, just part of the final payload
      package_details: z
-          .array(z.object({
+          .object({
                package_name: z.string(),
                budget: z.number(),
                extra_details: z.string().optional(),
                date_of_travel: z.string().optional(),
-          }))
+          })
           .optional(),
 
      // Optional Fields

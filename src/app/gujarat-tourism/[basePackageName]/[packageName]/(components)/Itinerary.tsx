@@ -407,7 +407,7 @@ export default function Itinerary({ packageInfo }: ItineraryProps) {
             <InquiryModal
                 show={modalShow}
                 onHide={() => setModalShow(false)}
-                packageDetals={packageDetails}
+                packageDetails={packageDetails}
                 autoCloseOnSubmit={true}
             />
         </>

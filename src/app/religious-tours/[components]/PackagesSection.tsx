@@ -194,7 +194,7 @@ const PackagesSection = ({ packages: initialPackages }: PackagesSectionProps) =>
                <InquiryModal
                     show={modalShow}
                     onHide={() => setModalShow(false)}
-                    packageDetals={packageDetails}
+                    packageDetails={packageDetails}
                     autoCloseOnSubmit={true}
                />
           </>
