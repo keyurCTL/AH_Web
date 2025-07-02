@@ -2,6 +2,7 @@ import Image from "next/image"
 // import "./footer.css"
 import Link from "next/link"
 import FooterForm from "./FooterForm"
+import CopyrightSection from "./CopyrightSection"
 
 const Footer = () => {
      return (
@@ -128,12 +129,7 @@ const Footer = () => {
                                    </div>
                               </div>
                               <hr />
-                              <div className="copy-right">
-                                   <div>Copyright By © <Link href="#">Alakh Holidays</Link> - 2025</div>
-                                   <div>
-                                        Developed By <Link href="https://challengetechnolabs.com/" target="_blank">Challenge Technolabs</Link> - 2025
-                                   </div>
-                              </div>
+                              <CopyrightSection />
                          </div>
                     </div>
                </section>

@@ -1,12 +1,11 @@
 'use client'
 
-import InquiryModal from '@/components/common/inquiry-modal/InquiryModal'
-import { capitalizeText, firstLetterCapital, formatIndianNumber, getImageForService } from '@/lib/utils'
+import { capitalizeText, firstLetterCapital, getImageForService } from '@/lib/utils'
 import { fetchData } from '@/services/api'
 import { Package } from '@/types/package/package'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useParams, usePathname } from 'next/navigation'
+import { useParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
 type PackagesSectionProps = {
@@ -18,22 +17,17 @@ type RouteParams = {
 };
 
 const PackagesSection = ({ packages: initialPackages }: PackagesSectionProps) => {
-     const pathName = usePathname()
+     console.log("initialPackages", initialPackages);
      const { basePackageName } = useParams<RouteParams>();
      const totalPackages = initialPackages?.length || 0
      const [packages, setPackages] = useState<Package[]>(initialPackages);
-     const [sortBy, setShortBy] = useState('sort');
-     const [packageDetails, setPackageDetails] = useState({
-          packageName: "",
-          budget: 0
-     });
-     const [modalShow, setModalShow] = useState(false);
+     const [shortBy, setShortBy] = useState('short');
 
      console.log(basePackageName.replace(/-+/g, " "));
 
      const handleFilterChange = async () => {
           try {
-               const sortQuery = sortBy !== 'sort' ? `&sort_by=${sortBy}` : '';
+               const sortQuery = shortBy !== 'short' ? `&sort_by=${shortBy}` : '';
                const response: any = await fetchData({
                     endpoint: `package/public/search?base_package=${basePackageName.replace(/-+/g, " ")}${sortQuery}`
                });
@@ -41,7 +35,7 @@ const PackagesSection = ({ packages: initialPackages }: PackagesSectionProps) =>
                if (response?.statusCode === 200 || response?.statusCode === 201) {
                     setPackages(response.data || []);
                } else {
-                    console.error("Search API failed:",);
+                    console.error("Search API failed:", response);
                }
           } catch (err) {
                console.error("Error fetching searched packages:", err);
@@ -50,10 +44,8 @@ const PackagesSection = ({ packages: initialPackages }: PackagesSectionProps) =>
 
 
      useEffect(() => {
-          if (sortBy != "sort") {
-               handleFilterChange();
-          }
-     }, [sortBy]);
+          handleFilterChange();
+     }, [shortBy]);
 
      return (
           <>
@@ -66,20 +58,20 @@ const PackagesSection = ({ packages: initialPackages }: PackagesSectionProps) =>
                               <div className="tour-filters">
                                    <div className="filter">
                                         <select
-                                             value={sortBy}
+                                             value={shortBy}
                                              onChange={(e) => setShortBy(e.target.value)}
                                         >
-                                             <option value="sort" disabled>&#x21c5; Sort by</option>
+                                             <option value="short" disabled>&#x21c5; Sort by</option>
                                              <option value="price-high-to-low" >Price High to Low</option>
                                              <option value="price-low-to-high">Price Low to High</option>
-                                             <option value="duration-long-to-sort">Druration Long to Short</option>
-                                             <option value="duration-sort-to-long">Druration Short to Long</option>
+                                             <option value="duration-long-to-short">Druration Long to Short</option>
+                                             <option value="duration-short-to-long">Druration Short to Long</option>
                                         </select>
                                    </div>
 
                                    <div className="reset-filter">
                                         <button type="button" onClick={() => {
-                                             setShortBy('sort');
+                                             setShortBy('short');
                                              setPackages(initialPackages);
                                         }}>Reset All</button>
                                    </div>
@@ -110,7 +102,7 @@ const PackagesSection = ({ packages: initialPackages }: PackagesSectionProps) =>
                                                                                 <div className="card-title-box">
                                                                                      <h5 className="card-title package-card-title">{firstLetterCapital(packageInfo?.package_name)}</h5>
                                                                                      <span className="card-subtitle package-card-subtitle">
-                                                                                          {`${packageInfo?.basic_info?.night}N / ${packageInfo?.basic_info?.days}D`}
+                                                                                          {`${packageInfo?.basic_info?.night} Nights / ${packageInfo?.basic_info?.days} Days`}
                                                                                      </span>
                                                                                 </div>
                                                                                 <hr />
@@ -148,35 +140,15 @@ const PackagesSection = ({ packages: initialPackages }: PackagesSectionProps) =>
                                                                                 <div className="hl"></div>
                                                                                 <div className="card-price">
                                                                                      <div className="price">
-                                                                                          {packageInfo?.difference_price && packageInfo?.difference_price > 0 ? (
-                                                                                               <>
-                                                                                                    <div className="price-value-sm">₹{formatIndianNumber(packageInfo?.price)}/-</div>
-                                                                                                    <div className="price-value">
-                                                                                                         ₹{formatIndianNumber(packageInfo?.discounted_price)}<span>/-*</span>
-                                                                                                    </div>
-                                                                                               </>
-                                                                                          ) : (
-                                                                                               <div className="price-value">₹<span>{formatIndianNumber(packageInfo?.price)}/-</span>*</div>
-                                                                                          )}
+                                                                                          <div className="price-value">₹<span>{packageInfo?.price}/-</span>*</div>
                                                                                           <div className="price-content">Starting price Per Adult </div>
                                                                                      </div>
                                                                                      <div className="card-action-btns">
                                                                                           <div className="view-more-btn wo">
-                                                                                               <Link href={`${pathName}/${packageInfo?.package_name}`} className=""><span>View details</span></Link>
+                                                                                               <a href="./tour-itinerary.html" className=""><span>View details</span></a>
                                                                                           </div>
                                                                                           <div className="view-more-btn">
-                                                                                               <button
-                                                                                                    onClick={() => {
-                                                                                                         setPackageDetails({
-                                                                                                              packageName: packageInfo?.package_name,
-                                                                                                              budget: packageInfo?.price
-                                                                                                         }); // Set the name here
-                                                                                                         setModalShow(true); // Then show the modal
-                                                                                                    }}
-                                                                                                    className="btn"
-                                                                                               >
-                                                                                                    <span>Enquire</span>
-                                                                                               </button>
+                                                                                               <Link href="#" className="btn"><span>Enquire</span></Link>
                                                                                           </div>
                                                                                      </div>
                                                                                 </div>
@@ -194,13 +166,6 @@ const PackagesSection = ({ packages: initialPackages }: PackagesSectionProps) =>
                          </div>
                     </div>
                </section>
-
-               <InquiryModal
-                    show={modalShow}
-                    onHide={() => setModalShow(false)}
-                    packageDetails={packageDetails}
-                    autoCloseOnSubmit={true}
-               />
           </>
      )
 }

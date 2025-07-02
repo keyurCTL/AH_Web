@@ -8,14 +8,14 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  webpack(config) {
-    config.ignoreWarnings = [
-      {
-        message: /.*/, // ✅ Ignore all warnings
-      },
-    ];
-    return config;
-  },
+  // webpack(config) {
+  //   config.ignoreWarnings = [
+  //     {
+  //       message: /.*/, // ✅ Ignore all warnings
+  //     },
+  //   ];
+  //   return config;
+  // },
   images: {
     remotePatterns: [{
       protocol: 'https',

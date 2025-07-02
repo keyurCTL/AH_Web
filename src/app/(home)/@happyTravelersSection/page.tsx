@@ -5,7 +5,7 @@ import HappyTravelersSection from "./HappyTravelersSection"
 export default async function happyTravelersSection() {
 
     const res: any = await fetchData({
-        endpoint: `review/public`
+        endpoint: `review/public`,
     })
 
     // await new Promise((resolve) => setTimeout(resolve, 1000));

@@ -6,7 +6,8 @@ export default function HomeLayout({
     ourFamilySection,
     commitmentSection,
     destinationSection,
-    holidayAssistance
+    holidayAssistance,
+    children
 }: Readonly<{
     heroSection: React.ReactNode,
     dealssection: React.ReactNode,
@@ -16,7 +17,8 @@ export default function HomeLayout({
     ourFamilySection: React.ReactNode,
     commitmentSection: React.ReactNode,
     destinationSection: React.ReactNode
-    holidayAssistance: React.ReactNode
+    holidayAssistance: React.ReactNode,
+    children: React.ReactNode;
 }>) {
     return (
         <>
@@ -29,6 +31,7 @@ export default function HomeLayout({
             {holidayAssistance}
             {ourFamilySection}
             {commitmentSection}
+            {children}
         </>
     );
 }

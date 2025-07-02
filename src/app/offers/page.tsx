@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import { fetchData } from "@/services/api";
 
 export const metadata: Metadata = {
-     title: "Offers | Alakh Holidays",
+     title: "Offers",
      description: "Explore exclusive offers and discounts on travel packages with Alakh Holidays. Grab the best deals now!",
      keywords: "travel offers, discounts, travel deals, Alakh Holidays, holiday packages",
 };
@@ -26,7 +26,7 @@ export default async function Offers() {
 
      const offers = res?.data?.offers || []
 
-     await new Promise((resolve) => setTimeout(resolve, 1000));
+     // await new Promise((resolve) => setTimeout(resolve, 1000));
 
      return (
           <>

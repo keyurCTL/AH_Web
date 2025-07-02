@@ -114,27 +114,29 @@ const PackagesSection = ({ packages: initialPackages }: PackagesSectionProps) =>
                                                                                      </span>
                                                                                 </div>
                                                                                 <hr />
-                                                                                <div className="card-services">
-                                                                                     {packageInfo?.services.map((service) => {
-                                                                                          const imageSrc = getImageForService(service.name);
-                                                                                          return (
-                                                                                               <div className="card-service" key={service._id}>
-                                                                                                    <div className="service-icon">
-                                                                                                         <Image
-                                                                                                              src={imageSrc}
-                                                                                                              width={30}
-                                                                                                              height={30}
-                                                                                                              layout="intrinsic"
-                                                                                                              alt={service.name}
-                                                                                                         />
+                                                                                {Array.isArray(packageInfo?.services) && packageInfo.services?.length ?
+                                                                                     <><div className="card-services">
+                                                                                          {packageInfo.services.map((service) => {
+                                                                                               if (!service || !service._id || !service.name) return null;
+                                                                                               const imageSrc = getImageForService(service.name);
+                                                                                               return (
+                                                                                                    <div className="card-service" key={service._id}>
+                                                                                                         <div className="service-icon">
+                                                                                                              <Image
+                                                                                                                   src={imageSrc}
+                                                                                                                   width={30}
+                                                                                                                   height={30}
+                                                                                                                   layout="intrinsic"
+                                                                                                                   alt={service.name}
+                                                                                                              />
+                                                                                                         </div>
+                                                                                                         <div className="service-name">{service.name}</div>
                                                                                                     </div>
-                                                                                                    <div className="service-name">{service.name}</div>
-                                                                                               </div>
-                                                                                          );
-                                                                                     })}
-                                                                                </div>
-
-                                                                                <hr />
+                                                                                               );
+                                                                                          })}
+                                                                                     </div>
+                                                                                          <hr />
+                                                                                     </> : null}
                                                                                 <p className="card-text package-card-text card-note mt-2"><span>* </span>
                                                                                      Off-season rates are not Applicable in Diwali/ Dussehra / Holi /
                                                                                      Republic Day /Independent Day/Long Weekend. Etc. (Not Valid

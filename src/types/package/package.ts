@@ -18,11 +18,6 @@ export type Package = {
           name: string;
           img: any;
      };
-     seo_info: {
-          meta_title: string;
-          meta_description: any;
-          meta_keywords: any;
-     };
      basic_info: {
           about_description: string;
           days: number;

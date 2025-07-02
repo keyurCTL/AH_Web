@@ -3,7 +3,7 @@ import OurTeamSection from "@/components/our-team/OurTeamSection";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-     title: "Our Team | Alakh Holidays",
+     title: "Our Team",
      description: "Meet the dedicated team behind Alakh Holidays, committed to making your travel dreams a reality.",
      keywords: "travel team, Alakh Holidays team, travel experts, meet our team",
 };

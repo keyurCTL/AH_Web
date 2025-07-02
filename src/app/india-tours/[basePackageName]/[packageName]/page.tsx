@@ -3,25 +3,39 @@ import React from 'react'
 import Itinerary from './(components)/Itinerary'
 import { fetchData } from '@/services/api'
 import { Package } from '@/types/package/package'
-import Link from 'next/link'
-import Image from 'next/image'
-import { capitalizeText } from '@/lib/utils'
-import { Metadata } from 'next'
+import { Metadata, ResolvingMetadata } from 'next'
 import { notFound } from 'next/navigation'
 
-export async function generateMetaData({ params: { basePackageName, packageName } }): Promise<Metadata> {
-    const packageRes: any = await fetchData({
-        endpoint: `package/public/${packageName}`
-    })
-    const packageInfo: Package = packageRes?.data
-
-    return {
-        title: packageInfo?.package_name,
-        description: packageInfo?.basic_info?.about_description
-    }
+type Props = {
+    params: Promise<{ packageName: string }>
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
-const page = async ({ params: { packageName }, searchParams }: PageProps) => {
+export async function generateMetadata(
+    { params }: Props,
+): Promise<Metadata> {
+    const { packageName } = await params;
+
+    const packageRes: any = await fetchData({
+        endpoint: `package/public/${packageName}`,
+    });
+
+    const packageInfo: Package = packageRes?.data;
+
+    return {
+        // This shows in the browser tab (document.title)
+        title: `${packageInfo?.package_name}`,
+        description: packageInfo?.seo?.meta_description,
+        other: {
+            'title': packageInfo?.seo?.meta_title,
+        },
+        keywords: packageInfo?.seo?.meta_keywords?.toString(),
+    };
+}
+
+
+const page = async ({ params, searchParams }: PageProps) => {
+    const {packageName} = await params
     const packageRes: any = await fetchData({
         endpoint: `package/public/${packageName}`
     })
