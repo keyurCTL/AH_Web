@@ -36,7 +36,7 @@ export const fetchData = async ({
     };
 
     const response = await fetch(url, { ...requestOptions, next: {
-      revalidate: 10
+      revalidate: 1
     }, ...additionalRequestOptions });
 
     if (!response.ok) {
