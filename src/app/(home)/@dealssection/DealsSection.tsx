@@ -28,7 +28,7 @@ const DealsSection = ({ offers }: DealsSectionProps) => {
 
      return (
           <section className="deals-section">
-               <div className="container">
+               < div className="container" >
                     <div className="title title-with-tabs">
                          <div className="title-text">
                               <h2>
@@ -85,6 +85,7 @@ const DealsSection = ({ offers }: DealsSectionProps) => {
                                    return offerPackages?.map((packageItem, packageItemIndex) => {
                                         const packageName = viewPortWidth != null ? viewPortWidth > 1440 ? `${packageItem?.package_name}` : `${packageItem?.package_name?.slice(0, 25)}...` : ""
                                         const packageImg = packageItem?.navbar?.img?.file_public_url || null
+                                        const packageUrl = packageItem?.category == "religious-tours" ? `${packageItem?.category}/${packageItem?.package_name}` : `${packageItem?.category}/${packageItem?.base_package?.toLowerCase()?.replace(/\s+/g, "-")}/${packageItem?.package_name}`
                                         return (
                                              <SwiperSlide key={packageItemIndex}>
                                                   <div className="deal-card">
@@ -100,7 +101,7 @@ const DealsSection = ({ offers }: DealsSectionProps) => {
                                                        </div>
                                                        <div className="deal-card-body">
                                                             <div className="deal-card-content">
-                                                                 <Link href={`${packageItem?.category}/${packageItem?.base_package}/${packageItem?.package_name}`}>
+                                                                 <Link href={packageUrl}>
                                                                       <div className="deal-card-title">{packageName}</div>
                                                                  </Link>
                                                                  <div className="deal-card-duration">{`${packageItem?.basic_info?.days} Days & ${packageItem?.basic_info?.night} Night${Number(packageItem?.basic_info?.night) > 1 ? "s" : ""}`}</div>

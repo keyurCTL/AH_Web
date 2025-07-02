@@ -35,7 +35,7 @@ const PackagesSection = ({ packages: initialPackages }: PackagesSectionProps) =>
           try {
                const sortQuery = sortBy !== 'sort' ? `&sort_by=${sortBy}` : '';
                const response: any = await fetchData({
-                    endpoint: `package/public/search?base_package=${basePackageName.replace(/-+/g, " ")}${sortQuery}`
+                    endpoint: `package/public/search?base_package=${basePackageName.replace(/-+/g, " ")}${sortQuery}`,
                });
 
                if (response?.statusCode === 200 || response?.statusCode === 201) {

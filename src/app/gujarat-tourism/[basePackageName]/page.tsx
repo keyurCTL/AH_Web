@@ -33,11 +33,11 @@ const page = async ({ params, searchParams }: PageProps) => {
     const { basePackageName } = await params
     const { explore } = await searchParams
     const res: any = await fetchData({
-        endpoint: `review/public`
+        endpoint: `review/public`,
     })
 
     const packagesRes: any = await fetchData({
-        endpoint: `package/public?base_package=${basePackageName.replace(/-+/g, " ")}&package_starting_from=true&${explore != undefined ? `&duration=${explore}&budget=${explore}` : ""}`
+        endpoint: `package/public?base_package=${basePackageName.replace(/-+/g, " ")}&package_starting_from=true&${explore != undefined ? `&duration=${explore}&budget=${explore}` : ""}`,
     })
 
     if ((res && (res?.statusCode != 200 && res?.statusCode != 201)) || (packagesRes && (packagesRes?.statusCode != 200 && packagesRes?.statusCode != 201))) {

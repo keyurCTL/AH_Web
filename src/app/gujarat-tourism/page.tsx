@@ -15,11 +15,11 @@ const page = async ({ searchParams }: PageProps) => {
     const { explore } = await searchParams
 
     const res: any = await fetchData({
-        endpoint: `review/public`
+        endpoint: `review/public`,
     })
 
     const packagesRes: any = await fetchData({
-        endpoint: `package/public?category=['gujarat-tourism']&package_starting_from=true&is_group=true${explore != undefined ? `&sub_category=${explore}` : ""}`
+        endpoint: `package/public?category=['gujarat-tourism']&package_starting_from=true&is_group=true${explore != undefined ? `&sub_category=${explore}` : ""}`,
     })
 
     if ((res && (res?.statusCode != 200 && res?.statusCode != 201)) || (packagesRes && (packagesRes?.statusCode != 200 && packagesRes?.statusCode != 201))) {

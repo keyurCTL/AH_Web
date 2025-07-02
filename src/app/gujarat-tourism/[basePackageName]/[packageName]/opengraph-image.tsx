@@ -15,7 +15,7 @@ export default async function Image({ params }: { params: { packageName: string 
     const { packageName } = params
 
     const packageRes: any = await fetchData({
-        endpoint: `package/public/${packageName}`
+        endpoint: `package/public/${packageName}`,
     })
     const packageInfo: Package = packageRes?.data
 

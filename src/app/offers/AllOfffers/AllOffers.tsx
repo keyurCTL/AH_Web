@@ -37,7 +37,7 @@ const AllOffers = ({ offers }: AllOffersProps) => {
 
                                    return offerPackages?.map((packageItem, packageItemIndex) => {
                                         const packageImg = packageItem?.navbar?.img?.file_public_url || null
-
+                                        const packageUrl = packageItem?.category == "religious-tours" ? `${packageItem?.category}/${packageItem?.package_name}` : `${packageItem?.category}/${packageItem?.base_package?.toLowerCase()?.replace(/\s+/g, "-")}/${packageItem?.package_name}`
                                         return (
                                              <div key={packageItemIndex} className="col-lg-4">
                                                   <div className="offer-card">
@@ -74,7 +74,7 @@ const AllOffers = ({ offers }: AllOffersProps) => {
                                                             </div>
                                                        </div>
                                                        <div className="view-more-btn">
-                                                            <Link href={`${packageItem?.category}/${packageItem?.base_package}/${packageItem?.package_name}`}><span>View More</span></Link>
+                                                            <Link href={packageUrl}><span>View More</span></Link>
                                                        </div>
                                                   </div>
                                              </div>
