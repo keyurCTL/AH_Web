@@ -35,7 +35,9 @@ export const fetchData = async ({
       body: body ? JSON.stringify(body) : null,
     };
 
-    const response = await fetch(url, { ...requestOptions, cache: "no-store", ...additionalRequestOptions });
+    const response = await fetch(url, { ...requestOptions, next: {
+      revalidate: 1
+    }, ...additionalRequestOptions });
 
     if (!response.ok) {
       throw new Error(`Request failed with status ${response.status}`);
