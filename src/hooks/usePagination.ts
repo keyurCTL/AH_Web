@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect } from "react";
 
 type UsePaginationProps = {
   totalPages: number;
-  maxVisibleButtons?: number;
+  maxVisibleButtons?: number; // optional prop
 };
 
 type UsePaginationReturn = {
@@ -14,39 +14,40 @@ type UsePaginationReturn = {
   firstPage: () => void;
   hasNextPage: boolean;
   hasPrevPage: boolean;
-  visiblePages: number[]; // Now grouped
+  visiblePages: number[];
 };
 
 const usePagination = ({
   totalPages,
+  maxVisibleButtons: propMaxVisibleButtons,
 }: UsePaginationProps): UsePaginationReturn => {
-  const [maxVisibleButtons, setMaxVisibleButtons] = useState(5)
-  const [viewPortWidth, setViewPortWidth] = useState<number>(0);
+  const [maxVisibleButtons, setMaxVisibleButtons] = useState<number>(5);
+  const [viewPortWidth, setViewPortWidth] = useState<number>(typeof window !== "undefined" ? window.innerWidth : 0);
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
+  // Resize listener to update viewport width
   useEffect(() => {
-    if (window) {
-      setViewPortWidth(Number(window?.visualViewport?.width))
-    }
-  }, [])
+    const handleResize = () => {
+      setViewPortWidth(window.innerWidth);
+    };
 
+    handleResize(); // Initial call
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Dynamically update maxVisibleButtons based on viewport (if prop not passed)
   useEffect(() => {
-    if (window && viewPortWidth < 300) {
-      setMaxVisibleButtons(2)
-    } if (window && viewPortWidth <= 600) {
-      setMaxVisibleButtons(3)
-    } if (window && viewPortWidth <= 768) {
-      setMaxVisibleButtons(5)
-    } if (window && viewPortWidth <= 1024) {
-      setMaxVisibleButtons(5)
-    } if (window && viewPortWidth <= 1440) {
-      setMaxVisibleButtons(5)
+    if (typeof propMaxVisibleButtons === "number") {
+      setMaxVisibleButtons(propMaxVisibleButtons);
+    } else {
+      if (viewPortWidth < 600) {
+        setMaxVisibleButtons(2);
+      } else {
+        setMaxVisibleButtons(5);
+      }
     }
-    else {
-      setMaxVisibleButtons(5)
-    }
-  }, [viewPortWidth])
-
-  const [currentPage, setCurrentPage] = useState(1);
+  }, [viewPortWidth, propMaxVisibleButtons]);
 
   const hasNextPage = currentPage < totalPages;
   const hasPrevPage = currentPage > 1;
@@ -67,7 +68,6 @@ const usePagination = ({
     if (totalPages > 0) setCurrentPage(1);
   };
 
-  // Grouped pagination logic (e.g., 1–5, 6–10, etc.)
   const visiblePages = useMemo(() => {
     const currentGroup = Math.floor((currentPage - 1) / maxVisibleButtons);
     const start = currentGroup * maxVisibleButtons + 1;
