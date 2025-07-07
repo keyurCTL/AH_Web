@@ -10,6 +10,8 @@ import Link from "next/link"
 import { useParams } from "next/navigation"
 import React, { useState } from "react"
 import { Accordion } from "react-bootstrap"
+import WhatsAppIcon from "../../../../../../public/assets/images/whatsapp.png"
+import WhatsAppLink from "@/components/common/WhatsAppLink";
 
 type ItineraryProps = {
     packageInfo: Package | null
@@ -31,7 +33,7 @@ export default function Itinerary({ packageInfo }: ItineraryProps) {
         lastPage,
         setCurrentPage,
     } = usePagination({ totalPages: packageInfo?.itinerary?.length || 0 });
-    
+
     const [isDownloadLoading, setIsDownloadLoading] = useState(false)
     const { basePackageName, packageName } = useParams<RouteParams>()
     const decodedPackageName = decodeURIComponent(packageName)
@@ -435,56 +437,59 @@ export default function Itinerary({ packageInfo }: ItineraryProps) {
                                             <div className="info">Starting price per adult</div>
                                         </div>
                                         {packageInfo?.services?.length > 0 && (
-                                            <div className="services">
-                                                <div className="card-services">
-                                                    {packageInfo.services.map((service) => {
-                                                        const imageSrc = getImageForService(service.name);
-                                                        return (
-                                                            <div className="card-service" key={service._id}>
-                                                                <div className="service-icon">
-                                                                    <Image src={imageSrc} width={30} height={30} layout="intrinsic" alt={service.name} />
+                                            <>
+                                                <div className="services">
+                                                    <div className="card-services">
+                                                        {packageInfo.services.map((service) => {
+                                                            const imageSrc = getImageForService(service.name);
+                                                            return (
+                                                                <div className="card-service" key={service._id}>
+                                                                    <div className="service-icon">
+                                                                        <Image src={imageSrc} width={30} height={30} layout="intrinsic" alt={service.name} />
+                                                                    </div>
+                                                                    <div className="service-name">{service.name}</div>
                                                                 </div>
-                                                                <div className="service-name">{service.name}</div>
-                                                            </div>
-                                                        );
-                                                    })}
-                                                </div>
-                                                <div className="act-btns">
-                                                    <div className="iti-outline-btn">
-                                                        <button
-                                                            disabled={isDownloadLoading}
-                                                            onClick={async () => {
-                                                                if (!isDownloadLoading) {
-                                                                    await handlePackagePdf(packageInfo?._id, packageInfo?.package_name);
-                                                                }
-                                                            }}
-                                                            type="button"
-                                                        >
-                                                            {isDownloadLoading ? "Downloading..." : "Download"}
-                                                        </button>
+                                                            );
+                                                        })}
                                                     </div>
-                                                    <div className="iti-btn">
-                                                        <button type="button"
-                                                            onClick={() => {
-                                                                setPackageDetails({
-                                                                    packageName: packageInfo?.package_name,
-                                                                    budget: packageInfo?.price
-                                                                }); // Set the name here
-                                                                setModalShow(true); // Then show the modal
-                                                            }}
-                                                        >Inquiry Now</button>
+                                                    <div className="act-btns">
+                                                        <div className="iti-outline-btn">
+                                                            <button
+                                                                disabled={isDownloadLoading}
+                                                                onClick={async () => {
+                                                                    if (!isDownloadLoading) {
+                                                                        await handlePackagePdf(packageInfo?._id, packageInfo?.package_name);
+                                                                    }
+                                                                }}
+                                                                type="button"
+                                                            >
+                                                                {isDownloadLoading ? "Downloading..." : "Download"}
+                                                            </button>
+                                                        </div>
+                                                        <div className="iti-btn">
+                                                            <button type="button"
+                                                                onClick={() => {
+                                                                    setPackageDetails({
+                                                                        packageName: packageInfo?.package_name,
+                                                                        budget: packageInfo?.price
+                                                                    }); // Set the name here
+                                                                    setModalShow(true); // Then show the modal
+                                                                }}
+                                                            >Inquiry Now</button>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                                <div className="contact-opt">
+                                                    <div className="call-now">
+                                                        <a className="call-now-btn" href="tel:+919727000916">
+                                                            <Image src="/assets/images/call-reciver.png" alt="call" width={25} height={25} unoptimized />
+                                                            <span>Call Us Now</span>
+                                                        </a>
+                                                        <WhatsAppLink packageInfo={packageInfo} />
+                                                    </div>
+                                                </div>
+                                            </>
                                         )}
-                                        <div className="call-now">
-                                            <button className="call-now-btn">
-                                                <img src="/assets/images/call-reciver.png" alt="call" />
-                                                <span>
-                                                    <a href="tel:+919727000916">CALL US NOW</a>
-                                                </span>
-                                            </button>
-                                        </div>
                                     </div>
                                 </div>
                             </div>

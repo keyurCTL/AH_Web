@@ -24,6 +24,21 @@ const Footer = () => {
                                                   inspiration in your inbox.
                                              </div>
                                              <FooterForm />
+                                             {/* Social Media Links */}
+                                             <div className="social-links">
+                                                  <div className="left">
+                                                       <div className="title">Join the journey</div>
+                                                       <p>Offers, reviews, updates & more...</p>
+                                                  </div>
+                                                  <div className="right">
+                                                       <a href=" https://www.instagram.com/alakhholidays/" target="_blank">
+                                                            <Image src="/assets/images/instagram.svg" alt="instagram" width={30} height={30} unoptimized />
+                                                       </a>
+                                                       <a href="https://www.facebook.com/alakhholidays/" target="_blank">
+                                                            <Image src="/assets/images/facebook.svg" alt="instagram" width={30} height={30} unoptimized />
+                                                       </a>
+                                                  </div>
+                                             </div>
                                         </div>
                                    </div>
                                    <div className="col-lg-6">
@@ -96,6 +111,14 @@ const Footer = () => {
                                         <div className="f-title">Other Branches</div>
                                         <div className="other-brances">
                                              <div className="address-box">
+                                                  <div className="location-pill ob">NIKOL</div>
+                                                  <p>
+                                                       202 Netradeep complex, Gopal Chowk Rd, opp.
+                                                       Parishram soc, Parishram Park, Nikol,
+                                                       Ahmedabad, Gujarat 382350
+                                                  </p>
+                                             </div>
+                                             <div className="address-box">
                                                   <div className="location-pill ob">MEHSANA</div>
                                                   <p>
                                                        C-103 Joyos Hubtown, Nr. Virnagar Society, BK
@@ -110,14 +133,6 @@ const Footer = () => {
                                                        Rajkot, 360007
                                                   </p>
                                              </div>
-                                             {/* <div className="address-box">
-                                                  <div className="location-pill ob">VIJAPUR</div>
-                                                  <p>
-                                                       4, 1st floor, MA Business Hub, Opp. The Palate
-                                                       Restaurant , Anandpura Cross Road, Vijapur -
-                                                       382870
-                                                  </p>
-                                             </div> */}
                                              {/* <div className="address-box">
                                                   <div className="location-pill ob">MANSA</div>
                                                   <p>

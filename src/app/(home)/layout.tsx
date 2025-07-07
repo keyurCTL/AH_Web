@@ -1,3 +1,5 @@
+import CompanyStats from "@/components/about/Companystats/CompanyStats";
+
 export default function HomeLayout({
     heroSection,
     dealssection,
@@ -28,6 +30,7 @@ export default function HomeLayout({
             {serviceSection}
             {happyTravelersSection}
             {/* {hotelSection} */}
+            <CompanyStats />
             {holidayAssistance}
             {ourFamilySection}
             {commitmentSection}

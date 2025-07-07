@@ -3,6 +3,11 @@
 import React, { useEffect } from 'react';
 import Image from 'next/image';
 import './companystats.css';
+import Layer1 from "../../../../public/assets/images/Layer_1.svg";
+import Trophy from "../../../../public/assets/images/trophy.svg";
+import Happy from "../../../../public/assets/images/happy.svg";
+import TourDestination from "../../../../public/assets/images/tour-destination.svg";
+import Branches from "../../../../public/assets/images/branches.svg";
 
 const CompanyStats = () => {
   
@@ -62,15 +67,15 @@ const CompanyStats = () => {
           <div className="stats-title">The Alakh Holidays family is growing everyday!</div>
           <div className="stats-container">
             {[
-              { src: './assets/images/Layer_1.png', target: 4, text: 'Years of Experience' },
-              { src: './assets/images/trophy.png', target: 100, text: 'Tours Completed' },
-              { src: './assets/images/happy.png', target: 250, text: 'Happy Guests' },
-              { src: './assets/images/tour-destination.png', target: 35, text: 'Tour Destinations' },
-              { src: './assets/images/branches.png', target: 5, text: 'Branches & Sales Partners' }
+              { src: Layer1, target: 4, text: 'Years of Experience' },
+              { src: Trophy, target: 100, text: 'Tours Completed' },
+              { src: Happy, target: 250, text: 'Happy Guests' },
+              { src: TourDestination, target: 35, text: 'Tour Destinations' },
+              { src: Branches, target: 5, text: 'Branches & Sales Partners' }
             ].map((stat, index) => (
               <div className="stat-box" key={index}>
                 <div className="stat-icon">
-                  <Image src={stat.src} alt="stat-icon" width={36} height={36} layout="intrinsic" unoptimized />
+                  <Image src={stat.src} alt="stat-icon" height={46} layout="intrinsic" unoptimized />
                 </div>
                 <div className="stat-number" data-target={stat.target}>0+</div>
                 <div className="stat-text">{stat.text}</div>
