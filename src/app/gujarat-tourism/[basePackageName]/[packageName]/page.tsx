@@ -11,6 +11,8 @@ type Props = {
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata(
     { params }: Props,
 ): Promise<Metadata> {
@@ -20,7 +22,7 @@ export async function generateMetadata(
         endpoint: `package/public/${packageName}`,
     });
 
-    const packageInfo: Package = packageRes?.data;
+    const packageInfo: Package = packageRes?.data;    
 
     return {
         // This shows in the browser tab (document.title)
@@ -37,7 +39,7 @@ const page = async ({ params }: PageProps) => {
     const { packageName } = await params
     const packageRes: any = await fetchData({
         endpoint: `package/public/${packageName}`
-    })
+    })    
 
     if ((packageRes && (packageRes?.statusCode != 200 && packageRes?.statusCode != 201))) {
         throw new Error("Server not responding")

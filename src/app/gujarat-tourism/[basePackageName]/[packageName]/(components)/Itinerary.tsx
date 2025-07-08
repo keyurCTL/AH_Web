@@ -20,6 +20,7 @@ type RouteParams = {
 };
 
 export default function Itinerary({ packageInfo }: ItineraryProps) {
+    
     const {
         currentPage,
         visiblePages,

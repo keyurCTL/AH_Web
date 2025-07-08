@@ -24,8 +24,7 @@ type InquiryModalProps = {
 }
 
 const InquiryModal: React.FC<InquiryModalProps> = ({ show, onHide, packageDetails, autoCloseOnSubmit }) => {
-     console.log("packageDetails", packageDetails);
-     
+
      const [formMessage, setFormMessage] = useState<string>('');
      const [formStatus, setFormStatus] = useState<'success' | 'error' | ''>('');
      const [loading, setLoading] = useState<boolean>(false);

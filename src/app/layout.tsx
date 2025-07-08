@@ -9,6 +9,9 @@ import Footer from "@/components/home-page/Footer/Footer";
 import BootstrapClient from '@/components/common/BootstrapClient';
 import { Metadata } from 'next';
 import { Analytics } from '@vercel/analytics/next';
+import OffersPopup from '@/components/common/offers-popup/OffersPopup';
+import { fetchData } from '@/services/api';
+import { cookies } from 'next/headers';
 
 export const poppins = Poppins({
   variable: "--font-poppins",
@@ -41,7 +44,7 @@ export const metadata: Metadata = {
   // },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   heroSection,
   dealssection,
   destinationSection,
@@ -63,6 +66,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
 
+  const cookieStore = cookies();
+  const offersDismissed = await (await cookieStore).get("offersDismissed")?.value === "true";
+
+  const res: any = await fetchData({
+    endpoint: `offer/public`
+  })
+
+  const offers = res?.data?.offers || []
+
   return (
     <html lang="en">
       <body className={`${poppins.variable} ${JustAnotherHand.variable}`}>
@@ -79,6 +91,7 @@ export default function RootLayout({
         <Analytics />
         <Footer />
         <BootstrapClient />
+        {!offersDismissed && offers.length ? <OffersPopup offers={offers} /> : null}
       </body>
     </html>
   );
