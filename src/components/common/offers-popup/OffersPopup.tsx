@@ -8,6 +8,10 @@ import { Offer } from "@/types/offers/offer";
 import { Autoplay, Navigation } from "swiper/modules";
 import { Pagination } from "react-bootstrap";
 
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
 interface OffersPopupProps {
   offers: Offer[];
   onInteraction?: (event: 'dismissed' | 'clicked', offerId?: string) => void;
@@ -18,8 +22,8 @@ const COOKIE_KEY = "dismissedOffers";
 // Safe cookie parsing
 const getDismissedIds = (): string[] => {
   const raw = Cookies.get(COOKIE_KEY);
-  console.log("raw",raw);
-  
+  console.log("raw", raw);
+
   if (!raw) return [];
   return raw
     .split(",")
@@ -34,7 +38,7 @@ const setDismissedIds = (ids: string[]) => {
 };
 
 const OffersPopup: React.FC<OffersPopupProps> = ({ offers, onInteraction }) => {
-  
+
   const [visibleOffers, setVisibleOffers] = useState<Offer[]>([]);
   const overlayRef = useRef<HTMLDivElement>(null);
 
@@ -89,9 +93,11 @@ const OffersPopup: React.FC<OffersPopupProps> = ({ offers, onInteraction }) => {
     >
       <div className="popup-container" aria-labelledby="offer-popup">
         <button className="close-btn" onClick={dismissAll} aria-label="Close popup">×</button>
-        <h2 id="offer-popup" style={{ marginBottom: '10px' }}>Special Offers</h2>
+        <h5 id="offer-popup" style={{ marginBottom: '10px' }}>Special Offers</h5>
 
-        <Swiper spaceBetween={10} slidesPerView={1}
+        <Swiper
+          spaceBetween={10}
+          slidesPerView={1}
           autoplay={{
             delay: 2500,
             disableOnInteraction: false,
