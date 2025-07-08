@@ -63,13 +63,13 @@ const ReviewsSection = ({ reviews }: ReviewsSectionProps) => {
         </div>
       </div>
 
-      <div className="text-center mt-5">
+      {/* <div className="text-center mt-5">
         <div className="view-more-btn">
           <a href="/packages">
             <span>View Packages</span>
           </a>
         </div>
-      </div>
+      </div> */}
     </section>
   );
 };

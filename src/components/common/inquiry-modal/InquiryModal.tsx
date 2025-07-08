@@ -6,6 +6,8 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import './modal.css'
 import { InquiryFormValues, inquirySchema } from './schema'
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import { fetchData } from '@/services/api'
 import Captcha from '../captcha/Captcha'
 
@@ -24,7 +26,6 @@ type InquiryModalProps = {
 }
 
 const InquiryModal: React.FC<InquiryModalProps> = ({ show, onHide, packageDetails, autoCloseOnSubmit }) => {
-
      const [formMessage, setFormMessage] = useState<string>('');
      const [formStatus, setFormStatus] = useState<'success' | 'error' | ''>('');
      const [loading, setLoading] = useState<boolean>(false);
@@ -39,9 +40,14 @@ const InquiryModal: React.FC<InquiryModalProps> = ({ show, onHide, packageDetail
           handleSubmit,
           formState: { errors },
           reset,
+          watch,
+          setValue
      } = useForm<InquiryFormValues>({
           resolver: zodResolver(inquirySchema),
      })
+
+console.log("Form Errors:", errors);
+
 
      // Captcha handlers to update captcha from child component
      const handleCaptchaChange = (captcha: string) => {
@@ -78,6 +84,8 @@ const InquiryModal: React.FC<InquiryModalProps> = ({ show, onHide, packageDetail
                     date_of_travel,
                },
           }
+
+          console.log("Final Payload:", finalPayload);
 
           try {
                const res: any = await fetchData({
@@ -182,8 +190,18 @@ const InquiryModal: React.FC<InquiryModalProps> = ({ show, onHide, packageDetail
                                    {errors.city && <span className="text-danger">{errors.city.message}</span>}
                               </div>
                               <div className="col-6 mb-1">
-                                   <label className="form-label">Date of Travel</label>
-                                   <input type="date" className="form-control" {...register('date_of_travel')} />
+                                   <div className='date-picker-flex'>
+                                        <label className="form-label">Date of Travel</label>
+                                        <DatePicker
+                                             selected={watch('date_of_travel') ? new Date(watch('date_of_travel')) : null}
+                                             onChange={(date: Date | null) => {
+                                                  setValue('date_of_travel', date?.toISOString() || '');
+                                             }}
+                                             minDate={new Date()}
+                                             dateFormat="dd-MM-yyyy"
+                                             className="form-control"
+                                        />
+                                   </div>
                                    {errors.date_of_travel && <span className="text-danger">{errors.date_of_travel.message}</span>}
                               </div>
                          </div>
@@ -191,24 +209,27 @@ const InquiryModal: React.FC<InquiryModalProps> = ({ show, onHide, packageDetail
                          <div className="row">
                               <div className="col-4 mb-1">
                                    <label className="form-label">No. of Adults</label>
-                                   <select className="form-select" {...register('no_of_adult')}>
-                                        <option value="">Select</option>
+                                   <select
+                                        className="form-select"
+                                        {...register('no_of_adult', { valueAsNumber: true })}
+                                   >
+                                        <option value="0">Select</option>
                                         {generateOptions(20).slice(1)}
                                    </select>
                                    {errors.no_of_adult && <span className="text-danger">{errors.no_of_adult.message}</span>}
                               </div>
                               <div className="col-4 mb-1">
                                    <label className="form-label">No. of Children</label>
-                                   <select className="form-select" {...register('no_of_children')}>
-                                        <option value="">Select</option>
+                                   <select className="form-select" {...register('no_of_children', { valueAsNumber: true })}>
+                                        <option value="0">Select</option>
                                         {generateOptions(10)}
                                    </select>
                                    {errors.no_of_children && <span className="text-danger">{errors.no_of_children.message}</span>}
                               </div>
                               <div className="col-4 mb-1">
                                    <label className="form-label">No. of Infants</label>
-                                   <select className="form-select" {...register('no_of_infant')}>
-                                        <option value="">Select</option>
+                                   <select className="form-select" {...register('no_of_infant', { valueAsNumber: true })}>
+                                        <option value="0">Select</option>
                                         {generateOptions(10)}
                                    </select>
                                    {errors.no_of_infant && <span className="text-danger">{errors.no_of_infant.message}</span>}

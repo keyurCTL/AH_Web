@@ -24,12 +24,12 @@
 }
 
 .our-Stats .stat-box .stat-icon {
-     padding-bottom: 15px;
+     padding-bottom: 25px;
 }
 
 .our-Stats .stat-box .stat-icon img {
-     max-width: 36px;
-     max-height: 36px;
+     /* max-width: 36px;
+     max-height: 36px; */
 }
 
 .our-Stats .stat-number {

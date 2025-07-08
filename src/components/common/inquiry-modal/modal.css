@@ -13,6 +13,12 @@
      color: var(--primary-color);
 }
 
+.date-picker-flex {
+     display: flex;
+     flex-direction: column;
+     gap: 2px;
+}
+
 .modal-body input,
 .modal-body select {
      font-size: 0.875rem;

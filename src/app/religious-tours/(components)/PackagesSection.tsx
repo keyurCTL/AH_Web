@@ -68,8 +68,8 @@ const PackagesSection = ({ packages: initialPackages }: PackagesSectionProps) =>
                                              <option value="short" disabled>&#x21c5; Sort by</option>
                                              <option value="price-high-to-low" >Price High to Low</option>
                                              <option value="price-low-to-high">Price Low to High</option>
-                                             <option value="duration-long-to-short">Druration Long to Short</option>
-                                             <option value="duration-short-to-long">Druration Short to Long</option>
+                                             <option value="duration-long-to-sort">Duration Long to Short</option>
+                                             <option value="duration-sort-to-long">Duration Short to Long</option>
                                         </select>
                                    </div>
 

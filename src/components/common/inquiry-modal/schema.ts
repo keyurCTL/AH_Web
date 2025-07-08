@@ -2,14 +2,19 @@ import { z } from "zod"
 
 export const inquirySchema = z.object({
      name: z.string().min(1, 'Name is required'),
-     mobile_number: z.string().min(10, 'Mobile number is required'),
+     mobile_number: z
+          .string()
+          .regex(
+               /^(?:\+91[\-\s]?|0)?[6-9]\d{9}$/,
+               'Enter a valid mobile number'
+          ),
      email: z.string().email('Invalid email'),
      city: z.string().min(1, 'City is required'),
-     no_of_adult: z.string().min(1, 'Please select number of adults'),
-     no_of_children: z.string().min(1, 'Please select number of children'),
-     no_of_infant: z.string().min(1, 'Please select number of infants'),
+     no_of_adult: z.number().min(1, "Please select number of adults"),
+     no_of_children: z.number().min(0).default(0),
+     no_of_infant: z.number().min(0).default(0),
      date_of_travel: z.string().min(1, 'Please select a travel date'),
-       // New field for just the textarea input
+     // New field for just the textarea input
      extra_details: z.string().optional(),
      // This won't be part of the form, just part of the final payload
      package_details: z

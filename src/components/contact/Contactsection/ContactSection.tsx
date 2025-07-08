@@ -22,7 +22,8 @@ const contactSchema = z.object({
 type ContactFormData = z.infer<typeof contactSchema>;
 
 const officeData = [
-     { city: 'Ahmedabad', address: '916, City Center 2, Nr CIMS Hospital, Science City Road, Sola, Ahmedabad, Gujarat 380060', phone1: '+91 97270 00916', phone2: '+91 91064 69579', email: 'alakhholidays@gmail.com' },
+     { city: 'Ahmedabad(HO)', address: '916, City Center 2, Nr CIMS Hospital, Science City Road, Sola, Ahmedabad, Gujarat 380060', phone1: '+91 97270 00916', phone2: '+91 91064 69579', email: 'alakhholidays@gmail.com' },
+     { city: 'Nikol', address: '202 Netradeep complex, Gopal Chowk Rd, opp. Parishram soc, Parishram Park, Nikol, Ahmedabad, Gujarat 382350', phone1: '+91 63512 72809', phone2: '+91 97270 00916', email: 'alakhholidays@gmail.com' },
      { city: 'Mehsana', address: 'C-103 Joyos Hubtown, Nr. Virnagar Society, BK Road, Mehsana, Gujarat 384001', phone1: '+91 79900 16326', phone2: '+91 97270 00916', email: 'alakhholidays@gmail.com' },
      { city: 'Rajkot', address: '501, Fifth Floor, Vyanktesh Vogue, Indira Circle, Jala Ram Nagar, 150 Feet Ring Rd, Rajkot, 360007', phone1: '+91 91064 73904', phone2: '+91 97270 00916', email: 'alakhholidays@gmail.com' },
      // { city: 'Vijapur', address: '4, 1st Floor, MA Business Hub, Opp. The Palate Restaurant and Banquet Hall, Anandpura Cross Road, Vijapur, Mehsana-382870', phone1: '+91 81605 56455', phone2: '+91 97270 00916', email: 'alakhholidays@gmail.com' },

@@ -13,6 +13,8 @@ import { useEffect, useState } from "react";
 import { fetchData } from "@/services/api";
 import { Package } from "@/types/package/package";
 import LoadingWrapper from "@/components/common/wrappers/LoadingWrapper";
+import Lottie from "lottie-react";
+import Offer from "../../animation/Offer30X30.json"
 
 export type NavbarInfoType = {
   package_starting_from: number,
@@ -87,6 +89,7 @@ const Navbar = () => {
                 height={20}
                 unoptimized
               />
+              {/* <Lottie animationData={Offer} loop={true} /> */}
               <Link href="/offers">Offers</Link>
             </div>
           </div>

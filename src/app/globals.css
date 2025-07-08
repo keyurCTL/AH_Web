@@ -488,15 +488,15 @@ a {
 }
 
 .inner-tours-section .inner-tour-cards .package-card .card-subtitle {
-    border: 1px solid var(--secondary-color);
-    border-radius: 8px;
-    background: #f3933228;
-    padding: 2px 8px;
-    color: var(--primary-color);
-    text-align: center;
-    min-width: 80px;
-    font-size: 0.875rem;
-    font-weight: 700;
+  border: 1px solid var(--secondary-color);
+  border-radius: 8px;
+  background: #f3933228;
+  padding: 2px 8px;
+  color: var(--primary-color);
+  text-align: center;
+  min-width: 80px;
+  font-size: 0.875rem;
+  font-weight: 700;
 }
 
 .inner-tours-section .inner-tour-cards .package-card .package-card-body hr {
@@ -735,18 +735,21 @@ a {
   width: 100%;
 }
 
-.itinerary-page .itinerary-page-right .package-price-box .call-now {
+.contact-opt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 20px 0;
+  width: 100%;
 }
 
-.itinerary-page .itinerary-page-right .package-price-box .call-now .call-now-btn {
+.itinerary-page .itinerary-page-right .package-price-box .call-now {
   padding: 10px 20px;
-  border-radius: 26px;
-  border: 0.5px solid #134076;
-  background: linear-gradient(0deg, #ECE9E6 0%, #F3F3F3 100%);
   display: flex;
-  gap: 15px;
   align-items: center;
+  justify-content: space-evenly;
+  gap: 10px;
+  width: 100%;
 }
 
 .itinerary-page .itinerary-page-left .itinerary-title {
@@ -1101,6 +1104,25 @@ a {
   margin: 0 0 4px 0;
   font-size: 0.875rem;
   font-weight: 400;
+}
+
+.itinerary-page .itinerary-page-right .whatsapp-link,
+.itinerary-page .itinerary-page-right .call-now-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.875rem;
+  border: 1px solid var(--primary-color);
+  padding: 5px 10px;
+  border-radius: 35px;
+  flex: 1;
+  justify-content: center;
+}
+
+.itinerary-page .itinerary-page-right .whatsapp-link span,
+.itinerary-page .itinerary-page-right .call-now-btn span {
+  color: var(--black);
+  font-weight: 500;
 }
 
 .rotate-180 {

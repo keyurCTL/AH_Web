@@ -134,6 +134,33 @@
      color: var(--secondary-color);
 }
 
+.footer-section .social-links {
+     display: flex;
+     flex-wrap: wrap;
+     gap: 20px;
+     align-items: center;
+     margin: 5px 0;
+}
+
+.footer-section .social-links .left .title{
+     font-weight: bold;
+     font-size: 1rem;
+     color: var(--black);
+     margin-bottom: 5px;
+}
+
+.footer-section .social-links .left p{
+     font-size: 0.875rem;
+     color: var(--black);
+     margin-bottom: 0;
+}
+
+.footer-section .social-links .right {
+     display: flex;
+     gap: 15px;
+     align-items: center;
+}
+
 @media(min-width:1800px) {
 
      .nav-main .top-bar,
