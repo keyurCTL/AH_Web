@@ -1,11 +1,11 @@
 export type Service = {
-    _id?: string;
-    name: string;
-    status: boolean;
-    created_by?: string;
-    createdAt?: string;
-    updatedAt?: string;
-    __v?: number;   
+     _id?: string;
+     name: string;
+     status: boolean;
+     created_by?: string;
+     createdAt?: string;
+     updatedAt?: string;
+     __v?: number;
 }
 
 export type Package = {
@@ -47,6 +47,15 @@ export type Package = {
      inclusions: string[];
      exclusions: string[];
      hotels: string[];
+     hotel_notes: {
+          _id?: string;
+          note: string;
+          status: boolean;
+          created_by?: string;
+          createdAt?: string;
+          updatedAt?: string;
+          __v?: number;
+     }[],
      price: number;
      services: string[] | Service[];
      seo: {

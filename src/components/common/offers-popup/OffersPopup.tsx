@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef, memo } from "react";
 import Cookies from "js-cookie";
 import { Swiper, SwiperSlide } from "swiper/react";
+import './offers-popup.css'
 import 'swiper/css';
 import { Offer } from "@/types/offers/offer";
 import { Autoplay, Navigation } from "swiper/modules";
@@ -11,6 +12,9 @@ import { Pagination } from "react-bootstrap";
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import Image from "next/image";
+import { formatIndianNumber } from "@/lib/utils";
+import Link from "next/link";
 
 interface OffersPopupProps {
   offers: Offer[];
@@ -41,6 +45,14 @@ const OffersPopup: React.FC<OffersPopupProps> = ({ offers, onInteraction }) => {
 
   const [visibleOffers, setVisibleOffers] = useState<Offer[]>([]);
   const overlayRef = useRef<HTMLDivElement>(null);
+  const [viewPortWidth, setViewPortWidth] = useState<number | null>(null)
+
+  useEffect(() => {
+    if (window) {
+      setViewPortWidth(Number(window?.visualViewport?.width))
+    }
+  }, [])
+
 
   useEffect(() => {
     const dismissed = getDismissedIds();
@@ -105,37 +117,68 @@ const OffersPopup: React.FC<OffersPopupProps> = ({ offers, onInteraction }) => {
           pagination={{
             clickable: true,
           }}
+          loop={true}
           navigation={true}
           modules={[Autoplay, Navigation]}
           className="mySwiper">
-          {visibleOffers.map((offer) => (
-            <SwiperSlide key={offer._id}>
-              <div className="offer-card">
-                {/* <img
-                  src={offer.image}
-                  alt={offer.title}
-                  onClick={() => handleClick(offer)}
-                  loading="lazy"
-                /> */}
-                <p>{offer.title}</p>
-                {/* <button
-                  className="dismiss-btn"
-                  onClick={() => dismissOffer(offer._id)}
-                  aria-label={`Dismiss ${offer.title}`}
-                >
-                  Dismiss
-                </button> */}
-              </div>
-            </SwiperSlide>
-          ))}
+          {visibleOffers?.length ? visibleOffers?.map((deal) => {
+            const offerPackages = deal?.packages || []
+
+            return offerPackages?.map((packageItem, packageItemIndex) => {
+              const packageName = viewPortWidth != null ? viewPortWidth > 1440 ? `${packageItem?.package_name}` : `${packageItem?.package_name?.slice(0, 25)}...` : ""
+              const packageImg = packageItem?.navbar?.img?.file_public_url || null
+              const packageUrl = packageItem?.category == "religious-tours" ? `${packageItem?.category}/${packageItem?.package_name}` : `${packageItem?.category}/${packageItem?.base_package?.toLowerCase()?.replace(/\s+/g, "-")}/${packageItem?.package_name}`
+              return (
+                <SwiperSlide key={packageItemIndex}>
+                  <div className="popup-deal-card">
+                    <div className="ribbon">
+                      <span>DEAL</span>
+                    </div>
+                    <div className="card-image">
+                      <Image src={packageImg} alt={`${packageItem.package_name} best deal`} width={153} height={153} />
+                      <div className="price">
+                        <span>save</span>
+                        <span className="price-value">₹{formatIndianNumber(packageItem?.difference_price)}/-</span>
+                      </div>
+                    </div>
+                    <div className="popup-deal-card-body">
+                      <div className="popup-deal-card-content">
+                        <Link href={packageUrl}>
+                          <div className="popup-deal-card-title">{packageName}</div>
+                        </Link>
+                        <div className="popup-deal-card-duration">{`${packageItem?.basic_info?.days} Days & ${packageItem?.basic_info?.night} Night${Number(packageItem?.basic_info?.night) > 1 ? "s" : ""}`}</div>
+                        <div className="popup-deal-card-hotel">
+                          Hotel: <span>★</span> {packageItem?.hotels?.reduce((acc: number, hotel: any) => Math.max(acc, hotel.hotel_star), 1)}
+                        </div>
+                      </div>
+                      <div className="popup-deal-card-price">
+                        <div className="popup-deal-card-price-value">₹{formatIndianNumber(packageItem?.price)}/-</div>
+                        <div className="popup-deal-card-final-price-value">
+                          ₹{formatIndianNumber(packageItem.discounted_price)}/-<span>*</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              )
+            }
+            )
+          }) : null}
         </Swiper>
       </div>
 
       <style>{`
+        #offer-popup {
+          color: var(--primary-color);
+          font-weight: 700;
+          font-size: 18px;
+          padding-bottom: 10px;
+        }
+
         .popup-overlay {
           position: fixed;
           top: 0; left: 0; right: 0; bottom: 0;
-          background-color: rgba(0, 0, 0, 0.6);
+          background-color: rgba(0, 0, 0, 0.7);
           z-index: 1000;
           display: flex;
           align-items: center;
@@ -145,9 +188,9 @@ const OffersPopup: React.FC<OffersPopupProps> = ({ offers, onInteraction }) => {
 
         .popup-container {
           background: white;
-          padding: 20px;
-          border-radius: 10px;
-          max-width: 420px;
+          padding: 20px 20px 40px 20px;
+          border-radius: 25px;
+          max-width: 550px;
           width: 90%;
           position: relative;
           box-shadow: 0 5px 25px rgba(0,0,0,0.4);
@@ -162,26 +205,6 @@ const OffersPopup: React.FC<OffersPopupProps> = ({ offers, onInteraction }) => {
           border: none;
           font-size: 24px;
           cursor: pointer;
-        }
-
-        .offer-card {
-          text-align: center;
-        }
-
-        .offer-card img {
-          max-width: 100%;
-          border-radius: 8px;
-          cursor: pointer;
-          transition: transform 0.2s;
-        }
-
-        .offer-card img:hover {
-          transform: scale(1.03);
-        }
-
-        .offer-card p {
-          margin-top: 10px;
-          font-size: 16px;
         }
 
         .dismiss-btn {

@@ -2,7 +2,7 @@
 
 import InquiryModal from "@/components/common/inquiry-modal/InquiryModal";
 import usePagination from "@/hooks/usePagination";
-import { capitalizeText, formatIndianNumber, getImageForService, saveFile } from "@/lib/utils"
+import { capitalizeText, firstLetterCapital, formatIndianNumber, getImageForService, saveFile } from "@/lib/utils"
 import { fetchData } from "@/services/api";
 import { Package } from "@/types/package/package"
 import Image from "next/image"
@@ -22,6 +22,8 @@ type RouteParams = {
 };
 
 export default function Itinerary({ packageInfo }: ItineraryProps) {
+    console.log("Package Info:", packageInfo);
+    
     const {
         currentPage,
         visiblePages,
@@ -324,7 +326,13 @@ export default function Itinerary({ packageInfo }: ItineraryProps) {
                                                         </Accordion.Header>
                                                         <Accordion.Body>
                                                             <div className="hotel-section-accordion">
-                                                                <div className="note">Note: Our agents will provide you these or similar hotels depending on availability</div>
+                                                                {packageInfo?.hotel_notes?.length > 0 && (
+                                                                    <ul className="note-list">
+                                                                        {packageInfo?.hotel_notes.map((note) => (
+                                                                            <li key={note?._id}>{firstLetterCapital(note?.note)}</li>
+                                                                        ))}
+                                                                    </ul>
+                                                                )}
                                                                 <div className="hotel-list">
                                                                     {packageInfo.hotels.map((hotel: any, index) => (
                                                                         <div key={index} className="hotel-item mb-4">

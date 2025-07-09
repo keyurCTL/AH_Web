@@ -1005,10 +1005,12 @@ a {
   margin: 20px;
 } */
 
-.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .hotel-section-accordion .note {
+.itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .hotel-section-accordion .note-list {
+  list-style: disc;
+  /* margin-left: 20px; */
   font-size: 0.875rem;
   color: #757575;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .itinerary-page .itinerary-page-left .itinerary-content .itineary-accordian .hotel-section-accordion hr {

@@ -1,0 +1,180 @@
+.popup-deal-card {
+     position: relative;
+     min-height: 250px;
+     display: flex;
+     margin: 0 50px;
+}
+
+.popup-deal-card .card-image {
+     position: absolute;
+     z-index: 2;
+     top: 50%;
+     width: 150px;
+     height: 150px;
+}
+
+.popup-deal-card .card-image img {
+     position: absolute;
+     width: 150px;
+     height: 150px;
+     border-radius: 50%;
+     border: 2px dashed var(--secondary-color);
+     transform: translate(0, -50%);
+}
+
+.popup-deal-card .card-image .price {
+     position: relative;
+     transform: translate(0px, -50%);
+     background: rgba(45, 72, 14, 0.55);
+     border-radius: 50%;
+     height: 100%;
+     width: 100%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     flex-direction: column;
+}
+
+/* 1st, 4th, 7th, ... */
+.swiper-slide:nth-child(3n+1) .popup-deal-card .card-image .price {
+     background: rgba(45, 72, 14, 0.55);
+}
+
+/* 2nd, 5th, 8th, ... */
+.swiper-slide:nth-child(3n+2) .popup-deal-card .card-image .price {
+     background: rgba(168, 16, 29, 0.55);
+}
+
+/* 3rd, 6th, 9th, ... */
+.swiper-slide:nth-child(3n) .popup-deal-card .card-image .price {
+     background: rgba(170, 91, 53, 0.55);
+}
+
+.popup-deal-card .card-image .price span {
+     color: var(--white);
+     font-weight: bold;
+     text-transform: capitalize;
+}
+
+.popup-deal-card .card-image .price .price-value {
+     font-size: 1.25rem;
+     color: #FEC414;
+}
+
+.popup-deal-card .popup-deal-card-body {
+     position: absolute;
+     right: 0;
+     border-radius: 24px;
+     border: 1px solid var(--border-color);
+     background: var(--white);
+     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+     min-height: 250px;
+     height: 100%;
+     max-width: 340px;
+     width: 100%;
+}
+
+.popup-deal-card .ribbon {
+     font-size: 0.75rem;
+     font-weight: 500;
+     color: #fff;
+     writing-mode: vertical-lr;
+}
+
+.popup-deal-card .ribbon {
+     z-index: 3;
+     --f: .5em;
+     --r: .8em;
+     position: absolute;
+     right: 20px;
+     top: calc(-1*var(--f));
+     padding: .2em;
+     background: #E90000;
+     border-right: var(--f) solid #0005;
+     border-bottom: var(--r) solid #0000;
+     clip-path: polygon(calc(100% - var(--f)) 0, 0 0, 0 100%, calc(50% - var(--f)/2) calc(100% - var(--r)), calc(100% - var(--f)) 100%, calc(100% - var(--f)) var(--f), 100% var(--f));
+}
+
+.popup-deal-card .ribbon span {
+     text-orientation: upright;
+     letter-spacing: -3.5px;
+}
+
+.popup-deal-card .popup-deal-card-body .popup-deal-card-content {
+     padding: 60px 0 0 100px;
+     min-height: 167px;
+}
+
+.popup-deal-card .popup-deal-card-body .popup-deal-card-content .popup-deal-card-title {
+     font-weight: bold;
+     font-size: 1.125rem;
+     padding-bottom: 5px;
+     transition: all 0.3s ease-in-out;
+}
+
+.popup-deal-card .popup-deal-card-body .popup-deal-card-content .popup-deal-card-title:hover {
+     color: var(--primary-color);
+     text-decoration: underline;
+}
+
+.popup-deal-card .popup-deal-card-body .popup-deal-card-content .popup-deal-card-duration,
+.popup-deal-card .popup-deal-card-body .popup-deal-card-content .popup-deal-card-hotel {
+     padding-bottom: 3px;
+     color: var(--gray);
+     font-size: 0.875rem;
+}
+
+.popup-deal-card .popup-deal-card-body .popup-deal-card-content .popup-deal-card-hotel span {
+     color: var(--secondary-color);
+}
+
+.popup-deal-card .popup-deal-card-body .popup-deal-card-price {
+     float: right;
+     padding: 10px 10px 10px 0;
+}
+
+.popup-deal-card .popup-deal-card-body .popup-deal-card-price .popup-deal-card-price-value {
+     color: var(--gray);
+     text-decoration: line-through;
+     text-align: end;
+}
+
+.popup-deal-card .popup-deal-card-body .popup-deal-card-price .popup-deal-card-final-price-value {
+     color: var(--primary-color);
+     font-size: 1.25rem;
+     font-weight: bold;
+}
+
+.popup-deal-card .popup-deal-card-body .popup-deal-card-price .popup-deal-card-final-price-value span {
+     font-weight: 400;
+}
+
+.swiper-button-prev:after, .swiper-button-next:after{
+     color: var(--primary-color);
+}
+
+
+@media (max-width: 576px) {
+     .popup-deal-card {
+          margin: 0 20px;
+     }
+
+     .popup-deal-card .popup-deal-card-body {
+          max-width: 340px;
+     }
+
+     .popup-deal-card .card-image,
+     .popup-deal-card .card-image img {
+          width: 120px;
+          height: 120px;
+          display: none;
+     }
+
+     .swiper-button-prev:after, .swiper-button-next:after {
+          display: none;
+     }
+
+     .popup-deal-card .popup-deal-card-body .popup-deal-card-content {
+          padding: 60px 10px 0 25px;
+     }
+}
