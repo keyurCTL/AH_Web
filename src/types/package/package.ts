@@ -75,4 +75,5 @@ export type Package = {
      active_offer?: unknown;
      discounted_price?: number;
      difference_price?: number;
+     slug?: string;
 };

@@ -41,12 +41,12 @@ export function transformDate(date: string, format: DateFormat = "DD/MM/YYYY") {
 }
 
 const serviceImageKeywords: { keywords: string[]; image: string }[] = [
-  { keywords: ["pickup", "drop", "pickup/drop"], image: "/assets/images/car.png" },
-  { keywords: ["hotel", "hotels", "stay", "accommodation"], image: "/assets/images/hotel.png" },
-  { keywords: ["meal", "meals", "food"], image: "/assets/images/meal.png" },
-  { keywords: ["sightseeing", "tour", "itinerary", "places"], image: "/assets/images/itinerary.png" },
-  { keywords: ["transport", "travel", "vehicle", "cab"], image: "/assets/images/transport.png" },
-  { keywords: ["guide", "tour manager", "assistant"], image: "/assets/images/guide.png" }
+  { keywords: ["pickup", "drop", "pickup/drop"], image: "/assets/images/car.svg" },
+  { keywords: ["hotel", "hotels", "stay", "accommodation"], image: "/assets/images/hotel.svg" },
+  { keywords: ["meal", "meals", "food"], image: "/assets/images/meal.svg" },
+  { keywords: ["sightseeing", "tour", "itinerary", "places"], image: "/assets/images/itinerary.svg" },
+  { keywords: ["transport", "travel", "vehicle", "cab"], image: "/assets/images/transport.svg" },
+  { keywords: ["guide", "tour manager", "assistant"], image: "/assets/images/guide.svg" }
 ];
 
 export const getImageForService = (serviceName: string): string => {
@@ -143,5 +143,13 @@ export function formatIndianNumber(x: number | string): string {
   return formatted;
 }
 
+// Slug for url
 
-
+export function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, '')    // remove special chars
+    .replace(/\s+/g, '-')        // replace spaces with hyphens
+    .replace(/--+/g, '-');       // collapse multiple hyphens
+}

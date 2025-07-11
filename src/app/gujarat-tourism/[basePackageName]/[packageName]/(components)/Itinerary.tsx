@@ -48,7 +48,7 @@ export default function Itinerary({ packageInfo }: ItineraryProps) {
         { label: 'Home', link: '/', class: "" },
         { label: 'Gujarat Tour Packages', link: '/gujarat-tourism' },
         { label: `${capitalizeText(basePackageName?.replace(/-+/g, " "))} Tour Packages`, link: `/gujarat-tourism/${basePackageName}` },
-        { label: `${decodedPackageName}`, link: `/gujarat-tourism/${basePackageName}/${decodedPackageName}`, class: "self-page" },
+        { label: `${packageInfo?.package_name}`, link: `/gujarat-tourism/${basePackageName}/${decodedPackageName}`, class: "self-page" },
     ]
 
     const places = packageInfo?.overview?.places || [];

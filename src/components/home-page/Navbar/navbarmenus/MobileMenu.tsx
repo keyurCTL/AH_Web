@@ -158,11 +158,11 @@ const MobileMenu = ({ packages }: NavbarInfoType) => {
                     <ul className="list-unstyled">
                          {Object.keys(groupedByCategory)?.length && Object.keys(groupedByCategory)?.filter(category => category == "religious-tours")?.length ? <li className="rt"><a href="/religious-tours">Religious Tours</a></li> : null}
                          <li className="top-contact-content">
-                              <Image src="/assets/images/call.png" alt="call" width={20} height={20} unoptimized />
+                              <Image src="/assets/images/call.svg" alt="call" width={20} height={20} unoptimized />
                               <a href="tel:+919727000916">+91 97270 00916</a>
                          </li>
                          <li className="top-contact-content">
-                              <Image src="/assets/images/offers.png" alt="offers" width={20} height={20} unoptimized />
+                              <Image src="/assets/images/offers.svg" alt="offers" width={20} height={20} unoptimized />
                               <Link href="/offers">Offers</Link>
                          </li>
                     </ul>

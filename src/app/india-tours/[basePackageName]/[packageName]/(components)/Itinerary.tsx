@@ -49,7 +49,7 @@ export default function Itinerary({ packageInfo }: ItineraryProps) {
         { label: 'Home', link: '/', class: "" },
         { label: 'India Tour Packages', link: '/india-tours' },
         { label: `${capitalizeText(basePackageName?.replace(/-+/g, " "))} Tour Packages`, link: `/india-tours/${basePackageName}` },
-        { label: `${decodedPackageName}`, link: `/india-tours/${basePackageName}/${decodedPackageName}`, class: "self-page" },
+        { label: `${packageInfo?.package_name}`, link: `/india-tours/${basePackageName}/${decodedPackageName}`, class: "self-page" },
     ]
 
     const places = packageInfo?.overview?.places || [];

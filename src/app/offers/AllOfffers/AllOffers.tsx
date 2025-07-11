@@ -37,7 +37,7 @@ const AllOffers = ({ offers }: AllOffersProps) => {
 
                                    return offerPackages?.map((packageItem, packageItemIndex) => {
                                         const packageImg = packageItem?.navbar?.img?.file_public_url || null
-                                        const packageUrl = packageItem?.category == "religious-tours" ? `${packageItem?.category}/${packageItem?.package_name}` : `${packageItem?.category}/${packageItem?.base_package?.toLowerCase()?.replace(/\s+/g, "-")}/${packageItem?.package_name}`
+                                        const packageUrl = packageItem?.category == "religious-tours" ? `${packageItem?.category}/${packageItem?.package_name}` : `${packageItem?.category}/${packageItem?.base_package?.toLowerCase()?.replace(/\s+/g, "-")}/${packageItem?.slug}`
                                         return (
                                              <div key={packageItemIndex} className="col-lg-4">
                                                   <div className="offer-card">

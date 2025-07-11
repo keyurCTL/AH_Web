@@ -1,10 +1,17 @@
-import { useMemo } from "react";
+"use client";
+import { useMemo, useEffect, useState } from "react";
 import Image from "next/image";
 import WhatsAppIcon from "../../../public/assets/images/whatsapp.png"; // adjust path as needed
 
 const WhatsAppLink = ({ packageInfo }) => {
-  const currentUrl = typeof window !== "undefined" ? window.location.href : "";
-  
+  const [currentUrl, setCurrentUrl] = useState("");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setCurrentUrl(window.location.href);
+    }
+  }, []);
+
   const message = useMemo(() => {
     return `Inquiry for ${packageInfo?.package_name}\nPlease share details.\n${currentUrl}`;
   }, [packageInfo?.package_name, currentUrl]);

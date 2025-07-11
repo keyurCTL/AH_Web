@@ -129,8 +129,8 @@ const ContactSection: React.FC = () => {
                                              </div>
                                              <div className="contact-card-bottom">
                                                   <div className="contact-number d-inline-flex">
-                                                       <a href={`tel:${office.phone1}`}><Image src="/assets/images/call.png" alt="call" width={20} height={20} /> <span>{office.phone1}</span></a>
-                                                       <a href={`tel:${office.phone2}`}><Image src="/assets/images/call.png" alt="call" width={20} height={20} /> <span>{office.phone2}</span></a>
+                                                       <a href={`tel:${office.phone1}`}><Image src="/assets/images/call.svg" alt="call" width={20} height={20} /> <span>{office.phone1}</span></a>
+                                                       <a href={`tel:${office.phone2}`}><Image src="/assets/images/call.svg" alt="call" width={20} height={20} /> <span>{office.phone2}</span></a>
                                                   </div>
                                                   <div className='contact-email d-inline-flex'>
                                                        <a href={`mailto:${office.email}`}><Image src="/assets/images/mail.png" alt="email" width={20} height={20} /> <span>{office.email}</span></a>

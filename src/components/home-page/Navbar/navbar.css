@@ -30,6 +30,11 @@
      gap: 8px;
 }
 
+.nav-main .top-bar .top-contact .top-contact-content .offer-icon {
+     animation: shakeScale 1.5s ease-in-out infinite;
+     transform-origin: center;
+}
+
 .nav-main .top-bar .top-contact .top-contact-content a {
      color: var(--black);
      text-decoration: none;
@@ -386,5 +391,52 @@
      .mobile-menu {
           display: block;
           height: 60px;
+     }
+}
+
+/* Animation keyframes */
+@keyframes shakeScale {
+     0% {
+          transform: scale(1) rotate(0deg);
+     }
+
+     10% {
+          transform: scale(1.07) rotate(-7deg);
+     }
+
+     20% {
+          transform: scale(1.15) rotate(7deg);
+     }
+
+     30% {
+          transform: scale(1.07) rotate(-7deg);
+     }
+
+     40% {
+          transform: scale(1.1) rotate(7deg);
+     }
+
+     50% {
+          transform: scale(1.07) rotate(-4deg);
+     }
+
+     60% {
+          transform: scale(1) rotate(4deg);
+     }
+
+     70% {
+          transform: scale(1.05) rotate(-4deg);
+     }
+
+     80% {
+          transform: scale(1.02) rotate(4deg);
+     }
+
+     90% {
+          transform: scale(1.01) rotate(0deg);
+     }
+
+     100% {
+          transform: scale(1) rotate(0deg);
      }
 }

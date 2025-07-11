@@ -160,7 +160,7 @@ const PackagesSection = ({ packages: initialPackages }: PackagesSectionProps) =>
                                                                                      </div>
                                                                                      <div className="card-action-btns">
                                                                                           <div className="view-more-btn wo">
-                                                                                               <Link href={`${pathName}/${packageInfo?.package_name}`} className=""><span>View details</span></Link>
+                                                                                               <Link href={`${pathName}/${packageInfo?.slug}`} className=""><span>View details</span></Link>
                                                                                           </div>
                                                                                           <div className="view-more-btn">
                                                                                                <button

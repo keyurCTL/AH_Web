@@ -46,7 +46,7 @@ const ReligiousDestination = (props: ReligiousDestinationProps) => {
                                              return (
                                                   <div key={index} className="col-lg-4 col-md-6 col-6">
                                                        <div className="religious-img-card">
-                                                            <Link href={`religious-tours/${packageItem?.package_name}`}>
+                                                            <Link href={`religious-tours/${packageItem?.slug}`}>
                                                                  <Image
                                                                       className="br-rad"
                                                                       src={religiousImg}

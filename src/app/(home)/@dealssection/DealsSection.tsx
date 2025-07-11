@@ -85,7 +85,7 @@ const DealsSection = ({ offers }: DealsSectionProps) => {
                                    return offerPackages?.map((packageItem, packageItemIndex) => {
                                         const packageName = viewPortWidth != null ? viewPortWidth > 1440 ? `${packageItem?.package_name}` : `${packageItem?.package_name?.slice(0, 25)}...` : ""
                                         const packageImg = packageItem?.navbar?.img?.file_public_url || null
-                                        const packageUrl = packageItem?.category == "religious-tours" ? `${packageItem?.category}/${packageItem?.package_name}` : `${packageItem?.category}/${packageItem?.base_package?.toLowerCase()?.replace(/\s+/g, "-")}/${packageItem?.package_name}`
+                                        const packageUrl = packageItem?.category == "religious-tours" ? `${packageItem?.category}/${packageItem?.package_name}` : `${packageItem?.category}/${packageItem?.base_package?.toLowerCase()?.replace(/\s+/g, "-")}/${packageItem?.slug}`
                                         return (
                                              <SwiperSlide key={packageItemIndex}>
                                                   <div className="deal-card">
@@ -93,7 +93,7 @@ const DealsSection = ({ offers }: DealsSectionProps) => {
                                                             <span>DEAL</span>
                                                        </div>
                                                        <div className="card-image">
-                                                            <Image src={packageImg} alt={`${packageItem.package_name} best deal`} width={153} height={153} />
+                                                            <Image src={packageImg} alt={`${packageItem?.package_name} best deal`} width={153} height={153} />
                                                             <div className="price">
                                                                  <span>save</span>
                                                                  <span className="price-value">₹{formatIndianNumber(packageItem?.difference_price)}/-</span>
@@ -106,13 +106,13 @@ const DealsSection = ({ offers }: DealsSectionProps) => {
                                                                  </Link>
                                                                  <div className="deal-card-duration">{`${packageItem?.basic_info?.days} Days & ${packageItem?.basic_info?.night} Night${Number(packageItem?.basic_info?.night) > 1 ? "s" : ""}`}</div>
                                                                  <div className="deal-card-hotel">
-                                                                      Hotel: <span>★</span> {packageItem?.hotels?.reduce((acc: number, hotel: any) => Math.max(acc, hotel.hotel_star), 1)}
+                                                                      Hotel: <span>★</span> {packageItem?.hotels?.reduce((acc: number, hotel: any) => Math.max(acc, hotel?.hotel_star), 1)}
                                                                  </div>
                                                             </div>
                                                             <div className="deal-card-price">
                                                                  <div className="deal-card-price-value">₹{formatIndianNumber(packageItem?.price)}/-</div>
                                                                  <div className="deal-card-final-price-value">
-                                                                      ₹{formatIndianNumber(packageItem.discounted_price)}/-<span>*</span>
+                                                                      ₹{formatIndianNumber(packageItem?.discounted_price)}/-<span>*</span>
                                                                  </div>
                                                             </div>
                                                        </div>

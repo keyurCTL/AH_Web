@@ -53,7 +53,6 @@ const OffersPopup: React.FC<OffersPopupProps> = ({ offers, onInteraction }) => {
     }
   }, [])
 
-
   useEffect(() => {
     const dismissed = getDismissedIds();
     const filtered = offers.filter((o) => !dismissed.includes(o._id));
@@ -127,13 +126,11 @@ const OffersPopup: React.FC<OffersPopupProps> = ({ offers, onInteraction }) => {
             return offerPackages?.map((packageItem, packageItemIndex) => {
               const packageName = viewPortWidth != null ? viewPortWidth > 1440 ? `${packageItem?.package_name}` : `${packageItem?.package_name?.slice(0, 25)}...` : ""
               const packageImg = packageItem?.navbar?.img?.file_public_url || null
-              const packageUrl = packageItem?.category == "religious-tours" ? `${packageItem?.category}/${packageItem?.package_name}` : `${packageItem?.category}/${packageItem?.base_package?.toLowerCase()?.replace(/\s+/g, "-")}/${packageItem?.package_name}`
+              const packageUrl = packageItem?.category == "religious-tours" ? `${packageItem?.category}/${packageItem?.package_name}` : `${packageItem?.category}/${packageItem?.base_package?.toLowerCase()?.replace(/\s+/g, "-")}/${packageItem?.slug}`
               return (
                 <SwiperSlide key={packageItemIndex}>
                   <div className="popup-deal-card">
-                    <div className="ribbon">
-                      <span>DEAL</span>
-                    </div>
+                    <div className="ribbon"><span>DEAL</span></div>
                     <div className="card-image">
                       <Image src={packageImg} alt={`${packageItem.package_name} best deal`} width={153} height={153} />
                       <div className="price">

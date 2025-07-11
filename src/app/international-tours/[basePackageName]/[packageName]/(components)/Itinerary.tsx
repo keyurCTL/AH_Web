@@ -47,7 +47,7 @@ export default function Itinerary({ packageInfo }: ItineraryProps) {
         { label: 'Home', link: '/', class: "" },
         { label: 'International Tour Packages', link: '/international-tours' },
         { label: `${capitalizeText(basePackageName?.replace(/-+/g, " "))} Tour Packages`, link: `/international-tours/${basePackageName}` },
-        { label: `${decodedPackageName}`, link: `/international-tours/${basePackageName}/${decodedPackageName}`, class: "self-page" },
+        { label: `${packageInfo?.package_name}`, link: `/international-tours/${basePackageName}/${decodedPackageName}`, class: "self-page" },
     ]
 
     const places = packageInfo?.overview?.places || [];

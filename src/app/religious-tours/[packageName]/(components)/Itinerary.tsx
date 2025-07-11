@@ -45,7 +45,7 @@ export default function Itinerary({ packageInfo }: ItineraryProps) {
     const breadcrumbs = [
         { label: 'Home', link: '/', class: "" },
         { label: 'Religious Tours', link: '/religious-tours' },
-        { label: `${decodedPackageName}`, link: `/religious-tours/${basePackageName}/${decodedPackageName}`, class: "self-page" },
+        { label: `${packageInfo?.package_name}`, link: `/religious-tours/${basePackageName}/${decodedPackageName}`, class: "self-page" },
     ]
 
     const places = packageInfo?.overview?.places || [];

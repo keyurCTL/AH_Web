@@ -66,12 +66,12 @@ const page = async ({ params, searchParams }: PageProps) => {
                 ]}
                 stats={[
                     {
-                        icon: '/assets/images/wallet.png',
+                        icon: '/assets/images/wallet.svg',
                         title: 'Packages Starting',
                         value: `₹${formatIndianNumber(package_starting_from)}/-`,
                     },
                     {
-                        icon: '/assets/images/Reviews.png',
+                        icon: '/assets/images/reviews.svg',
                         title: 'Rated',
                         value: `${avgRatting}/5`,
                         subtext: `(based on ${totalReviews} reviews)`,

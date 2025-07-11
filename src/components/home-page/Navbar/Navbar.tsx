@@ -73,7 +73,7 @@ const Navbar = () => {
           <div className="top-contact">
             <div className="top-contact-content">
               <Image
-                src="/assets/images/call.png"
+                src="/assets/images/call.svg"
                 alt="call"
                 width={20}
                 height={20}
@@ -83,11 +83,12 @@ const Navbar = () => {
             </div>
             <div className="top-contact-content">
               <Image
-                src="/assets/images/offers.png"
+                src="/assets/images/offers.svg"
                 alt="offers"
                 width={20}
                 height={20}
                 unoptimized
+                className="offer-icon"
               />
               {/* <Lottie animationData={Offer} loop={true} /> */}
               <Link href="/offers">Offers</Link>
