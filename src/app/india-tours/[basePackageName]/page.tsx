@@ -71,7 +71,7 @@ const page = async ({ params, searchParams }: PageProps) => {
                         value: `₹${formatIndianNumber(package_starting_from)}/-`,
                     },
                     {
-                        icon: '/assets/images/reviews.svg',
+                        icon: '/assets/images/review.svg',
                         title: 'Rated',
                         value: `${avgRatting}/5`,
                         subtext: `(based on ${totalReviews} reviews)`,
