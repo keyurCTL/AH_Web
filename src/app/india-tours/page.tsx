@@ -55,6 +55,7 @@ const page = async ({ searchParams }: PageProps) => {
                     }
                 ]}
             />
+            {/* IMG */}
             <ToursSection packages={packages} />
         </>
     )
