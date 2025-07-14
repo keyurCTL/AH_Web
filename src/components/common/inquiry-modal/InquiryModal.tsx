@@ -46,9 +46,6 @@ const InquiryModal: React.FC<InquiryModalProps> = ({ show, onHide, packageDetail
           resolver: zodResolver(inquirySchema),
      })
 
-console.log("Form Errors:", errors);
-
-
      // Captcha handlers to update captcha from child component
      const handleCaptchaChange = (captcha: string) => {
           setGeneratedCaptcha(captcha);
@@ -85,11 +82,9 @@ console.log("Form Errors:", errors);
                },
           }
 
-          console.log("Final Payload:", finalPayload);
-
           try {
                const res: any = await fetchData({
-                    endpoint: 'package-inquiry',
+                    endpoint: '/inquiry/guest',
                     method: 'POST',
                     body: finalPayload
                })
