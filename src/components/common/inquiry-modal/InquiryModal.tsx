@@ -84,7 +84,7 @@ const InquiryModal: React.FC<InquiryModalProps> = ({ show, onHide, packageDetail
 
           try {
                const res: any = await fetchData({
-                    endpoint: '/inquiry/guest',
+                    endpoint: 'inquiry/guest',
                     method: 'POST',
                     body: finalPayload
                })
