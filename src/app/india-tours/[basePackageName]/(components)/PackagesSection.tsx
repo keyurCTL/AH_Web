@@ -46,7 +46,6 @@ const PackagesSection = ({ packages: initialPackages }: PackagesSectionProps) =>
           }
      };
 
-
      useEffect(() => {
           handleFilterChange();
      }, [shortBy]);

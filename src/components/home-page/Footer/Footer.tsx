@@ -10,7 +10,7 @@ const Footer = () => {
                <section className="footer-section">
                     <div className="container">
                          <Link href={"/"} className="footer-logo">
-                              <Image src="/assets/images/logo/ah-logo.png" alt="ah-logo" height={84} width={260} unoptimized />
+                              <Image src="/assets/images/logo/ah-logo.svg" alt="ah-logo" height={84} width={260} unoptimized />
                          </Link>
                          <div className="footer-content">
                               <div className="row">
