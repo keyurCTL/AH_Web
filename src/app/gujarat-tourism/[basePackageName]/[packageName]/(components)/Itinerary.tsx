@@ -10,7 +10,6 @@ import Link from "next/link"
 import { useParams } from "next/navigation"
 import React, { useState } from "react"
 import { Accordion } from "react-bootstrap"
-import WhatsAppIcon from "../../../../../../public/assets/images/whatsapp.png"
 import WhatsAppLink from "@/components/common/WhatsAppLink";
 
 type ItineraryProps = {
