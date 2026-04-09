@@ -97,7 +97,7 @@ const Footer = () => {
                               </div>
                               <hr />
                               <div className="row">
-                                   <div className="col-lg-3 col-sm-6">
+                                   <div className="col-lg-4 col-sm-6">
                                         <div className="f-title">Home Branch</div>
                                         <div className="address-box">
                                              <div className="location-pill">AHMEDABAD</div>
@@ -107,7 +107,7 @@ const Footer = () => {
                                              </p>
                                         </div>
                                    </div>
-                                   <div className="col-lg-9 col-sm-6">
+                                   <div className="col-lg-8 col-sm-6">
                                         <div className="f-title">Other Branches</div>
                                         <div className="other-brances">
                                              <div className="address-box">
@@ -118,13 +118,13 @@ const Footer = () => {
                                                        Ahmedabad, Gujarat 382350
                                                   </p>
                                              </div>
-                                             <div className="address-box">
+                                             {/* <div className="address-box">
                                                   <div className="location-pill ob">MEHSANA</div>
                                                   <p>
                                                        C-103 Joyos Hubtown, Nr. Virnagar Society, BK
                                                        road, Mehsana, Gujarat 384001
                                                   </p>
-                                             </div>
+                                             </div> */}
                                              <div className="address-box">
                                                   <div className="location-pill ob">RAJKOT</div>
                                                   <p>
