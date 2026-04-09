@@ -33,7 +33,7 @@ export default async function Reviews() {
                     stats={[
                          { icon: '/assets/images/thumbs-up.png', title: 'Reviews', value: `${totalReviews}` },
                          {
-                              icon: '/assets/images/reviews.svg',
+                              icon: '/assets/images/review.svg',
                               title: 'Rated',
                               value: `${avgRatting}/5`,
                               subtext: `(based on ${totalReviews} reviews)`,

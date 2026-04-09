@@ -15,6 +15,7 @@ import 'swiper/css/navigation';
 import Image from "next/image";
 import { formatIndianNumber } from "@/lib/utils";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 interface OffersPopupProps {
   offers: Offer[];
@@ -127,6 +128,7 @@ const OffersPopup: React.FC<OffersPopupProps> = ({ offers, onInteraction }) => {
               const packageName = viewPortWidth != null ? viewPortWidth > 1440 ? `${packageItem?.package_name}` : `${packageItem?.package_name?.slice(0, 25)}...` : ""
               const packageImg = packageItem?.navbar?.img?.file_public_url || null
               const packageUrl = packageItem?.category == "religious-tours" ? `${packageItem?.category}/${packageItem?.package_name}` : `${packageItem?.category}/${packageItem?.base_package?.toLowerCase()?.replace(/\s+/g, "-")}/${packageItem?.slug}`
+
               return (
                 <SwiperSlide key={packageItemIndex}>
                   <div className="popup-deal-card">
@@ -140,9 +142,13 @@ const OffersPopup: React.FC<OffersPopupProps> = ({ offers, onInteraction }) => {
                     </div>
                     <div className="popup-deal-card-body">
                       <div className="popup-deal-card-content">
-                        <Link href={packageUrl}>
+                        <a href={packageUrl} onClick={(e) => {
+                          e.preventDefault()
+                          dismissAll()
+                          redirect(packageUrl)
+                        }}>
                           <div className="popup-deal-card-title">{packageName}</div>
-                        </Link>
+                        </a>
                         <div className="popup-deal-card-duration">{`${packageItem?.basic_info?.days} Days & ${packageItem?.basic_info?.night} Night${Number(packageItem?.basic_info?.night) > 1 ? "s" : ""}`}</div>
                         <div className="popup-deal-card-hotel">
                           Hotel: <span>★</span> {packageItem?.hotels?.reduce((acc: number, hotel: any) => Math.max(acc, hotel.hotel_star), 1)}

@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image";
-import logo from '../../../../public/assets/images/logo/ah-logo.png';
+import logo from '../../../../public/assets/images/logo/ah-logo.svg';
 // import './navbar.css';
 import GujratTours from "./navbarmenus/GujratTours";
 import IndiaTours from "./navbarmenus/IndiaTours";

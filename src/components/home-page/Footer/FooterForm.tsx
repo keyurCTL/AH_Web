@@ -1,12 +1,10 @@
 "use client";
 
-import { PHONE_REGEX } from "@/lib/constants";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { fetchData } from "@/services/api";
 import { useEffect, useState } from "react";
-import Image from "next/image";
 
 interface IFormInput {
      // full_name: string;
@@ -38,9 +36,8 @@ const FooterForm = () => {
           setLoading(true);
           try {
                const res: any = await fetchData({
-                    endpoint: 'subscribe-newsletter',
-                    method: 'POST',
-                    body: data
+                    endpoint: `subscribe?email=${data.email}`,
+                    method: 'GET',
                })
                if (res?.statusCode === 200) {
                     setFormStatus('success');

@@ -46,7 +46,7 @@ const MobileMenu = ({ packages }: NavbarInfoType) => {
                <div className="d-flex justify-content-between align-items-center w-full">
                     <div className="logo">
                          <Link href="/">
-                              <Image src="/assets/images/logo/ah-logo.png" alt="Alakh Holidays Logo" height={42} width={144} unoptimized />
+                              <Image src="/assets/images/logo/ah-logo.svg" alt="Alakh Holidays Logo" height={42} width={144} unoptimized />
                          </Link>
                     </div>
                     <button id="menuToggle" className="menu-toggle">
